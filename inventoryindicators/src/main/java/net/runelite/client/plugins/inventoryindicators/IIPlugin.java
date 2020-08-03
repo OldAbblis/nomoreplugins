@@ -124,6 +124,7 @@ public class IIPlugin extends Plugin {
 				String[] configNames = config.containName().split(Pattern.quote("."));
 				if (configNames == null)
 				{
+					inventoryContains = false;
 					return;
 				}
 				for (String configName : configNames)
