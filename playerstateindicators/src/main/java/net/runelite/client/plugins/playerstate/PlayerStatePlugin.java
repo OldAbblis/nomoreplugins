@@ -32,6 +32,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
+import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.client.Notifier;
@@ -43,12 +44,16 @@ import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
 
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 @Extension
 @PluginDescriptor(
 	name = "Player State Indicators",
 	description = "A plugin to assist AHK scripts",
 	tags = {"ahk", "script", "overlay", "autohotkey", "nomoreahk"},
-	type = PluginType.PVM
+	type = PluginType.UTILITY
 )
 @Slf4j
 public class PlayerStatePlugin extends Plugin {
@@ -92,11 +97,16 @@ public class PlayerStatePlugin extends Plugin {
 
 	@Getter(AccessLevel.PACKAGE)
 	@Setter(AccessLevel.PUBLIC)
-	public boolean lowHP = false;
-	public boolean lowPrayer = false;
-	public boolean lowEnergy = false;
-	public boolean lowSpecial = false;
-	public boolean fullInventory = false;
+	boolean lowHP = false;
+	boolean lowPrayer = false;
+	boolean lowEnergy = false;
+	boolean lowSpecial = false;
+	boolean fullInventory = false;
+	boolean lowAttack = false;
+	boolean lowStrength = false;
+	boolean lowDefence = false;
+	boolean lowMagic = false;
+	boolean lowRanging = false;
 
 	private Player player;
 
@@ -133,8 +143,43 @@ public class PlayerStatePlugin extends Plugin {
 		if (config.displayLowSpecial())
 		{
 			int configLevel = config.lowSpecialLevel();
-			int level = client.getVar(VarPlayer.SPECIAL_ATTACK_PERCENT) / 10;;
+			int level = client.getVar(VarPlayer.SPECIAL_ATTACK_PERCENT) / 10;
 			lowSpecial = level < configLevel;
+		}
+
+		if (config.displayLowAttack())
+		{
+			int configLevel = config.lowAttackLevel();
+			int level = client.getBoostedSkillLevel(Skill.ATTACK);
+			lowAttack = level < configLevel;
+		}
+
+		if (config.displayLowStrength())
+		{
+			int configLevel = config.lowStrengthLevel();
+			int level = client.getBoostedSkillLevel(Skill.STRENGTH);
+			lowStrength = level < configLevel;
+		}
+
+		if (config.displayLowDefence())
+		{
+			int configLevel = config.lowDefenceLevel();
+			int level = client.getBoostedSkillLevel(Skill.DEFENCE);
+			lowDefence = level < configLevel;
+		}
+
+		if (config.displayLowMagic())
+		{
+			int configLevel = config.lowMagicLevel();
+			int level = client.getBoostedSkillLevel(Skill.MAGIC);
+			lowMagic = level < configLevel;
+		}
+
+		if (config.displayLowRanging())
+		{
+			int configLevel = config.lowRangingLevel();
+			int level = client.getBoostedSkillLevel(Skill.RANGED);
+			lowRanging = level < configLevel;
 		}
 	}
 

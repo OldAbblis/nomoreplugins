@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Plugin-Version: 0.0.1
+Plugin-Version: 0.0.2
 Plugin-Id: playerstateindicators-plugin
 Plugin-Provider: NoMoreAHK
 Plugin-Description: A plugin to assist in the creation of AHK Scripts.

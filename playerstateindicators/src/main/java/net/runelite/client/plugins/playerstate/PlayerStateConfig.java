@@ -27,6 +27,9 @@ package net.runelite.client.plugins.playerstate;
 import java.awt.*;
 
 import net.runelite.client.config.*;
+import net.runelite.client.plugins.playerstate.configenums.InventoryIndicatorsEnum;
+import net.runelite.client.plugins.playerstate.configenums.PlayerIndicatorsEnum;
+import org.checkerframework.checker.units.qual.Time;
 
 @ConfigGroup("playerstateindicators")
 public interface PlayerStateConfig extends Config {
@@ -54,8 +57,8 @@ public interface PlayerStateConfig extends Config {
 
     @ConfigItem(
             keyName = "displayLowHP",
-            name = "Hitpoints",
-            description = "Displays an indicator when low on health.",
+            name = "Enabled",
+            description = "Enable the indicator.",
             position = 3,
             hidden = true,
             unhide = "playerIndicatorsEnum",
@@ -104,8 +107,8 @@ public interface PlayerStateConfig extends Config {
 
     @ConfigItem(
             keyName = "displayLowPrayer",
-            name = "Prayer",
-            description = "Displays an indicator when low on prayer points.",
+            name = "Enabled",
+            description = "Enable the indicator.",
             position = 7,
             hidden = true,
             unhide = "playerIndicatorsEnum",
@@ -154,8 +157,8 @@ public interface PlayerStateConfig extends Config {
 
     @ConfigItem(
             keyName = "displayLowEnergy",
-            name = "Energy",
-            description = "Displays an indicator when low on run energy.",
+            name = "Enabled",
+            description = "Enable the indicator.",
             position = 11,
             hidden = true,
             unhide = "playerIndicatorsEnum",
@@ -202,8 +205,8 @@ public interface PlayerStateConfig extends Config {
 
     @ConfigItem(
             keyName = "displayLowSpecial",
-            name = "Special",
-            description = "Displays an indicator when low on special attack energy.",
+            name = "Enabled",
+            description = "Enable the indicator.",
             position = 15,
             hidden = true,
             unhide = "playerIndicatorsEnum",
@@ -247,6 +250,299 @@ public interface PlayerStateConfig extends Config {
             titleSection = "firstTitle"
     )
     default Color specialColor() { return Color.YELLOW; }
+
+    @ConfigItem(
+            keyName = "displayLowAttack",
+            name = "Enabled",
+            description = "Enable the indicator.",
+            position = 19,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "ATTACK",
+            titleSection = "firstTitle"
+    )
+    default boolean displayLowAttack() { return false; }
+
+    @ConfigItem(
+            keyName = "lowAttackLevel",
+            name = "Attack level",
+            description = "Displays an indicator when the attack level is below a certain value.",
+            position = 20,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "ATTACK",
+            titleSection = "firstTitle"
+    )
+    default int lowAttackLevel() { return 10; }
+
+    @ConfigItem(
+            keyName = "attackLocation",
+            name = "Indicator location",
+            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            position = 21,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "ATTACK",
+            titleSection = "firstTitle"
+    )
+    default String attackLocation() { return "70.0.5.5"; }
+
+    @ConfigItem(
+            keyName = "attackColor",
+            name = "Indicator color",
+            description = "Indicator color",
+            position = 22,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "ATTACK",
+            titleSection = "firstTitle"
+    )
+    default Color attackColor() { return Color.RED; }
+
+    @ConfigItem(
+            keyName = "displayLowstrength",
+            name = "Enabled",
+            description = "Enable the indicator.",
+            position = 23,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "STRENGTH",
+            titleSection = "firstTitle"
+    )
+    default boolean displayLowStrength() { return false; }
+
+    @ConfigItem(
+            keyName = "lowStrengthLevel",
+            name = "Strength level",
+            description = "Displays an indicator when the strength level is below a certain value.",
+            position = 24,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "STRENGTH",
+            titleSection = "firstTitle"
+    )
+    default int lowStrengthLevel() { return 10; }
+
+    @ConfigItem(
+            keyName = "strengthLocation",
+            name = "Indicator location",
+            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            position = 25,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "STRENGTH",
+            titleSection = "firstTitle"
+    )
+    default String strengthLocation() { return "75.0.5.5"; }
+
+    @ConfigItem(
+            keyName = "strengthColor",
+            name = "Indicator color",
+            description = "Indicator color",
+            position = 26,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "STRENGTH",
+            titleSection = "firstTitle"
+    )
+    default Color strengthColor() { return Color.RED; }
+
+    @ConfigItem(
+            keyName = "displayLowDefence",
+            name = "Enabled",
+            description = "Enable the indicator.",
+            position = 27,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "DEFENCE",
+            titleSection = "firstTitle"
+    )
+    default boolean displayLowDefence() { return false; }
+
+    @ConfigItem(
+            keyName = "lowDefenceLevel",
+            name = "Defence level",
+            description = "Displays an indicator when the defence level is below a certain value.",
+            position = 28,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "DEFENCE",
+            titleSection = "firstTitle"
+    )
+    default int lowDefenceLevel() { return 10; }
+
+    @ConfigItem(
+            keyName = "defenceLocation",
+            name = "Indicator location",
+            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            position = 29,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "DEFENCE",
+            titleSection = "firstTitle"
+    )
+    default String defenceLocation() { return "80.0.5.5"; }
+
+    @ConfigItem(
+            keyName = "defenceColor",
+            name = "Indicator color",
+            description = "Indicator color",
+            position = 30,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "DEFENCE",
+            titleSection = "firstTitle"
+    )
+    default Color defenceColor() { return Color.RED; }
+
+    @ConfigItem(
+            keyName = "displayLowMagic",
+            name = "Enabled",
+            description = "Enable the indicator.",
+            position = 31,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "MAGIC",
+            titleSection = "firstTitle"
+    )
+    default boolean displayLowMagic() { return false; }
+
+    @ConfigItem(
+            keyName = "lowMagicLevel",
+            name = "Magic level",
+            description = "Displays an indicator when the magic level is below a certain value.",
+            position = 32,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "MAGIC",
+            titleSection = "firstTitle"
+    )
+    default int lowMagicLevel() { return 10; }
+
+    @ConfigItem(
+            keyName = "magicLocation",
+            name = "Indicator location",
+            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            position = 33,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "MAGIC",
+            titleSection = "firstTitle"
+    )
+    default String magicLocation() { return "85.0.5.5"; }
+
+    @ConfigItem(
+            keyName = "magicColor",
+            name = "Indicator color",
+            description = "Indicator color",
+            position = 34,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "MAGIC",
+            titleSection = "firstTitle"
+    )
+    default Color magicColor() { return Color.RED; }
+
+    @ConfigItem(
+            keyName = "displayLowRanging",
+            name = "Enabled",
+            description = "Enable the indicator.",
+            position = 35,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "RANGING",
+            titleSection = "firstTitle"
+    )
+    default boolean displayLowRanging() { return false; }
+
+    @ConfigItem(
+            keyName = "lowRangingLevel",
+            name = "Ranging level",
+            description = "Displays an indicator when the ranging level is below a certain value.",
+            position = 36,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "RANGING",
+            titleSection = "firstTitle"
+    )
+    default int lowRangingLevel() { return 10; }
+
+    @ConfigItem(
+            keyName = "rangingLocation",
+            name = "Indicator location",
+            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            position = 37,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "RANGING",
+            titleSection = "firstTitle"
+    )
+    default String rangingLocation() { return "90.0.5.5"; }
+
+    @ConfigItem(
+            keyName = "rangingColor",
+            name = "Indicator color",
+            description = "Indicator color",
+            position = 38,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "RANGING",
+            titleSection = "firstTitle"
+    )
+    default Color rangingColor() { return Color.RED; }
+
+    @ConfigItem(
+            keyName = "displayIdle",
+            name = "Enabled",
+            description = "Enable the indicator.",
+            position = 39,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "IDLE",
+            titleSection = "firstTitle"
+    )
+    default boolean displayIdle() { return false; }
+
+    @ConfigItem(
+            keyName = "idleTime",
+            name = "Idle time (milliseconds)",
+            description = "Displays an indicator when the player has been idle for x amount of time.",
+            position = 40,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "IDLE",
+            titleSection = "firstTitle"
+    )
+    @Units(Units.MILLISECONDS)
+    default int idleTime() { return 1000; }
+
+    @ConfigItem(
+            keyName = "idleLocation",
+            name = "Indicator location",
+            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            position = 41,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "IDLE",
+            titleSection = "firstTitle"
+    )
+    default String idleLocation() { return "95.0.5.5"; }
+
+    @ConfigItem(
+            keyName = "idleColor",
+            name = "Indicator color",
+            description = "Indicator color",
+            position = 42,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "IDLE",
+            titleSection = "firstTitle"
+    )
+    default Color idleColor() { return Color.RED; }
+
+
+
+    /*
 
     @ConfigTitleSection(
             keyName = "secondTitle",
@@ -304,4 +600,6 @@ public interface PlayerStateConfig extends Config {
             titleSection = "secondTitle"
     )
     default Color fullInventoryColor() { return Color.RED; }
+
+     */
 }

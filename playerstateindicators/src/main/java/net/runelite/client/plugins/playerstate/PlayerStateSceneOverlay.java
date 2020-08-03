@@ -29,10 +29,10 @@ import java.awt.*;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.awt.Graphics2D;
-import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Pattern;
 
-import net.runelite.api.GameState;
 import net.runelite.api.Player;
 import net.runelite.client.ui.overlay.*;
 import net.runelite.api.Client;
@@ -50,13 +50,18 @@ class PlayerStateSceneOverlay extends Overlay
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.LOW);
-		setLayer(OverlayLayer.ABOVE_WIDGETS);
+		setLayer(OverlayLayer.ABOVE_SCENE);
 		this.client = client;
 		this.config = config;
 		this.plugin = plugin;
 	}
 
-	private Player player;
+	boolean isPlayerIdle = false;
+	Timer idleTimer = new Timer();
+	Timer interactingTimer = new Timer();
+	Timer walkingTimer = new Timer();
+	TimerTask task;
+	Player player;
 
 	@Override
 	public Dimension render(Graphics2D graphics)
@@ -87,10 +92,42 @@ class PlayerStateSceneOverlay extends Overlay
 			renderG(graphics, config.specialColor(), config.specialLocation().split(Pattern.quote(".")));
 		}
 
-		if (plugin.fullInventory && config.displayFullInventory())
+		if (plugin.lowAttack && config.displayLowAttack())
+		{
+			renderG(graphics, config.attackColor(), config.attackLocation().split(Pattern.quote(".")));
+		}
+
+		if (plugin.lowStrength && config.displayLowStrength())
+		{
+			renderG(graphics, config.strengthColor(), config.strengthLocation().split(Pattern.quote(".")));
+		}
+
+		if (plugin.lowDefence && config.displayLowDefence())
+		{
+			renderG(graphics, config.defenceColor(), config.defenceLocation().split(Pattern.quote(".")));
+		}
+
+		if (plugin.lowMagic && config.displayLowMagic())
+		{
+			renderG(graphics, config.magicColor(), config.magicLocation().split(Pattern.quote(".")));
+		}
+
+		if (plugin.lowRanging && config.displayLowRanging())
+		{
+			renderG(graphics, config.rangingColor(), config.rangingLocation().split(Pattern.quote(".")));
+		}
+
+		if (isPlayerIdle() && config.displayIdle())
+		{
+			if (task != null)
+				renderG(graphics, config.idleColor(), config.idleLocation().split(Pattern.quote(".")));
+		}
+
+		/*
+		if (plugin.fullInventory && config.display())
 		{
 			renderG(graphics, config.fullInventoryColor(), config.fullInventoryLocation().split(Pattern.quote(".")));
-		}
+		}*/
 
 		return null;
 	}
@@ -107,5 +144,40 @@ class PlayerStateSceneOverlay extends Overlay
 	private int getParsedInt(String[] string, int number)
 	{
 		return Integer.parseInt(string[number]);
+	}
+
+	private boolean isPlayerIdle()
+	{
+		if (config.displayIdle())
+		{
+			if (player.getSpotAnimation() == -1
+					&& player.getInteracting() == null
+					&& player.getAnimation() == -1
+					&& client.getLocalDestinationLocation() == null)
+			{
+				startTimer(idleTimer);
+			}
+			else
+			{
+				isPlayerIdle = false;
+				task = null;
+			}
+
+		}
+		return isPlayerIdle;
+	}
+
+	private void startTimer(Timer timer)
+	{
+		if (task == null) {
+			if (timer == idleTimer) {
+				task = new TimerTask() {
+					public void run() {
+						isPlayerIdle = true;
+					}
+				};
+				idleTimer.schedule(task, config.idleTime());
+			}
+		}
 	}
 }
