@@ -183,18 +183,4 @@ public class PlayerStatePlugin extends Plugin {
 		}
 	}
 
-	@Subscribe
-	private void onItemContainerChanged(ItemContainerChanged event)
-	{
-		int i = 0;
-		Item[] items = client.getItemContainer(InventoryID.INVENTORY).getItems();
-		for (Item item : items) {
-			if (item == null || item.getId() == -1) {
-				continue;
-			}
-			i++;
-		}
-		fullInventory = i == 28;
-	}
-
 }

@@ -34,6 +34,22 @@
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMoreAHK",
+    "name": "Inventory Indicators",
+    "description": "Display indicators based on various inventory related states.",
+    "id": "inventoryindicators-plugin",
+    "releases": [
+      {
+        "date": "2020-08-03",
+        "sha512sum": "F597460736DA1462B9A7E8FD69564529964456FFAF84B6F069C2FAF1973D5CE2E8120B8DA5C512ED636B6D3EF6C30AB2F2731F4A987477CE1D61961A17E347BC",
+        "version": "0.0.1",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.0.1.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMoreAHK",
     "name": "NoMore Agility",
     "description": "A plugin to assist the creation of an AutoHotkey Agility script.",
     "id": "nomoreagility-plugin",

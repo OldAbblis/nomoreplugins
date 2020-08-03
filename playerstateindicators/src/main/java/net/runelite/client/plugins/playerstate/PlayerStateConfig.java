@@ -51,9 +51,7 @@ public interface PlayerStateConfig extends Config {
             position = 2,
             titleSection = "firstTitle"
     )
-    default PlayerIndicatorsEnum playerIndicatorsEnum() {
-        return PlayerIndicatorsEnum.HITPOINTS;
-    }
+    default PlayerIndicatorsEnum playerIndicatorsEnum() { return PlayerIndicatorsEnum.HITPOINTS; }
 
     @ConfigItem(
             keyName = "displayLowHP",

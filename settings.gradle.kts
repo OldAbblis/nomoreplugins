@@ -14,6 +14,7 @@ include(":aplugintutorial")
 include(":chatbox")
 include(":nomoremenuindicators")
 include(":playerstateindicators")
+include(":inventoryindicators")
 
 for (project in rootProject.children) {
     project.apply {
