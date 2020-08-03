@@ -82,7 +82,7 @@ public interface IIConfig extends Config {
             unhideValue = "CONTAINS",
             titleSection = "firstTitle"
     )
-    default String containName() { return "Bones.Logs"; }
+    default String containName() { return null; }
 
     @ConfigItem(
             keyName = "containLocation",

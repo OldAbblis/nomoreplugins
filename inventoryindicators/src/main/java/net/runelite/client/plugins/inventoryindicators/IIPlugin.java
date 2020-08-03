@@ -31,9 +31,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
+import net.runelite.api.events.GameTick;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.input.MouseManager;
 import net.runelite.client.plugins.Plugin;
@@ -103,7 +105,7 @@ public class IIPlugin extends Plugin {
 		Item[] items = client.getItemContainer(InventoryID.INVENTORY).getItems();
 		if (config.displayFull())
 		{
-			int i = 1;
+			int i = 0;
 			for (Item item : items) {
 				if (item == null || item.getId() == -1)
 				{
@@ -113,30 +115,51 @@ public class IIPlugin extends Plugin {
 			}
 			inventoryFull = i == 28;
 		}
+	}
+
+	@Subscribe
+	private void on(GameTick event)
+	{
+
 		if (config.displayContain())
 		{
-			for (Item item : items) {
+			Item[] items = client.getItemContainer(InventoryID.INVENTORY).getItems();
+			String[] configNames = config.containName().split(Pattern.quote("."));
+			int slot = 1;
+			for (Item item : items)
+			{
 				if (item == null || item.getId() == -1)
 				{
 					continue;
 				}
 				String itemName = itemManager.getItemDefinition(item.getId()).getName().toLowerCase();
-				String[] configNames = config.containName().split(Pattern.quote("."));
 				if (configNames == null)
 				{
 					inventoryContains = false;
-					return;
+					System.out.println("The inventory does not contain: " + configNames);
+					continue;
 				}
 				for (String configName : configNames)
 				{
+					configName = configName.replaceAll("\\s+","");
+					itemName = itemName.replaceAll("\\s+","");
+					if (configName.equals(""))
+					{
+						inventoryContains = false;
+						System.out.println("The inventory does not contain: " + configName);
+						continue;
+					}
 					if (itemName.contains(configName.toLowerCase()))
 					{
 						inventoryContains = true;
+						System.out.println("The inventory contains: " + configName);
 						return;
 					}
 				}
-				inventoryContains = false;
+				slot++;
 			}
+			System.out.println("The inventory does not contain: " + Arrays.toString(configNames));
+			inventoryContains = false;
 		}
 	}
 }
