@@ -75,14 +75,14 @@ public interface IIConfig extends Config {
     @ConfigItem(
             keyName = "containNames",
             name = "Items and amount",
-            description = "Format: NAME:AMOUNT | \"Mind Rune:10,\"",
+            description = "Format: NAME:AMOUNT | \"Coins:1000, Ash,\"",
             position = 7,
             hidden = true,
             unhide = "inventoryEnum",
             unhideValue = "CONTAINS",
             titleSection = "firstTitle"
     )
-    default String containName() { return null; }
+    default String containName() { return "Coins:1000, \nAsh,"; }
 
     @ConfigItem(
             keyName = "containLocation",
