@@ -74,7 +74,7 @@ public interface IIConfig extends Config {
 
     @ConfigItem(
             keyName = "containNames",
-            name = "Display indicator if inventory contains:",
+            name = "Items and amount",
             description = "An indicator will display if the inventory contains the following, format to use: item name.item name e.g Bones.Logs",
             position = 7,
             hidden = true,
