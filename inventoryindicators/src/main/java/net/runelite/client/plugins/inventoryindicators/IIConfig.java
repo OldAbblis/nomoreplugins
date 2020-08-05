@@ -39,7 +39,7 @@ public interface IIConfig extends Config {
     @ConfigItem(
             keyName = "fullLocation",
             name = "Indicator location",
-            description = "X:Y:WIDTH:HEIGHT - 10:10:20:20",
+            description = "Format: X:Y:WIDTH:HEIGHT | \"10:10:20:20\"",
             position = 4,
             hidden = true,
             unhide = "inventoryEnum",
@@ -75,7 +75,7 @@ public interface IIConfig extends Config {
     @ConfigItem(
             keyName = "containNames",
             name = "Items and amount",
-            description = "An indicator will display if the inventory contains the following, format to use: item name.item name e.g Bones.Logs",
+            description = "Format: NAME:AMOUNT | \"Mind Rune:10,\"",
             position = 7,
             hidden = true,
             unhide = "inventoryEnum",
@@ -87,7 +87,7 @@ public interface IIConfig extends Config {
     @ConfigItem(
             keyName = "containLocation",
             name = "Indicator location",
-            description = "X:Y:WIDTH:HEIGHT - 10:10:20:20",
+            description = "Format: X:Y:WIDTH:HEIGHT | \"10:10:20:20\"",
             position = 8,
             hidden = true,
             unhide = "inventoryEnum",
