@@ -17,8 +17,8 @@ public interface IIConfig extends Config {
 
     @ConfigItem(
             keyName = "inventoryEnum",
-            name = "Display options for",
-            description = "Drop down menu to display configuration options.",
+            name = "",
+            description = "",
             position = 2,
             titleSection = "firstTitle"
     )
@@ -26,8 +26,8 @@ public interface IIConfig extends Config {
 
     @ConfigItem(
             keyName = "displayFull",
-            name = "Enabled",
-            description = "Enable the indicator.",
+            name = "Enable indicator",
+            description = "",
             position = 3,
             hidden = true,
             unhide = "inventoryEnum",
@@ -39,14 +39,14 @@ public interface IIConfig extends Config {
     @ConfigItem(
             keyName = "fullLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "X:Y:WIDTH:HEIGHT - 10:10:20:20",
             position = 4,
             hidden = true,
             unhide = "inventoryEnum",
             unhideValue = "FULL",
             titleSection = "firstTitle"
     )
-    default String fullLocation() { return "100.0.5.5"; }
+    default String fullLocation() { return "100:0:5:5"; }
 
     @ConfigItem(
             keyName = "fullColor",
@@ -62,8 +62,8 @@ public interface IIConfig extends Config {
 
     @ConfigItem(
             keyName = "displayContain",
-            name = "Enabled",
-            description = "Enable the indicator.",
+            name = "Enable indicator",
+            description = "",
             position = 6,
             hidden = true,
             unhide = "inventoryEnum",
@@ -74,7 +74,7 @@ public interface IIConfig extends Config {
 
     @ConfigItem(
             keyName = "containNames",
-            name = "Inventory contains:",
+            name = "Display indicator if inventory contains:",
             description = "An indicator will display if the inventory contains the following, format to use: item name.item name e.g Bones.Logs",
             position = 7,
             hidden = true,
@@ -87,7 +87,7 @@ public interface IIConfig extends Config {
     @ConfigItem(
             keyName = "containLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "X:Y:WIDTH:HEIGHT - 10:10:20:20",
             position = 8,
             hidden = true,
             unhide = "inventoryEnum",
