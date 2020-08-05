@@ -44,6 +44,13 @@
         "version": "0.0.1",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.0.1.jar?raw=true",
         "requires":"0.0.1"
+      },
+      {
+        "date": "2020-08-05",
+        "sha512sum": "DA0AEDD095D8123432548883BD56D3F44857DA5799DC4BFEE6AF1B406BB70CFDA16FE9407EB1FCF540D89039B8CF99728F0A3CAF63F763701F77BC52AAF3B44E",
+        "version": "0.0.2",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.0.2.jar?raw=true",
+        "requires":"0.0.1"
       }
     ]
   },

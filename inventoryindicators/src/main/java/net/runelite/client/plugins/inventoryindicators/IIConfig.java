@@ -4,7 +4,7 @@ import net.runelite.client.config.*;
 
 import java.awt.*;
 
-@ConfigGroup("amiscplugin")
+@ConfigGroup("inventoryindicators")
 public interface IIConfig extends Config {
 
     @ConfigTitleSection(

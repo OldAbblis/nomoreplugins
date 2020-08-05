@@ -15,6 +15,7 @@ include(":chatbox")
 include(":nomoremenuindicators")
 include(":playerstateindicators")
 include(":inventoryindicators")
+include(":spellbookindicators")
 
 for (project in rootProject.children) {
     project.apply {

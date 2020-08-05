@@ -1,12 +1,11 @@
 package net.runelite.client.plugins.inventoryindicators;
 
 import net.runelite.api.Client;
-import net.runelite.client.ui.overlay.Overlay;
-import net.runelite.client.ui.overlay.OverlayLayer;
-import net.runelite.client.ui.overlay.OverlayPosition;
+import net.runelite.client.ui.overlay.*;
 
 import javax.inject.Inject;
 import java.awt.*;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class SceneOverlay extends Overlay {
@@ -22,25 +21,30 @@ public class SceneOverlay extends Overlay {
         this.plugin = plugin;
         this.config = config;
         setPosition(OverlayPosition.DYNAMIC);
-        setLayer(OverlayLayer.ABOVE_SCENE);
+        setLayer(OverlayLayer.ABOVE_WIDGETS);
     }
 
     @Override
-    public Dimension render(Graphics2D graphics) {
+    public Dimension render(Graphics2D graphics)
+    {
         if (plugin.inventoryFull && config.displayFull())
         {
-            renderG(graphics, config.fullColor(), config.fullLocation().split(Pattern.quote(".")));
+            renderG(graphics, config.fullColor(), config.fullLocation().split(Pattern.quote(":")));
         }
 
         if (plugin.inventoryContains && config.displayContain())
         {
-            renderG(graphics, config.containColor(), config.containLocation().split(Pattern.quote(".")));
+            renderG(graphics, config.containColor(), config.containLocation().split(Pattern.quote(":")));
         }
         return null;
     }
 
     private void renderG(Graphics2D graphics, Color color, String[] s)
     {
+        if (s == null)
+        {
+            return;
+        }
         graphics.setColor(color);
         graphics.fillRect(getParsedInt(s,0),
                 getParsedInt(s,1),

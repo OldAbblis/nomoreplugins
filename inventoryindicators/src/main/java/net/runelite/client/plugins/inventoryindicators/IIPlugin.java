@@ -31,11 +31,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.events.GameTick;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.input.MouseManager;
 import net.runelite.client.plugins.Plugin;
@@ -44,7 +42,9 @@ import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
 @Extension
@@ -98,11 +98,17 @@ public class IIPlugin extends Plugin {
 	@Getter(AccessLevel.PACKAGE)
 	boolean inventoryFull = false;
 	boolean inventoryContains = false;
+	private HashMap<String, Integer> inventoryItem = new HashMap<>();
+	private HashMap<String, Integer> indicatorOptions = new HashMap<>();
 
 	@Subscribe
-	private void on(ItemContainerChanged event)
-	{
-		Item[] items = client.getItemContainer(InventoryID.INVENTORY).getItems();
+	private void on(ItemContainerChanged event) {
+		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
+		if (inventory == null)
+		{
+			return;
+		}
+		Item[] items = inventory.getItems();
 		if (config.displayFull())
 		{
 			int i = 0;
@@ -115,51 +121,79 @@ public class IIPlugin extends Plugin {
 			}
 			inventoryFull = i == 28;
 		}
-	}
-
-	@Subscribe
-	private void on(GameTick event)
-	{
-
 		if (config.displayContain())
 		{
-			Item[] items = client.getItemContainer(InventoryID.INVENTORY).getItems();
-			String[] configNames = config.containName().split(Pattern.quote("."));
-			int slot = 1;
-			for (Item item : items)
+			// Get the full config name string.
+			String fullConfigString = config.containName().toLowerCase();
+			// Check if the full config name string is not null/
+			if (fullConfigString.isEmpty())
 			{
-				if (item == null || item.getId() == -1)
-				{
-					continue;
-				}
-				String itemName = itemManager.getItemDefinition(item.getId()).getName().toLowerCase();
-				if (configNames == null)
+				inventoryContains = false;
+				System.out.println("fullConfigString is empty.");
+				return;
+			}
+			// Replace the spaces with nothing in the full config name string.
+			fullConfigString = fullConfigString.replaceAll(" ", "");
+			fullConfigString = fullConfigString.replaceAll("\n", "");
+			// Split the full config name string on every , eg.. 1 - name:amount, 2 - name:amount,
+			String[] splitFullConfigString = fullConfigString.split(Pattern.quote(","));
+			// Check if the split string is null (might not be needed but fuck it.)
+			for (String singleString : splitFullConfigString)
+			{
+				// Check if the single string is null.
+				if (singleString.isEmpty())
 				{
 					inventoryContains = false;
-					System.out.println("The inventory does not contain: " + configNames);
-					continue;
+					System.out.println("splitFullConfigString is empty.");
+					return;
 				}
-				for (String configName : configNames)
+				// Split the name and number from each other.
+				if (!singleString.contains(":"))
 				{
-					configName = configName.replaceAll("\\s+","");
-					itemName = itemName.replaceAll("\\s+","");
-					if (configName.equals(""))
+					System.out.println("Item name: \"" + singleString + "\", and item amount: \"1\"");
+					inventoryItem.put(singleString, 1);
+				}
+				else
+				{
+					String[] string = singleString.split(Pattern.quote(":"));
+					if (string.length == 1)
 					{
-						inventoryContains = false;
-						System.out.println("The inventory does not contain: " + configName);
-						continue;
+						System.out.println("Item name: \"" + singleString + "\", and item amount: \"1\"");
+						inventoryItem.put(singleString, 1);
 					}
-					if (itemName.contains(configName.toLowerCase()))
+					else
 					{
+						String itemName = string[0];
+						String removedTextString = string[1].replaceAll("[^0-9]","");
+						int itemAmount = Integer.parseInt(removedTextString);
+						System.out.println("Item name: \"" + itemName + "\", and item amount: \"" + itemAmount + "\"");
+						inventoryItem.put(itemName, itemAmount);
+					}
+				}
+			}
+
+			for (Item item : items)
+			{
+				if (item == null)
+				{
+					return;
+				}
+				for(Map.Entry<String, Integer> entry : inventoryItem.entrySet()) {
+					String configName = entry.getKey();
+					Integer configAmount = entry.getValue();
+					String inventoryItemName = itemManager.getItemDefinition(item.getId()).getName().toLowerCase();
+					inventoryItemName = inventoryItemName.replaceAll(" ","");
+					int inventoryItemAmount = item.getQuantity();
+					if (inventoryItemName.contains(configName) && inventoryItemAmount >= configAmount)
+					{
+						System.out.println("Inventory item match: " + inventoryItemName);
 						inventoryContains = true;
-						System.out.println("The inventory contains: " + configName);
+						inventoryItem.clear();
 						return;
 					}
 				}
-				slot++;
+				inventoryContains = false;
 			}
-			System.out.println("The inventory does not contain: " + Arrays.toString(configNames));
-			inventoryContains = false;
 		}
 	}
 }
