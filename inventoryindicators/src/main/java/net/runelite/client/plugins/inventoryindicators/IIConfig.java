@@ -94,7 +94,7 @@ public interface IIConfig extends Config {
             unhideValue = "CONTAINS",
             titleSection = "firstTitle"
     )
-    default String containLocation() { return "105.0.5.5"; }
+    default String containLocation() { return "105:0:5:5"; }
 
     @ConfigItem(
             keyName = "containColor",
