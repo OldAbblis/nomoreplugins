@@ -101,7 +101,6 @@ public class PlayerStatePlugin extends Plugin {
 	boolean lowPrayer = false;
 	boolean lowEnergy = false;
 	boolean lowSpecial = false;
-	boolean fullInventory = false;
 	boolean lowAttack = false;
 	boolean lowStrength = false;
 	boolean lowDefence = false;

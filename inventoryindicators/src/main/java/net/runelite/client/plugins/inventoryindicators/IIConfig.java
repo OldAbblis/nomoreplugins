@@ -75,7 +75,7 @@ public interface IIConfig extends Config {
     @ConfigItem(
             keyName = "containNames",
             name = "Items and amount",
-            description = "Format: NAME:AMOUNT | \"Coins:1000, Ash,\"",
+            description = "Format: NAME:AMOUNT:HEXCOLOR | \"Coins:1000:00FF00, Ash,\"",
             position = 7,
             hidden = true,
             unhide = "inventoryEnum",
@@ -107,5 +107,17 @@ public interface IIConfig extends Config {
             titleSection = "firstTitle"
     )
     default Color containColor() { return Color.RED; }
+
+    @ConfigItem(
+            keyName = "highlightItems",
+            name = "Highlight Items",
+            description = "Highlight items based on a color, default: RED.",
+            position = 10,
+            hidden = true,
+            unhide = "inventoryEnum",
+            unhideValue = "CONTAINS",
+            titleSection = "firstTitle"
+    )
+    default boolean highlightItems() { return false; }
 
 }

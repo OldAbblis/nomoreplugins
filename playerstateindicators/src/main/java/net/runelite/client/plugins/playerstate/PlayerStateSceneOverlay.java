@@ -29,11 +29,15 @@ import java.awt.*;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.awt.Graphics2D;
+import java.text.SimpleDateFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Pattern;
 
+import net.runelite.api.AnimationID;
 import net.runelite.api.Player;
+import net.runelite.api.events.ClientTick;
+import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.ui.overlay.*;
 import net.runelite.api.Client;
 
@@ -56,11 +60,8 @@ class PlayerStateSceneOverlay extends Overlay
 		this.plugin = plugin;
 	}
 
-	boolean isPlayerIdle = false;
-	Timer idleTimer = new Timer();
-	Timer interactingTimer = new Timer();
-	Timer walkingTimer = new Timer();
-	TimerTask task;
+	long currentTime = System.currentTimeMillis();
+	boolean idle = false;
 	Player player;
 
 	@Override
@@ -74,60 +75,57 @@ class PlayerStateSceneOverlay extends Overlay
 
 		if (plugin.lowHP && config.displayLowHP())
 		{
-			renderG(graphics, config.hpColor(), config.hpLocation().split(Pattern.quote(".")));
+			renderG(graphics, config.hpColor(), config.hpLocation().split(Pattern.quote(":")));
 		}
 
 		if (plugin.lowPrayer && config.displayLowPrayer())
 		{
-			renderG(graphics, config.prayerColor(), config.prayerLocation().split(Pattern.quote(".")));
+			renderG(graphics, config.prayerColor(), config.prayerLocation().split(Pattern.quote(":")));
 		}
 
 		if (plugin.lowEnergy && config.displayLowEnergy())
 		{
-			renderG(graphics, config.energyColor(), config.energyLocation().split(Pattern.quote(".")));
+			renderG(graphics, config.energyColor(), config.energyLocation().split(Pattern.quote(":")));
 		}
 
 		if (plugin.lowSpecial && config.displayLowSpecial())
 		{
-			renderG(graphics, config.specialColor(), config.specialLocation().split(Pattern.quote(".")));
+			renderG(graphics, config.specialColor(), config.specialLocation().split(Pattern.quote(":")));
 		}
 
 		if (plugin.lowAttack && config.displayLowAttack())
 		{
-			renderG(graphics, config.attackColor(), config.attackLocation().split(Pattern.quote(".")));
+			renderG(graphics, config.attackColor(), config.attackLocation().split(Pattern.quote(":")));
 		}
 
 		if (plugin.lowStrength && config.displayLowStrength())
 		{
-			renderG(graphics, config.strengthColor(), config.strengthLocation().split(Pattern.quote(".")));
+			renderG(graphics, config.strengthColor(), config.strengthLocation().split(Pattern.quote(":")));
 		}
 
 		if (plugin.lowDefence && config.displayLowDefence())
 		{
-			renderG(graphics, config.defenceColor(), config.defenceLocation().split(Pattern.quote(".")));
+			renderG(graphics, config.defenceColor(), config.defenceLocation().split(Pattern.quote(":")));
 		}
 
 		if (plugin.lowMagic && config.displayLowMagic())
 		{
-			renderG(graphics, config.magicColor(), config.magicLocation().split(Pattern.quote(".")));
+			renderG(graphics, config.magicColor(), config.magicLocation().split(Pattern.quote(":")));
 		}
 
 		if (plugin.lowRanging && config.displayLowRanging())
 		{
-			renderG(graphics, config.rangingColor(), config.rangingLocation().split(Pattern.quote(".")));
+			renderG(graphics, config.rangingColor(), config.rangingLocation().split(Pattern.quote(":")));
 		}
 
-		if (isPlayerIdle() && config.displayIdle())
+		if (config.displayIdle())
 		{
-			if (task != null)
-				renderG(graphics, config.idleColor(), config.idleLocation().split(Pattern.quote(".")));
+			isPlayerIdle();
+			if (idle)
+			{
+				renderG(graphics, config.idleColor(), config.idleLocation().split(Pattern.quote(":")));
+			}
 		}
-
-		/*
-		if (plugin.fullInventory && config.display())
-		{
-			renderG(graphics, config.fullInventoryColor(), config.fullInventoryLocation().split(Pattern.quote(".")));
-		}*/
 
 		return null;
 	}
@@ -141,43 +139,28 @@ class PlayerStateSceneOverlay extends Overlay
 				getParsedInt(s,3));
 	}
 
-	private int getParsedInt(String[] string, int number)
+	private int getParsedInt(String[] strings, int number)
 	{
-		return Integer.parseInt(string[number]);
+		return Integer.parseInt(strings[number]);
 	}
 
-	private boolean isPlayerIdle()
+	private void isPlayerIdle()
 	{
-		if (config.displayIdle())
+		if (player.getInteracting() == null
+				&& player.getAnimation() == AnimationID.IDLE
+				&& client.getLocalDestinationLocation() == null)
 		{
-			if (player.getSpotAnimation() == -1
-					&& player.getInteracting() == null
-					&& player.getAnimation() == -1
-					&& client.getLocalDestinationLocation() == null)
+			if (System.currentTimeMillis() >= currentTime + config.idleTime())
 			{
-				startTimer(idleTimer);
+				System.out.println("Player has been idle for " + new SimpleDateFormat("ss").format(config.idleTime()) + " seconds since " + new SimpleDateFormat("hh:mm:ss").format(currentTime));
+				currentTime = System.currentTimeMillis();
+				idle = true;
 			}
-			else
-			{
-				isPlayerIdle = false;
-				task = null;
-			}
-
 		}
-		return isPlayerIdle;
-	}
-
-	private void startTimer(Timer timer)
-	{
-		if (task == null) {
-			if (timer == idleTimer) {
-				task = new TimerTask() {
-					public void run() {
-						isPlayerIdle = true;
-					}
-				};
-				idleTimer.schedule(task, config.idleTime());
-			}
+		else
+		{
+			currentTime = System.currentTimeMillis();
+			idle = false;
 		}
 	}
 }

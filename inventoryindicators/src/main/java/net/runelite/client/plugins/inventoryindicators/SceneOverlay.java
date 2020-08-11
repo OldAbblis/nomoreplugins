@@ -1,6 +1,10 @@
 package net.runelite.client.plugins.inventoryindicators;
 
 import net.runelite.api.Client;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemContainer;
+import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.ui.overlay.*;
 
 import javax.inject.Inject;
@@ -21,7 +25,7 @@ public class SceneOverlay extends Overlay {
         this.plugin = plugin;
         this.config = config;
         setPosition(OverlayPosition.DYNAMIC);
-        setLayer(OverlayLayer.ABOVE_WIDGETS);
+        setLayer(OverlayLayer.ABOVE_SCENE);
     }
 
     @Override
@@ -36,6 +40,7 @@ public class SceneOverlay extends Overlay {
         {
             renderG(graphics, config.containColor(), config.containLocation().split(Pattern.quote(":")));
         }
+
         return null;
     }
 

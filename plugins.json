@@ -51,6 +51,13 @@
         "version": "0.0.2",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.0.2.jar?raw=true",
         "requires":"0.0.1"
+      },
+      {
+        "date": "2020-08-11",
+        "sha512sum": "0D2984D17A23FFBF4369F4A1D3C0B0A81EE420E3C633745C15621A07BEBD27EAFB4035E4A01EC2377AE64576DC3A8CC51445CB41547C8D0A952C2E9067F55669",
+        "version": "0.0.3",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.0.3.jar?raw=true",
+        "requires":"0.0.1"
       }
     ]
   },
@@ -232,6 +239,13 @@
         "date": "2020-08-03",
         "sha512sum": "49A0564C1F4A9C122E8EFB1CDE604FF5F0EFF141A1BB470EDC6578E9C023ECBC840DF17A5F20F0D3B57B8E3BAD8EF718B6FC31974372D96B3BEF2ED2F8435A57",
         "version": "0.0.2",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.0.2.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-08-11",
+        "sha512sum": "F68F9981D91CF0BB49217AFF611FB561274C176B39F85366B766438F11EB3BD312630AA22996508A6BEAA5E04EA3714EF54141FC32EC25E13A3ECF43C50C2ADB",
+        "version": "0.0.3",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.0.2.jar?raw=true",
         "requires":"0.0.1"
       }

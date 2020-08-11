@@ -27,9 +27,7 @@ package net.runelite.client.plugins.playerstate;
 import java.awt.*;
 
 import net.runelite.client.config.*;
-import net.runelite.client.plugins.playerstate.configenums.InventoryIndicatorsEnum;
 import net.runelite.client.plugins.playerstate.configenums.PlayerIndicatorsEnum;
-import org.checkerframework.checker.units.qual.Time;
 
 @ConfigGroup("playerstateindicators")
 public interface PlayerStateConfig extends Config {
@@ -82,14 +80,14 @@ public interface PlayerStateConfig extends Config {
     @ConfigItem(
             keyName = "hpLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
             position = 5,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "HITPOINTS",
             titleSection = "firstTitle"
     )
-    default String hpLocation() { return "50.0.5.5"; }
+    default String hpLocation() { return "50:0:5:5"; }
 
     @ConfigItem(
             keyName = "hpColor",
@@ -132,14 +130,14 @@ public interface PlayerStateConfig extends Config {
     @ConfigItem(
             keyName = "prayerLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
             position = 9,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "PRAYER",
             titleSection = "firstTitle"
     )
-    default String prayerLocation() { return "55.0.5.5"; }
+    default String prayerLocation() { return "55:0:5:5"; }
 
     @ConfigItem(
             keyName = "prayerColor",
@@ -180,14 +178,14 @@ public interface PlayerStateConfig extends Config {
     @ConfigItem(
             keyName = "energyLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
             position = 13,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "ENERGY",
             titleSection = "firstTitle"
     )
-    default String energyLocation() { return "60.0.5.5"; }
+    default String energyLocation() { return "60:0:5:5"; }
 
     @ConfigItem(
             keyName = "energyColor",
@@ -228,14 +226,14 @@ public interface PlayerStateConfig extends Config {
     @ConfigItem(
             keyName = "specialLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
             position = 17,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "SPECIAL",
             titleSection = "firstTitle"
     )
-    default String specialLocation() { return "65.0.5.5"; }
+    default String specialLocation() { return "65:0:5:5"; }
 
     @ConfigItem(
             keyName = "specialColor",
@@ -276,14 +274,14 @@ public interface PlayerStateConfig extends Config {
     @ConfigItem(
             keyName = "attackLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
             position = 21,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "ATTACK",
             titleSection = "firstTitle"
     )
-    default String attackLocation() { return "70.0.5.5"; }
+    default String attackLocation() { return "70:0:5:5"; }
 
     @ConfigItem(
             keyName = "attackColor",
@@ -324,14 +322,14 @@ public interface PlayerStateConfig extends Config {
     @ConfigItem(
             keyName = "strengthLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
             position = 25,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "STRENGTH",
             titleSection = "firstTitle"
     )
-    default String strengthLocation() { return "75.0.5.5"; }
+    default String strengthLocation() { return "75:0:5:5"; }
 
     @ConfigItem(
             keyName = "strengthColor",
@@ -372,14 +370,14 @@ public interface PlayerStateConfig extends Config {
     @ConfigItem(
             keyName = "defenceLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
             position = 29,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "DEFENCE",
             titleSection = "firstTitle"
     )
-    default String defenceLocation() { return "80.0.5.5"; }
+    default String defenceLocation() { return "80:0:5:5"; }
 
     @ConfigItem(
             keyName = "defenceColor",
@@ -420,14 +418,14 @@ public interface PlayerStateConfig extends Config {
     @ConfigItem(
             keyName = "magicLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
             position = 33,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "MAGIC",
             titleSection = "firstTitle"
     )
-    default String magicLocation() { return "85.0.5.5"; }
+    default String magicLocation() { return "85:0:5:5"; }
 
     @ConfigItem(
             keyName = "magicColor",
@@ -468,14 +466,14 @@ public interface PlayerStateConfig extends Config {
     @ConfigItem(
             keyName = "rangingLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
             position = 37,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "RANGING",
             titleSection = "firstTitle"
     )
-    default String rangingLocation() { return "90.0.5.5"; }
+    default String rangingLocation() { return "90:0:5:5"; }
 
     @ConfigItem(
             keyName = "rangingColor",
@@ -517,14 +515,14 @@ public interface PlayerStateConfig extends Config {
     @ConfigItem(
             keyName = "idleLocation",
             name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
+            description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
             position = 41,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "IDLE",
             titleSection = "firstTitle"
     )
-    default String idleLocation() { return "95.0.5.5"; }
+    default String idleLocation() { return "95:0:5:5"; }
 
     @ConfigItem(
             keyName = "idleColor",
@@ -537,67 +535,4 @@ public interface PlayerStateConfig extends Config {
             titleSection = "firstTitle"
     )
     default Color idleColor() { return Color.RED; }
-
-
-
-    /*
-
-    @ConfigTitleSection(
-            keyName = "secondTitle",
-            name = "Inventory Indicators",
-            description = "",
-            position = 19
-    )
-    default Title secondTitle() {
-        return new Title();
-    }
-
-    @ConfigItem(
-            keyName = "inventoryIndicatorsEnum",
-            name = "Inventory Indicators",
-            description = "",
-            position = 20,
-            titleSection = "secondTitle"
-    )
-    default InventoryIndicatorsEnum inventoryIndicatorsEnum() {
-        return InventoryIndicatorsEnum.FULL;
-    }
-
-    @ConfigItem(
-            keyName = "displayFullInventory",
-            name = "Full Inventory",
-            description = "Displays an indicator when the inventory is full of items.",
-            position = 21,
-            hidden = true,
-            unhide = "inventoryIndicatorsEnum",
-            unhideValue = "FULL",
-            titleSection = "secondTitle"
-    )
-    default boolean displayFullInventory() { return false; }
-
-    @ConfigItem(
-            keyName = "fullInventoryLocation",
-            name = "Indicator location",
-            description = "Indicator location, format to use: x.y.width.height e.g 10.10.20.20",
-            position = 22,
-            hidden = true,
-            unhide = "inventoryIndicatorsEnum",
-            unhideValue = "FULL",
-            titleSection = "secondTitle"
-    )
-    default String fullInventoryLocation() { return "70.0.5.5"; }
-
-    @ConfigItem(
-            keyName = "fullInventoryColor",
-            name = "Indicator color",
-            description = "Indicator color",
-            position = 23,
-            hidden = true,
-            unhide = "inventoryIndicatorsEnum",
-            unhideValue = "FULL",
-            titleSection = "secondTitle"
-    )
-    default Color fullInventoryColor() { return Color.RED; }
-
-     */
 }
