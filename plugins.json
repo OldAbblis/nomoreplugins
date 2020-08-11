@@ -246,7 +246,7 @@
         "date": "2020-08-11",
         "sha512sum": "F68F9981D91CF0BB49217AFF611FB561274C176B39F85366B766438F11EB3BD312630AA22996508A6BEAA5E04EA3714EF54141FC32EC25E13A3ECF43C50C2ADB",
         "version": "0.0.3",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.0.2.jar?raw=true",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.0.3.jar?raw=true",
         "requires":"0.0.1"
       }
     ]
