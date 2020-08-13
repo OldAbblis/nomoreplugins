@@ -50,10 +50,10 @@ import java.util.TimerTask;
 
 @Extension
 @PluginDescriptor(
-	name = "Player State Indicators",
-	description = "A plugin to assist AHK scripts",
-	tags = {"ahk", "script", "overlay", "autohotkey", "nomoreahk"},
-	type = PluginType.UTILITY
+		name = "Player State Indicators",
+		description = "A plugin to assist AHK scripts",
+		tags = {"ahk", "script", "overlay", "autohotkey", "nomoreahk"},
+		type = PluginType.UTILITY
 )
 @Slf4j
 public class PlayerStatePlugin extends Plugin {

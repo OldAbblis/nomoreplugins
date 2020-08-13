@@ -52,7 +52,7 @@ import org.pf4j.Extension;
 
 @Extension
 @PluginDescriptor(
-	name = "A Plugin Tutorial",
+	name = "Chatbox",
 	description = "description.",
 	tags = {"newplugin", "nomoreahk"},
 	type = PluginType.UTILITY

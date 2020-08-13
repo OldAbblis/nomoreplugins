@@ -54,7 +54,7 @@ class PlayerStateSceneOverlay extends Overlay
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.LOW);
-		setLayer(OverlayLayer.ABOVE_SCENE);
+		setLayer(OverlayLayer.ABOVE_WIDGETS);
 		this.client = client;
 		this.config = config;
 		this.plugin = plugin;
@@ -146,14 +146,12 @@ class PlayerStateSceneOverlay extends Overlay
 
 	private void isPlayerIdle()
 	{
-		if (player.getInteracting() == null
-				&& player.getAnimation() == AnimationID.IDLE
+		if (player.getAnimation() == AnimationID.IDLE
 				&& client.getLocalDestinationLocation() == null)
 		{
 			if (System.currentTimeMillis() >= currentTime + config.idleTime())
 			{
-				System.out.println("Player has been idle for " + new SimpleDateFormat("ss").format(config.idleTime()) + " seconds since " + new SimpleDateFormat("hh:mm:ss").format(currentTime));
-				currentTime = System.currentTimeMillis();
+				//System.out.println("Player has been idle for " + new SimpleDateFormat("ss").format(config.idleTime()) + " seconds since " + new SimpleDateFormat("hh:mm:ss").format(currentTime));
 				idle = true;
 			}
 		}

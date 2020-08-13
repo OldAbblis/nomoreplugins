@@ -114,6 +114,7 @@ public class IIPlugin extends Plugin {
 	@Subscribe
 	private void on(ConfigChanged event)
 	{
+		// Please god make this work.
 		configItems.clear();
 		inventoryItems.clear();
 		if (config.containName().isEmpty())

@@ -25,7 +25,7 @@ public class SceneOverlay extends Overlay {
         this.plugin = plugin;
         this.config = config;
         setPosition(OverlayPosition.DYNAMIC);
-        setLayer(OverlayLayer.ABOVE_SCENE);
+        setLayer(OverlayLayer.ABOVE_WIDGETS);
     }
 
     @Override
