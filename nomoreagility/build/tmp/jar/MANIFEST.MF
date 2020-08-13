@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Plugin-Version: 0.1.0
+Plugin-Version: 0.0.1
 Plugin-Id: nomoreagility-plugin
 Plugin-Provider: NoMoreAHK
 Plugin-Description: A plugin to assist the creation of AHK Agility scrip

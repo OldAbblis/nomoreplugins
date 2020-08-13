@@ -23,7 +23,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-version = "0.1.0"
+version = "0.0.4"
 
 project.extra["PluginName"] = "Inventory Indicators"
 project.extra["PluginDescription"] = "Display indicators based on various inventory related states."
