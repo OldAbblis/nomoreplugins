@@ -39,27 +39,6 @@
     "id": "inventoryindicators-plugin",
     "releases": [
       {
-        "date": "2020-08-03",
-        "sha512sum": "C0415FDAE332F09DBA8679886D5DDC022622C8CC38942A76880F083188BF93F71AB57D543029DEAC5B4680FFA3835318879AB9C49E4D7BB350FD50DE1B7CE409",
-        "version": "0.0.1",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.0.1.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
-        "date": "2020-08-05",
-        "sha512sum": "F39067B2EB57D72571727D65B4E73A4963BF565558F10E8F74792A12306E056C34AD034C3AABDCBFBCE9F630BF6BE355D4428DB7781C0E2EEFF9F92338E2FB73",
-        "version": "0.0.2",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.0.2.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
-        "date": "2020-08-11",
-        "sha512sum": "0D2984D17A23FFBF4369F4A1D3C0B0A81EE420E3C633745C15621A07BEBD27EAFB4035E4A01EC2377AE64576DC3A8CC51445CB41547C8D0A952C2E9067F55669",
-        "version": "0.0.3",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.0.3.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
         "date": "2020-08-13",
         "sha512sum": "4DEE5D32BBF8058501B5A23603AA485DFA96F7DF122D96744222F0B9229BD25717A0475D8E342E1857FE58516178210118510B436FB8DF5F7CB4BC9886D94784",
         "version": "0.0.4",
@@ -80,22 +59,6 @@
         "sha512sum": "60C6EE85F767224F884F38D8C911B95114CAED59D6D61B5A73273E78D83036309573FBCB36A7FE2784544D0C08713ADFFE60C16A5E6CC01C59F34C7FED925087",
         "version": "0.0.1",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoreagility-0.0.1.jar?raw=true",
-        "requires":"0.0.1"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
-    "name": "NoMore Combat",
-    "description": "A plugin to assist the creation of an AutoHotkey combat script.",
-    "id": "nomorecombat-plugin",
-    "releases": [
-      {
-        "date": "2020-07-21",
-        "sha512sum": "E173D0D1A89200BA483B2A7A1AEC578BBD79A23B8B145AF3C07A7FB91268F22EE7A3798253D9278D24B77E20C4EC4643C853D937F26AEE786EA5D43FDBA18910",
-        "version": "0.0.1",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorecombat-0.0.1.jar?raw=true",
         "requires":"0.0.1"
       }
     ]
@@ -235,27 +198,6 @@
     "description": "Displays an indicator based on various player states.",
     "id": "playerstateindicators-plugin",
     "releases": [
-      {
-        "date": "2020-08-01",
-        "sha512sum": "9709C43A4A16158954B84461C324E9D24DB541CC8384B591E4455231E5BF3FCC0D0AC2D6C2874730F113C357D685FC834AF447E4551E1ED6E8FE27DECC28D5EA",
-        "version": "0.0.1",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.0.1.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
-        "date": "2020-08-03",
-        "sha512sum": "49A0564C1F4A9C122E8EFB1CDE604FF5F0EFF141A1BB470EDC6578E9C023ECBC840DF17A5F20F0D3B57B8E3BAD8EF718B6FC31974372D96B3BEF2ED2F8435A57",
-        "version": "0.0.2",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.0.2.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
-        "date": "2020-08-11",
-        "sha512sum": "F68F9981D91CF0BB49217AFF611FB561274C176B39F85366B766438F11EB3BD312630AA22996508A6BEAA5E04EA3714EF54141FC32EC25E13A3ECF43C50C2ADB",
-        "version": "0.0.3",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.0.3.jar?raw=true",
-        "requires":"0.0.1"
-      },
       {
         "date": "2020-08-13",
         "sha512sum": "DEF0B511AA70A6CA1C5FD79E27EA7AC38EBAAAF7C48DA4607B398BC4050564F0BF01E40D678349C7B6DD6278BE57E657911C6966FAE13BE219579E7279F74F51",
