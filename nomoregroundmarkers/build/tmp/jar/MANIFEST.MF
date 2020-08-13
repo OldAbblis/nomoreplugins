@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Plugin-Version: 0.0.1
+Plugin-Version: 0.1.0
 Plugin-Id: nomoregroundmarkers-plugin
 Plugin-Provider: NoMoreAHK
 Plugin-Description: Enable marking of tiles using the shift key

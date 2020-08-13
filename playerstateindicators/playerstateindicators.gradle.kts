@@ -23,7 +23,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-version = "0.0.4"
+version = "0.1.0"
 
 project.extra["PluginName"] = "Player State Indicators"
 project.extra["PluginDescription"] = "A plugin to assist in the creation of AHK Scripts."

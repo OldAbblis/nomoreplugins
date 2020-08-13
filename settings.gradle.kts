@@ -2,8 +2,6 @@ rootProject.name = "nomoreplugins"
 
 include(":nomorewintertodt")
 include(":nomoreagility")
-include(":nomorecombat")
-include(":nomoreskilling")
 include(":nomoregrounditems")
 include(":nomoregroundmarkers")
 include(":nomoreinventorytags")

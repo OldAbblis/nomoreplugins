@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Plugin-Version: 0.0.2
+Plugin-Version: 0.1.0
 Plugin-Id: nomorewintertodt-plugin
 Plugin-Provider: NoMoreAHK
 Plugin-Description: A plugin to assist the creation of AHK scripts at Wi

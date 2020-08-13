@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Plugin-Version: 0.0.4
+Plugin-Version: 0.1.0
 Plugin-Id: inventoryindicators-plugin
 Plugin-Provider: NoMoreAHK
 Plugin-Description: Display indicators based on various inventory relate
