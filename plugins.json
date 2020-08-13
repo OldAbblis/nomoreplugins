@@ -162,22 +162,6 @@
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMoreAHK",
-    "name": "NoMore Skilling",
-    "description": "A plugin to assist the creation of an AutoHotkey skilling script.",
-    "id": "nomoreskilling-plugin",
-    "releases": [
-      {
-        "date": "2020-07-21",
-        "sha512sum": "DED82F815373E33162A69DAF317ED34B172162D361FCD5C462E05928ABD887F6FD7A9BAC3C8A08FFE5D86C48BD41DCB9CBB102A569AB25B469D3DB6684AADDAA",
-        "version": "0.0.1",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoreskilling-0.0.1.jar?raw=true",
-        "requires":"0.0.1"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
     "name": "NoMore Wintertodt",
     "description": "A plugin to assist the creation of an AutoHotkey Wintertodt script.",
     "id": "nomorewintertodt-plugin",
