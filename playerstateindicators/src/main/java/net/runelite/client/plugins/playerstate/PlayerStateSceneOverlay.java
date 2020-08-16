@@ -118,10 +118,9 @@ class PlayerStateSceneOverlay extends Overlay
 			renderG(graphics, config.rangingColor(), config.rangingLocation().split(Pattern.quote(":")));
 		}
 
-		if (config.displayIdle())
+		if (config.displayIdle() && plugin.isPlayerIdle)
 		{
-			isPlayerIdle();
-			if (idle)
+			if (config.animationIdle() || config.movementIdle() || config.interactingIdle())
 			{
 				renderG(graphics, config.idleColor(), config.idleLocation().split(Pattern.quote(":")));
 			}
@@ -142,23 +141,5 @@ class PlayerStateSceneOverlay extends Overlay
 	private int getParsedInt(String[] strings, int number)
 	{
 		return Integer.parseInt(strings[number]);
-	}
-
-	private void isPlayerIdle()
-	{
-		if (player.getAnimation() == AnimationID.IDLE
-				&& client.getLocalDestinationLocation() == null)
-		{
-			if (System.currentTimeMillis() >= currentTime + config.idleTime())
-			{
-				//System.out.println("Player has been idle for " + new SimpleDateFormat("ss").format(config.idleTime()) + " seconds since " + new SimpleDateFormat("hh:mm:ss").format(currentTime));
-				idle = true;
-			}
-		}
-		else
-		{
-			currentTime = System.currentTimeMillis();
-			idle = false;
-		}
 	}
 }

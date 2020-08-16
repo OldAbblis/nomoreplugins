@@ -34,7 +34,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -44,9 +43,7 @@ import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
 
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.time.Instant;
 
 @Extension
 @PluginDescriptor(
@@ -85,18 +82,17 @@ public class PlayerStatePlugin extends Plugin {
 	protected void startUp()
 	{
 		overlayManager.add(sceneOverlay);
-		System.out.println("PlayerStatePlugin has started...");
+		timeLastIdle = Instant.now();
 	}
 
 	@Override
 	protected void shutDown()
 	{
 		overlayManager.remove(sceneOverlay);
-		System.out.println("PlayerStatePlugin has finished...");
 	}
 
 	@Getter(AccessLevel.PACKAGE)
-	@Setter(AccessLevel.PUBLIC)
+	@Setter(AccessLevel.PACKAGE)
 	boolean lowHP = false;
 	boolean lowPrayer = false;
 	boolean lowEnergy = false;
@@ -106,8 +102,12 @@ public class PlayerStatePlugin extends Plugin {
 	boolean lowDefence = false;
 	boolean lowMagic = false;
 	boolean lowRanging = false;
+	boolean isPlayerIdle = false;
 
-	private Player player;
+	Player player;
+
+	Instant timeLastIdle = null;
+	Instant timeLastNotIdle = null;
 
 	@Subscribe
 	private void onGameTick(GameTick gameTick)
@@ -179,6 +179,98 @@ public class PlayerStatePlugin extends Plugin {
 			int configLevel = config.lowRangingLevel();
 			int level = client.getBoostedSkillLevel(Skill.RANGED);
 			lowRanging = level < configLevel;
+		}
+	}
+	
+	@Subscribe
+	private void on(ClientTick event)
+	{
+		if (player == null)
+		{
+			return;
+		}
+
+		if (config.displayIdle())
+		{
+			if (config.animationIdle())
+				animationCheck(player);
+			if (config.interactingIdle())
+				interactionCheck(player);
+			if (config.movementIdle())
+				movementCheck(player);
+			if (timeLastIdle != null)
+			{
+				isPlayerIdle = Instant.now().isAfter(timeLastIdle.plusMillis(config.idleTime()));
+			}
+		}
+	}
+
+	private void animationCheck(Player player)
+	{
+		if (player.getAnimation() == AnimationID.IDLE && timeLastIdle == null)
+		{
+			timeLastIdle = Instant.now();
+			if (timeLastNotIdle != null)
+			{
+				System.out.println("The player was last idle at " + Instant.now());
+			}
+			timeLastNotIdle = null;
+		}
+		if (player.getAnimation() != AnimationID.IDLE && timeLastNotIdle == null)
+		{
+			isPlayerIdle = false;
+			timeLastNotIdle = Instant.now();
+			if (timeLastIdle != null)
+			{
+				System.out.println("The player was last animating at " + Instant.now());
+			}
+			timeLastIdle = null;
+		}
+	}
+
+	private void interactionCheck(Player player)
+	{
+		if (player.getInteracting() == null && timeLastIdle == null)
+		{
+			timeLastIdle = Instant.now();
+			if (timeLastNotIdle != null)
+			{
+				System.out.println("The player was last not interacting at " + Instant.now());
+			}
+			timeLastNotIdle = null;
+		}
+		if (player.getInteracting() != null && timeLastNotIdle == null)
+		{
+			isPlayerIdle = false;
+			timeLastNotIdle = Instant.now();
+			if (timeLastIdle != null)
+			{
+				System.out.println("The player was last interacting at " + Instant.now());
+			}
+			timeLastIdle = null;
+		}
+	}
+
+	private void movementCheck(Player player)
+	{
+		if (client.getLocalDestinationLocation() == null && timeLastIdle == null)
+		{
+			timeLastIdle = Instant.now();
+			if (timeLastNotIdle != null)
+			{
+				System.out.println("The player was last stood still at " + Instant.now());
+			}
+			timeLastNotIdle = null;
+		}
+		if (client.getLocalDestinationLocation() != null && timeLastNotIdle == null)
+		{
+			isPlayerIdle = false;
+			timeLastNotIdle = Instant.now();
+			if (timeLastIdle != null)
+			{
+				System.out.println("The player was last moving at " + Instant.now());
+			}
+			timeLastIdle = null;
 		}
 	}
 

@@ -500,10 +500,46 @@ public interface PlayerStateConfig extends Config {
     default boolean displayIdle() { return false; }
 
     @ConfigItem(
+            keyName = "animationIdle",
+            name = "Animations",
+            description = "Enable the indicator if the player is not animating.",
+            position = 40,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "IDLE",
+            titleSection = "firstTitle"
+    )
+    default boolean animationIdle() { return false; }
+
+    @ConfigItem(
+            keyName = "interactingIdle",
+            name = "Interacting",
+            description = "Enable the indicator if the player is not interacting.",
+            position = 41,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "IDLE",
+            titleSection = "firstTitle"
+    )
+    default boolean interactingIdle() { return false; }
+
+    @ConfigItem(
+            keyName = "movementIdle",
+            name = "Movement",
+            description = "Enable the indicator if the player is not moving.",
+            position = 42,
+            hidden = true,
+            unhide = "playerIndicatorsEnum",
+            unhideValue = "IDLE",
+            titleSection = "firstTitle"
+    )
+    default boolean movementIdle() { return false; }
+
+    @ConfigItem(
             keyName = "idleTime",
             name = "Idle time (milliseconds)",
             description = "Displays an indicator when the player has been idle for x amount of time.",
-            position = 40,
+            position = 43,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "IDLE",
@@ -516,7 +552,7 @@ public interface PlayerStateConfig extends Config {
             keyName = "idleLocation",
             name = "Indicator location",
             description = "Indicator location, format to use: x.y.width.height e.g 100:100:10:10",
-            position = 41,
+            position = 44,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "IDLE",
@@ -528,7 +564,7 @@ public interface PlayerStateConfig extends Config {
             keyName = "idleColor",
             name = "Indicator color",
             description = "Indicator color",
-            position = 42,
+            position = 45,
             hidden = true,
             unhide = "playerIndicatorsEnum",
             unhideValue = "IDLE",

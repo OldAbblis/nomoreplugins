@@ -39,10 +39,10 @@
     "id": "inventoryindicators-plugin",
     "releases": [
       {
-        "date": "2020-08-13",
-        "sha512sum": "4DEE5D32BBF8058501B5A23603AA485DFA96F7DF122D96744222F0B9229BD25717A0475D8E342E1857FE58516178210118510B436FB8DF5F7CB4BC9886D94784",
-        "version": "0.0.4",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.0.4.jar?raw=true",
+        "date": "2020-08-16",
+        "sha512sum": "8A147FB3A291E93A2C078A632B5D3210D2B4171960AA76CC6C9FAEAC1BDCCB0C341724432C9E43245C981F172FA97AAB5293C0FB10DADCE97AEC94A34BA71789",
+        "version": "0.0.5",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.0.5.jar?raw=true",
         "requires":"0.0.1"
       }
     ]
@@ -184,9 +184,9 @@
     "releases": [
       {
         "date": "2020-08-13",
-        "sha512sum": "DEF0B511AA70A6CA1C5FD79E27EA7AC38EBAAAF7C48DA4607B398BC4050564F0BF01E40D678349C7B6DD6278BE57E657911C6966FAE13BE219579E7279F74F51",
-        "version": "0.0.4",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.0.4.jar?raw=true",
+        "sha512sum": "A1BBBEDDC6FDE58318DC38BFBEED2BD0D697FF401FF0438C420BE3C856F78F7854834130F69392AB598A66F6CABC4CCDB5AD8691A0EC5BF0279AEA9892E82790",
+        "version": "0.0.5",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.0.5.jar?raw=true",
         "requires":"0.0.1"
       }
     ]
