@@ -15,7 +15,7 @@ apply<VersionPlugin>()
 subprojects {
     group = "com.openosrs.externals"
 
-    project.extra["PluginProvider"] = "NoMoreAHK"
+    project.extra["PluginProvider"] = "NoMore"
     project.extra["ProjectUrl"] = "https://discord.gg/7W9aBCb"
     project.extra["PluginLicense"] = "GNU General Public License v3.0"
 

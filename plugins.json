@@ -1,7 +1,7 @@
 [
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "A Misc Plugin",
     "description": "Misc things and stuff.",
     "id": "amiscplugin-plugin",
@@ -17,7 +17,7 @@
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "A Plugin Tutorial",
     "description": "description.",
     "id": "aplugintutorial-plugin",
@@ -33,7 +33,7 @@
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "Inventory Indicators",
     "description": "Display indicators based on various inventory related states.",
     "id": "inventoryindicators-plugin",
@@ -49,7 +49,7 @@
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "NoMore Agility",
     "description": "A plugin to assist the creation of an AutoHotkey Agility script.",
     "id": "nomoreagility-plugin",
@@ -65,7 +65,7 @@
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "NoMore Ground Items",
     "description": "A plugin to render an overlay over dropped items.",
     "id": "nomoregrounditems-plugin",
@@ -81,7 +81,7 @@
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "NoMore Ground Markers",
     "description": "A plugin to render an overlay over the world tiles.",
     "id": "nomoregroundmarkers-plugin",
@@ -97,7 +97,7 @@
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "NoMore Inventory Tags",
     "description": "A plugin to render an overlay over inventory items.",
     "id": "nomoreinventorytags-plugin",
@@ -129,7 +129,7 @@
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "NoMore NPC Highlight",
     "description": "A plugin to render an overlay over non-playable characters.",
     "id": "nomorenpchighlight-plugin",
@@ -145,7 +145,7 @@
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "NoMore Object Indicators",
     "description": "A plugin to render an overlay over game objects.",
     "id": "nomoreobjectindicators-plugin",
@@ -161,7 +161,7 @@
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "NoMore Wintertodt",
     "description": "A plugin to assist the creation of an AutoHotkey Wintertodt script.",
     "id": "nomorewintertodt-plugin",
@@ -177,7 +177,7 @@
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMoreAHK",
+    "provider": "NoMore",
     "name": "Player State Indicators",
     "description": "Displays an indicator based on various player states.",
     "id": "playerstateindicators-plugin",
