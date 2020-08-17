@@ -10,5 +10,6 @@ public enum PlayerIndicatorsEnum {
     DEFENCE,
     MAGIC,
     RANGING,
-    IDLE
+    IDLE,
+    GAME
 }

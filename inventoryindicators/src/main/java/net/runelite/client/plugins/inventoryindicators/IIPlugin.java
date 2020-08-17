@@ -32,9 +32,6 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.events.ItemContainerChanged;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -48,10 +45,8 @@ import net.runelite.client.util.WildcardMatcher;
 import org.pf4j.Extension;
 
 import java.awt.*;
-import java.lang.reflect.WildcardType;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 @Extension
@@ -94,6 +89,7 @@ public class IIPlugin extends Plugin {
 	protected void startUp() {
 		overlayManager.add(sceneOverlay);
 		overlayManager.add(inventoryOverlay);
+		checkConfigTextField();
 	}
 
 	@Override
@@ -115,52 +111,26 @@ public class IIPlugin extends Plugin {
 	@Subscribe
 	private void on(ConfigChanged event)
 	{
-		// Please god make this work.
-		configItems.clear();
-		inventoryItems.clear();
-		if (config.containName().isEmpty())
+		checkConfigTextField();
+	}
+
+	@Subscribe
+	private void on(GameTick gameTick)
+	{
+		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
+		if (inventory == null)
 		{
-			inventoryContains = false;
-			System.out.println("The config text field is empty.");
 			return;
 		}
-		String[] splitString = splitString(removeCharacters(config.containName()), ",");
-		for (String stringPart : splitString)
+		Item[] items = inventory.getItems();
+		if (config.displayFull())
 		{
-			if (stringPart.isEmpty())
-			{
-				return;
-			}
-			String[] colonSplit = splitString(stringPart, ":"); // Lol at the name.
-			String configName = null;
-			int configAmount = 1;
-			Color configColor = null;
-			if (colonSplit[0].isEmpty())
-			{
-				continue;
-			}
-			else
-			{
-				configName = colonSplit[0];
-			}
-			if (colonSplit.length >= 2 && !colonSplit[1].isEmpty())
-			{
-				String s1 = colonSplit[1];
-				String s2 = s1.replaceAll("[^\\d.]", "");
-				configAmount = Integer.parseInt(s2);
-			}
-			if (colonSplit.length == 3)
-			{
-				try {
-					configColor = Color.decode("#" + colonSplit[2]);
-				} catch (NumberFormatException nfe) {
-					configColor = Color.RED;
-					System.out.println("Error decoding color.");
-				}
-			}
-			configItems.add(new ConfigItems(configName, configAmount, configColor));
+			inventoryFullCheck(items);
 		}
-		System.out.println(configItems);
+		if (config.displayContain())
+		{
+			inventoryContainsCheck(items);
+		}
 	}
 
 	private void inventoryFullCheck(Item[] items)
@@ -185,17 +155,17 @@ public class IIPlugin extends Plugin {
 			{
 				continue;
 			}
-			// Get inventoryInfo.
 			String itemName = removeCharacters(itemManager.getItemDefinition(item.getId()).getName());
 			int itemAmount = item.getQuantity();
-
 			configItems.forEach((configItem) -> {
 				String configName = configItem.getName();
-				if (itemName.equalsIgnoreCase(configName) || (configName.contains("*") && WildcardMatcher.matches(configName, itemName)))
+				if (itemAmount >= configItem.getAmount()
+						&& (itemName.equalsIgnoreCase(configName) || (configName.contains("*") && WildcardMatcher.matches(configName, itemName))))
 				{
 					inventoryContains = true;
 					if (config.highlightItems())
 					{
+						//System.out.println(itemName + ", " + itemAmount + " matches " + configItem.getName() + ", " + configItem.getAmount());
 						inventoryItems.putIfAbsent(item, configItem.getColor());
 					}
 				}
@@ -203,22 +173,55 @@ public class IIPlugin extends Plugin {
 		}
 	}
 
-	@Subscribe
-	private void on(GameTick gameTick)
+	private void checkConfigTextField()
 	{
-		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
-		if (inventory == null)
+		configItems.clear();
+		inventoryItems.clear();
+		if (config.containName().isEmpty())
 		{
+			inventoryContains = false;
+			System.out.println("The config text field is empty.");
 			return;
 		}
-		Item[] items = inventory.getItems();
-		if (config.displayFull())
+		String[] splitString = splitString(removeCharacters(config.containName()), ",");
+		for (String stringPart : splitString)
 		{
-			inventoryFullCheck(items);
-		}
-		if (config.displayContain())
-		{
-			inventoryContainsCheck(items);
+			if (stringPart.isEmpty())
+			{
+				return;
+			}
+			String[] colonSplit = splitString(stringPart, ":"); // Lol at the name.
+			String configName = null;
+			int configAmount = 1;
+			Color configColor = config.defaultHighlightColor();
+			if (colonSplit[0].isEmpty())
+			{
+				continue;
+			}
+			else
+			{
+				configName = colonSplit[0];
+			}
+			if (colonSplit.length >= 2 && !colonSplit[1].isEmpty())
+			{
+				String s1 = colonSplit[1];
+				String s2 = s1.replaceAll("[^\\d.]", "");
+				configAmount = Integer.parseInt(s2);
+				if (configAmount < 1)
+				{
+					configAmount = 1;
+				}
+			}
+			if (colonSplit.length == 3)
+			{
+				try {
+					configColor = Color.decode("#" + colonSplit[2]);
+				} catch (NumberFormatException nfe) {
+					configColor = config.defaultHighlightColor();
+					System.out.println("Error decoding color.");
+				}
+			}
+			configItems.add(new ConfigItems(configName, configAmount, configColor));
 		}
 	}
 

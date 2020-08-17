@@ -37,6 +37,7 @@ import net.runelite.api.events.GameTick;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.game.ItemManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
@@ -44,12 +45,16 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
 
 import java.time.Instant;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.stream.Stream;
 
 @Extension
 @PluginDescriptor(
 		name = "Player State Indicators",
 		description = "A plugin to assist AHK scripts",
-		tags = {"ahk", "script", "overlay", "autohotkey", "nomoreahk"},
+		tags = {"ahk", "script", "overlay", "autohotkey", "nomore"},
 		type = PluginType.UTILITY
 )
 @Slf4j
@@ -68,7 +73,10 @@ public class PlayerStatePlugin extends Plugin {
 	private PlayerStateSceneOverlay sceneOverlay;
 
 	@Inject
-	private Notifier notifier;
+	private PlayerStatesInventoryOverlay inventoryOverlay;
+
+	@Inject
+	private ItemManager itemManager;
 
 	@Inject
 	private ConfigManager configManager;
@@ -82,6 +90,7 @@ public class PlayerStatePlugin extends Plugin {
 	protected void startUp()
 	{
 		overlayManager.add(sceneOverlay);
+		overlayManager.add(inventoryOverlay);
 		timeLastIdle = Instant.now();
 	}
 
@@ -89,6 +98,7 @@ public class PlayerStatePlugin extends Plugin {
 	protected void shutDown()
 	{
 		overlayManager.remove(sceneOverlay);
+		overlayManager.remove(inventoryOverlay);
 	}
 
 	@Getter(AccessLevel.PACKAGE)
@@ -103,11 +113,15 @@ public class PlayerStatePlugin extends Plugin {
 	boolean lowMagic = false;
 	boolean lowRanging = false;
 	boolean isPlayerIdle = false;
+	boolean loggedIn = false;
 
 	Player player;
 
 	Instant timeLastIdle = null;
 	Instant timeLastNotIdle = null;
+
+	@Getter(AccessLevel.PACKAGE)
+	HashMap<Item, Integer> eatItems = new HashMap<>();
 
 	@Subscribe
 	private void onGameTick(GameTick gameTick)
@@ -115,6 +129,7 @@ public class PlayerStatePlugin extends Plugin {
 		player = client.getLocalPlayer();
 		if (client.getGameState() != GameState.LOGGED_IN || player == null)
 		{
+			loggedIn = false;
 			return;
 		}
 
@@ -180,6 +195,14 @@ public class PlayerStatePlugin extends Plugin {
 			int level = client.getBoostedSkillLevel(Skill.RANGED);
 			lowRanging = level < configLevel;
 		}
+
+		if (config.displayConnected())
+		{
+			if (client.getGameState() == GameState.LOGGED_IN)
+			{
+				loggedIn = true;
+			}
+		}
 	}
 	
 	@Subscribe
@@ -202,6 +225,11 @@ public class PlayerStatePlugin extends Plugin {
 			{
 				isPlayerIdle = Instant.now().isAfter(timeLastIdle.plusMillis(config.idleTime()));
 			}
+		}
+
+		if (config.highlightEatItems())
+		{
+			checkInventory();
 		}
 	}
 
@@ -271,6 +299,28 @@ public class PlayerStatePlugin extends Plugin {
 				System.out.println("The player was last moving at " + Instant.now());
 			}
 			timeLastIdle = null;
+		}
+	}
+
+	private void checkInventory()
+	{
+		ItemContainer itemContainer = client.getItemContainer(InventoryID.INVENTORY);
+		if (itemContainer == null)
+		{
+			return;
+		}
+		Item[] items = itemContainer.getItems();
+		for (Item item : items)
+		{
+			if (item.getId() == -1)
+			{
+				continue;
+			}
+			String[] actions = itemManager.getItemDefinition(item.getId()).getInventoryActions();
+			if (Arrays.asList(actions).contains("Eat"))
+			{
+				eatItems.putIfAbsent(item, item.getId());
+			}
 		}
 	}
 

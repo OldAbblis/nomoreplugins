@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Plugin-Version: 0.0.5
+Plugin-Version: 0.1.0
 Plugin-Id: playerstateindicators-plugin
-Plugin-Provider: NoMoreAHK
+Plugin-Provider: NoMore
 Plugin-Description: A plugin to assist in the creation of AHK Scripts.
 Plugin-License: GNU General Public License v3.0
 

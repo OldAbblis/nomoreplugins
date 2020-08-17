@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Plugin-Version: 0.0.1
 Plugin-Id: amiscplugin-plugin
-Plugin-Provider: NoMoreAHK
+Plugin-Provider: NoMore
 Plugin-Description: Numerous miscellaneous plugins.
 Plugin-License: GNU General Public License v3.0
 

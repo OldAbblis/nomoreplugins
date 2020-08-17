@@ -23,7 +23,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-version = "0.0.1"
+version = "0.1.0"
 
 project.extra["PluginName"] = "NoMore Ground Items"
 project.extra["PluginDescription"] = "Highlight ground items and/or show price information"

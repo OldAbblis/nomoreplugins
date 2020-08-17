@@ -126,6 +126,11 @@ class PlayerStateSceneOverlay extends Overlay
 			}
 		}
 
+		if (config.displayConnected() && plugin.loggedIn)
+		{
+			renderG(graphics, config.connectedColor(), config.connectedLocation().split(Pattern.quote(":")));
+		}
+
 		return null;
 	}
 

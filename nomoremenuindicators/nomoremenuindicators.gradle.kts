@@ -1,4 +1,5 @@
-version = "0.0.1"
+
+version = "0.1.0"
 
 project.extra["PluginName"] = "NoMore Menu Indicators"
 project.extra["PluginDescription"] = "Adds Indicators to Menu Buttons."
