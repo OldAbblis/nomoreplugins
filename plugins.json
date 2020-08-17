@@ -8,7 +8,7 @@
     "releases": [
       {
         "date": "2020-08-17",
-        "sha512sum": "fdd1bcd331d5548900ba27d3a4d9badafac36e6b00dd5208c232f64db9691c8e52438bc92cb320e2fcf961b2906bd751602d6b78b9fc2f8b6ff2be1224f69b24",
+        "sha512sum": "8494fc6a7d4e38ce2560c27192466b833c28b099c8d6013a395bbe40951203d43931d988b11efe25ad8753da32c585241993f807d89e37906c58a58bce16e9fa",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/amiscplugin-0.1.0.jar?raw=true",
         "requires":"0.0.1"
@@ -24,7 +24,7 @@
     "releases": [
       {
         "date": "2020-08-17",
-        "sha512sum": "f5de89907992110a23e1b77201cee5831d2e72699dfa2cf78180940435cdf8beb2a1ea3bd77dd5dd808c85703492352992f90abef57aaeb02963a54164b8f83f",
+        "sha512sum": "edcbba5420fbc00aba4d90b5dda0001bca83f5b22e1946f8a3f716c02a433b05f81fe895171bc0da66733027a1dd6da48fdd581e12729fe582379e6611c92783",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/aplugintutorial-0.1.0.jar?raw=true",
         "requires":"0.0.1"
