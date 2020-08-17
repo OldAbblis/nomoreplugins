@@ -8,7 +8,7 @@
     "releases": [
       {
         "date": "2020-08-17",
-        "sha512sum": "8494fc6a7d4e38ce2560c27192466b833c28b099c8d6013a395bbe40951203d43931d988b11efe25ad8753da32c585241993f807d89e37906c58a58bce16e9fa",
+        "sha512sum": "32fc4d8c9a826fa7b1f100e2334e358f66434adc4d6bd94d216739a5b35b008f7479bc3079df73c07bff650d507d22d9c19cd1e3f20b008a53f44d28da45faf9",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/amiscplugin-0.1.0.jar?raw=true",
         "requires":"0.0.1"

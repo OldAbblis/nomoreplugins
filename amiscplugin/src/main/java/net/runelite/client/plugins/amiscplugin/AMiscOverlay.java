@@ -32,7 +32,7 @@ public class AMiscOverlay extends Overlay {
                 int cWidth = client.getCanvasWidth();
                 int cHeight = client.getCanvasHeight();
                 g.setColor(new Color(100, 200, 100, config.markerTransparency()));
-                g.fillRect(cWidth - 204, cHeight - 275 - 72, 204, 275);
+                g.fillRect(cWidth - 204, cHeight - 311, 204, 275);
             }
         }
         return null;
