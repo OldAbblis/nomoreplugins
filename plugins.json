@@ -7,7 +7,7 @@
     "id": "amiscplugin-plugin",
     "releases": [
       {
-        "date": "2020-07-21",
+        "date": "2020-08-17",
         "sha512sum": "fdd1bcd331d5548900ba27d3a4d9badafac36e6b00dd5208c232f64db9691c8e52438bc92cb320e2fcf961b2906bd751602d6b78b9fc2f8b6ff2be1224f69b24",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/amiscplugin-0.1.0.jar?raw=true",
@@ -23,7 +23,7 @@
     "id": "aplugintutorial-plugin",
     "releases": [
       {
-        "date": "2020-07-24",
+        "date": "2020-08-17",
         "sha512sum": "f5de89907992110a23e1b77201cee5831d2e72699dfa2cf78180940435cdf8beb2a1ea3bd77dd5dd808c85703492352992f90abef57aaeb02963a54164b8f83f",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/aplugintutorial-0.1.0.jar?raw=true",
@@ -39,7 +39,7 @@
     "id": "inventoryindicators-plugin",
     "releases": [
       {
-        "date": "2020-08-16",
+        "date": "2020-08-17",
         "sha512sum": "f5de89907992110a23e1b77201cee5831d2e72699dfa2cf78180940435cdf8beb2a1ea3bd77dd5dd808c85703492352992f90abef57aaeb02963a54164b8f83f",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.1.0.jar?raw=true",
@@ -55,7 +55,7 @@
     "id": "nomoreagility-plugin",
     "releases": [
       {
-        "date": "2020-07-21",
+        "date": "2020-08-17",
         "sha512sum": "68cde917d2a8fc1cdf1e71659757c1ca34b309a270b148debc5bc598cc1c70469597a65e71bbcd20d9155096e2410891504e69e39a468d0ee306f1348e4acd95",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoreagility-0.1.0.jar?raw=true",
@@ -71,7 +71,7 @@
     "id": "nomoregrounditems-plugin",
     "releases": [
       {
-        "date": "2020-07-21",
+        "date": "2020-08-17",
         "sha512sum": "faf6c4463181c23ce839b13c9d52e8416b46d0e76a9ac7610049b11e19de877c9fe263ec6e2fc778bb8e01899f3d91e0c4b24e5ab2f7de3892a9512c5f2dbf44",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoregrounditems-0.1.0.jar?raw=true",
@@ -87,7 +87,7 @@
     "id": "nomoregroundmarkers-plugin",
     "releases": [
       {
-        "date": "2020-07-21",
+        "date": "2020-08-17",
         "sha512sum": "0058554a1a4d6f8fe8fb425bc5f950c034adca3933e7cb265c0f594bb6e0c0ac1eaeefdf6d1b3de1f15816cdf7cd7696329be9c8683c5d6bdec6c91e3afed68b",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoregroundmarkers-0.1.0.jar?raw=true",
@@ -103,7 +103,7 @@
     "id": "nomoreinventorytags-plugin",
     "releases": [
       {
-        "date": "2020-07-21",
+        "date": "2020-08-17",
         "sha512sum": "23f54607178f01464677e43875d2010c6c75e5a413cb907a59e821fb52bfcb250d4cbf05b244313134b53fa55e665faac107db9d8c679105dd4d50c3246779fd",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoreinventorytags-0.1.0.jar?raw=true",
@@ -119,7 +119,7 @@
     "id": "nomoremenuindicators-plugin",
     "releases": [
       {
-        "date": "2020-07-21",
+        "date": "2020-08-17",
         "sha512sum": "a199358e800c9d4a2c26ca85ad1776cf5aaf06326c76359c57068cc3095da1887cdc34f0307137c78d9b89ae846db772acc96c507e0eec55ebb12b12072df603",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoremenuindicators-0.1.0.jar?raw=true",
@@ -135,7 +135,7 @@
     "id": "nomorenpchighlight-plugin",
     "releases": [
       {
-        "date": "2020-07-21",
+        "date": "2020-08-17",
         "sha512sum": "3538d634b3bb547f7c84b7c671e6f8b5d9b67941532f0a5600d3144b0058764bd842e8bc46fafa4d36d2e1cc940ac37029fc8e7e8e8a86942e4334b4084a29cc",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorenpchighlight-0.1.0.jar?raw=true",
@@ -151,7 +151,7 @@
     "id": "nomoreobjectindicators-plugin",
     "releases": [
       {
-        "date": "2020-07-21",
+        "date": "2020-08-17",
         "sha512sum": "c9f4750729756db881e25beb9a50590b4d9c9594bbcefa39fbb74445ef4913e443a94595c5c016c496f433c514b228003ad86a39e55dc933d460b7b07ceea247",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoreobjectindicators-0.1.0.jar?raw=true",
@@ -167,7 +167,7 @@
     "id": "nomorewintertodt-plugin",
     "releases": [
       {
-        "date": "2020-07-24",
+        "date": "2020-08-17",
         "sha512sum": "f8593b57b25a8bc356c1b22ad56c676cbc51498e16c2e64b8697554b35b54dfe3f973c0380c7256c883e3992d1f17bf60797b02e5db49fa459ef13dae383dba4",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.1.0.jar?raw=true",
@@ -183,7 +183,7 @@
     "id": "playerstateindicators-plugin",
     "releases": [
       {
-        "date": "2020-08-13",
+        "date": "2020-08-17",
         "sha512sum": "23ad411e41de5afa269850b38c31d768c310ca1ae21be1ede340ccdb422aef8bbb881d716030139aaa2a86fa21e1318053c492bb72a5d0ae41ce5a21ca5852a1",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.1.0.jar?raw=true",
