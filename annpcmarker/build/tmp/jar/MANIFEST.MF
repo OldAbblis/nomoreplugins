@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Plugin-Version: 0.1.0
+Plugin-Id: annpcmarker-plugin
+Plugin-Provider: NoMore
+Plugin-Description: Marks NPC's in th game world.
+Plugin-License: GNU General Public License v3.0
+

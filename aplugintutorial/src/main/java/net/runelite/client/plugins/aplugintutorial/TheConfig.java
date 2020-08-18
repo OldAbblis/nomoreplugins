@@ -29,7 +29,7 @@ import net.runelite.client.config.*;
 import java.awt.Color;
 
 
-@ConfigGroup("aplugintutorial ")
+@ConfigGroup("aplugintutorial")
 public interface TheConfig extends Config
 {
 	@ConfigTitleSection(

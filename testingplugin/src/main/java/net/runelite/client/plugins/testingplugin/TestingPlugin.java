@@ -26,21 +26,22 @@ package net.runelite.client.plugins.testingplugin;
 
 import javax.inject.Inject;
 
-import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.events.ClientTick;
-import net.runelite.client.config.ConfigManager;
+import net.runelite.api.events.BeforeRender;
+import net.runelite.api.events.MenuOptionClicked;
+import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.input.MouseManager;
+import net.runelite.client.input.KeyListener;
+import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
-import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
 
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
+import java.awt.event.KeyEvent;
+import static net.runelite.client.plugins.testingplugin.FixedHideChatConstants.FIXED_MAIN;
 
 @Extension
 @PluginDescriptor(
@@ -50,45 +51,22 @@ import java.time.format.DateTimeFormatter;
 	type = PluginType.MISCELLANEOUS
 )
 @Slf4j
-public class TestingPlugin extends Plugin {
-
+public class TestingPlugin extends Plugin
+{
 	@Inject
 	private Client client;
 
 	@Inject
-	private TestingPluginConfig config;
-
-	@Inject
-	private TestingPluginOverlay overlay;
-
-	@Inject
-	private OverlayManager overlayManager;
-
-	@Provides
-	TestingPluginConfig provideConfig(ConfigManager configManager) {
-		return configManager.getConfig(TestingPluginConfig.class);
-	}
+	private KeyManager keyManager;
 
 	@Override
-	protected void startUp() {
-		overlayManager.add(overlay);
-	}
-
-	@Override
-	protected void shutDown() {
-		overlayManager.remove(overlay);
-	}
-
-	int timer = 5000;
-	long currentTime = System.currentTimeMillis();
-
-	@Subscribe
-	private void on(ClientTick event)
+	protected void startUp()
 	{
-		if (System.currentTimeMillis() >= currentTime + timer)
-		{
-			System.out.println("5 seconds have passed since " + new SimpleDateFormat("hh:mm:ss").format(currentTime));
-			currentTime = System.currentTimeMillis();
-		}
 	}
+
+	@Override
+	protected void shutDown()
+	{
+	}
+
 }

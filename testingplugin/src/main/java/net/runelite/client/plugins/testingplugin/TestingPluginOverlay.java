@@ -37,33 +37,8 @@ public class TestingPluginOverlay extends Overlay {
     long currentTime = System.currentTimeMillis();
 
     @Override
-    public Dimension render(Graphics2D g) {
-        if (client.getGameState() != GameState.LOGGED_IN)
-        {
-            return null;
-        }
-        player = client.getLocalPlayer();
-        if (player == null)
-        {
-            return null;
-        }
-
-        Rectangle playerBounds = client.getLocalPlayer().getConvexHull().getBounds();
-
-        // 360 no scope
-        g.setColor(Color.GREEN);
-        g.drawRect(client.getMouseCanvasPosition().getX(), 0, 0, client.getCanvasHeight());
-        g.drawRect(0, client.getMouseCanvasPosition().getY(), client.getCanvasWidth(), 0);
-        if (client.getLocalDestinationLocation() != null)
-        {
-            LocalPoint tilePlayerWalkingTo = client.getLocalDestinationLocation();
-            Polygon tile = Perspective.getCanvasTilePoly(client, tilePlayerWalkingTo);
-            g.drawLine((int) playerBounds.getCenterX()
-                    , (int) playerBounds.getCenterY()
-                    , (int) tile.getBounds().getCenterX()
-                    , (int) tile.getBounds().getCenterY());
-        }
-
+    public Dimension render(Graphics2D g)
+    {
         return null;
     }
 }

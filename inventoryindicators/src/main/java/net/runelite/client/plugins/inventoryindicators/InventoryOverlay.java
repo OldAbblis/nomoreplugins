@@ -1,6 +1,7 @@
 package net.runelite.client.plugins.inventoryindicators;
 
 import net.runelite.api.*;
+import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.api.widgets.WidgetItem;
 import net.runelite.client.ui.overlay.Overlay;
@@ -26,6 +27,7 @@ public class InventoryOverlay extends WidgetItemOverlay {
         this.plugin = plugin;
         this.config = config;
         showOnInventory();
+        showOnBank();
     }
 
     @Override
