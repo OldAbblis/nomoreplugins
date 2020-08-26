@@ -56,13 +56,11 @@ public class NoMoreWintertodtOverlay extends Overlay
 	}
 
 	private boolean gameActive;
+	private boolean pyroDown;
 
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		LocalPoint playerLocation = client.getLocalPlayer().getLocalLocation();
-		Point mousePosition = client.getMouseCanvasPosition();
-
 		if (plugin.isMinigameActive()) {
 			gameActive = true;
 			// Responsible for checks on the Pyromancer animations.
@@ -71,6 +69,7 @@ public class NoMoreWintertodtOverlay extends Overlay
 				if (pyromancer.getAnimation() == 7627) {
 
 					WorldPoint pos = pyromancer.getWorldLocation();
+					pyroDown = true;
 
 					if (pos.getPlane() == client.getPlane()) {
 						Shape npcConvexHull = pyromancer.getConvexHull();
@@ -94,6 +93,10 @@ public class NoMoreWintertodtOverlay extends Overlay
 
 					return null;
 				}
+				else
+				{
+					pyroDown = false;
+				}
 
 			}
 
@@ -108,7 +111,7 @@ public class NoMoreWintertodtOverlay extends Overlay
 
 				if (tile.getPlane() == client.getPlane()) {
 					Shape objectClickBox = object.getClickbox();
-					if (objectClickBox != null) {
+					if (objectClickBox != null && !pyroDown) {
 
 						switch (config.locationSide()) {
 							case EAST:
@@ -125,6 +128,21 @@ public class NoMoreWintertodtOverlay extends Overlay
 				}
 
 			});
+
+			if (config.displayPoints())
+			{
+				Widget points = client.getWidget(396, 7);
+				if (points != null)
+				{
+					Color color = Color.RED.darker();
+					int numberOfPoints = Integer.parseInt(points.getText().replaceAll("[\\D]", ""));
+					if (numberOfPoints >= 500)
+					{
+						color = Color.GREEN.darker();
+					}
+					OverlayUtil.renderTextLocation(graphics, new Point(5, 30), String.valueOf(numberOfPoints), color);
+				}
+			}
 		}
 		if (!plugin.isMinigameActive()) {
 			gameActive = false;
@@ -135,20 +153,21 @@ public class NoMoreWintertodtOverlay extends Overlay
 		}
 
 		// Responsible for the Wintertodt widgets manipulation.
-		Widget widget = client.getWidget(396,2);
-		if (widget != null) {
+		Widget wintertodtWidget = client.getWidget(396,2);
+		if (wintertodtWidget != null) {
 			switch (config.wintertotdHUD()) {
 				case VISIBLE:
-					widget.setHidden(false);
+					wintertodtWidget.setHidden(false);
 					break;
 				case HIDDEN:
-					widget.setHidden(true);
+					wintertodtWidget.setHidden(true);
 					break;
 				case MIXED:
-					widget.setHidden(gameActive);
+					wintertodtWidget.setHidden(gameActive);
 					break;
 			}
 		}
+
 		return null;
 	}
 

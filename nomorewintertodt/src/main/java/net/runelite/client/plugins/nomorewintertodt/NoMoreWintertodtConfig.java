@@ -330,4 +330,16 @@ public interface NoMoreWintertodtConfig extends Config
 		return WidgetStyle.MIXED;
 	}
 
+	@ConfigItem(
+			keyName = "displayPoints",
+			name = "Display points",
+			description = "Display's the points gained in the current game.",
+			position = 28,
+			titleSection = "miscTitle"
+	)
+	default boolean displayPoints()
+	{
+		return true;
+	}
+
 }
