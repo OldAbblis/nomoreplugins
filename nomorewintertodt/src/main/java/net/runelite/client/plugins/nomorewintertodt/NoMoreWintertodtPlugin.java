@@ -44,6 +44,9 @@ import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
 
+import static net.runelite.api.ObjectID.*;
+import static net.runelite.api.ObjectID.BRAZIER_29313;
+
 @Extension
 @PluginDescriptor(
 	name = "NoMore Wintertodt",
@@ -70,16 +73,19 @@ public class NoMoreWintertodtPlugin extends Plugin {
 	private Notifier notifier;
 
 	@Getter(AccessLevel.PACKAGE)
-	private final Map<TileObject, Object> objects = new HashMap<>();
-
+	private final List<NPC> pyromancerNPC = new ArrayList<>();
 	@Getter(AccessLevel.PACKAGE)
-	private final Set<NPC> npcs = new HashSet<>();
+	private final List<TileObject> objects = new ArrayList<>();
 
 	@Getter(AccessLevel.PACKAGE)
 	private boolean minigameActive = false;
 
+	private final static int pyromancerID = 7371;
+	private final static List<Integer> wintertodtObjectIDS = Arrays.asList(BRUMA_ROOTS, BURNING_BRAZIER_29314, BRAZIER_29312, BRAZIER_29313);
+
 	@Provides
-	NoMoreWintertodtConfig provideConfig(ConfigManager configManager) {
+	NoMoreWintertodtConfig provideConfig(ConfigManager configManager)
+	{
 		return configManager.getConfig(NoMoreWintertodtConfig.class);
 	}
 
@@ -94,73 +100,68 @@ public class NoMoreWintertodtPlugin extends Plugin {
 	}
 
 	@Subscribe
-	private void onGameStateChanged(GameStateChanged event) {
-		if (event.getGameState() != GameState.LOGGED_IN) {
+	private void onGameStateChanged(GameStateChanged event)
+	{
+		if (event.getGameState() != GameState.LOGGED_IN)
+		{
 			objects.clear();
 		}
 	}
 
 	@Subscribe
-	void onVarbitChanged(VarbitChanged varbitChanged) {
-		int timerValue = client.getVar(Varbits.WINTERTODT_TIMER);
-		if (timerValue > 0)
-			minigameActive = false;
-		else
-			minigameActive = true;
+	void onVarbitChanged(VarbitChanged varbitChanged)
+	{
+		minigameActive = client.getVar(Varbits.WINTERTODT_TIMER) <= 0;
 	}
 
 	@Subscribe
-	private void onGameObjectSpawned(GameObjectSpawned event) {
+	private void onGameObjectSpawned(GameObjectSpawned event)
+	{
 		onTileObject(event.getTile(), null, event.getGameObject());
 	}
 
 	@Subscribe
-	private void onGameObjectChanged(GameObjectChanged event) {
+	private void onGameObjectChanged(GameObjectChanged event)
+	{
 		onTileObject(event.getTile(), event.getPrevious(), event.getGameObject());
 	}
 
 	@Subscribe
-	private void onGameObjectDespawned(GameObjectDespawned event) {
+	private void onGameObjectDespawned(GameObjectDespawned event)
+	{
 		onTileObject(event.getTile(), event.getGameObject(), null);
 	}
 
-
-
 	@Subscribe
-	private void onNpcSpawned(NpcSpawned npcSpawned)
+	private void onNpcSpawned(NpcSpawned event)
 	{
-		NPC npc = npcSpawned.getNpc();
-		if (npc != null
-				&& npc.getId() == 7371) {
-			npcs.add(npc);
+		NPC npc = event.getNpc();
+		if (npc.getId() == pyromancerID)
+		{
+			pyromancerNPC.add(npc);
 		}
 	}
 
 	@Subscribe
-	private void onNpcDefinitionChanged(NpcDefinitionChanged event)
+	private void onNpcDespawned(NpcDespawned event)
 	{
-	}
-
-	@Subscribe
-	private void onNpcDespawned(NpcDespawned npcDespawned)
-	{
-		NPC npc = npcDespawned.getNpc();
-		if (npc != null
-				&& npc.getId() == 7371) {
-			npcs.remove(npc);
+		NPC npc = event.getNpc();
+		if (npc.getId() == pyromancerID)
+		{
+			pyromancerNPC.remove(npc);
 		}
 	}
 
-	private void onTileObject(Tile tile, TileObject oldObject, TileObject newObject) {
+	private void onTileObject(Tile tile, TileObject oldObject, TileObject newObject)
+	{
 		objects.remove(oldObject);
-
-		if (newObject == null) {
+		if (newObject == null)
+		{
 			return;
 		}
-
-		if (Objects.WINTERTODT_OBJECTS_IDS.contains(newObject.getId())) {
-			objects.put(newObject, new Object(tile));
+		if (wintertodtObjectIDS.contains(newObject.getId()))
+		{
+			objects.add(newObject);
 		}
-
 	}
 }

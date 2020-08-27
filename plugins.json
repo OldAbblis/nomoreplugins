@@ -179,6 +179,13 @@
         "version": "0.2.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.2.0.jar?raw=true",
         "requires":"0.0.1"
+      },
+      {
+        "date": "2020-08-17",
+        "sha512sum": "e697d80098010345aa953bb1f07226d60f0f15783d0c7603cad686deca0df207f1816fee7a6d98d591164e30685322a0b8bb5a2b929d55ea70c5cbda3a8feee6",
+        "version": "0.3.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.3.0.jar?raw=true",
+        "requires":"0.0.1"
       }
     ]
   },

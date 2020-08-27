@@ -26,6 +26,10 @@
 package net.runelite.client.plugins.nomorewintertodt;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import javax.inject.Inject;
 
 import net.runelite.api.*;
@@ -55,144 +59,127 @@ public class NoMoreWintertodtOverlay extends Overlay
 		setLayer(OverlayLayer.ABOVE_SCENE);
 	}
 
-	private boolean gameActive;
-	private boolean pyroDown;
+	private final static int pyromancerAnimation = 7627;
+	boolean isGameActive;
 
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (plugin.isMinigameActive()) {
-			gameActive = true;
-			// Responsible for checks on the Pyromancer animations.
-			for (NPC pyromancer : plugin.getNpcs()) {
+		isGameActive = plugin.isMinigameActive();
+		if (config.displayMinigameStatus())
+		{
+			graphics.setColor(getGameActiveColor());
+			graphics.fillRect(0, 0, 5, 5);
+		}
 
-				if (pyromancer.getAnimation() == 7627) {
-
-					WorldPoint pos = pyromancer.getWorldLocation();
-					pyroDown = true;
-
-					if (pos.getPlane() == client.getPlane()) {
-						Shape npcConvexHull = pyromancer.getConvexHull();
-
-						if (npcConvexHull != null) {
-
-							switch (config.locationSide()) {
-								case EAST:
-									if (pos.getX() > 1630 && pos.getY() < 4000)
-										renderStyleChoice(graphics, npcConvexHull, config.pyroColor(), config.pyroBoxSize());
-									break;
-								case WEAST:
-									if (pos.getX() < 1630 && pos.getY() < 4000)
-										renderStyleChoice(graphics, npcConvexHull, config.pyroColor(), config.pyroBoxSize());
-									break;
-							}
-
-						}
-
-					}
-
-					return null;
-				}
-				else
-				{
-					pyroDown = false;
-				}
-
-			}
-
-			if (config.displayMinigameStatus()) {
-				graphics.setColor(Color.GREEN);
-				graphics.fillRect(0,0,5,5);
-			}
-
-			plugin.getObjects().forEach((object, obstacle) ->
+		plugin.getObjects().forEach(object -> {
+			if (object != null
+					&& object.getWorldLocation().getPlane() == client.getPlane())
 			{
-				Tile tile = obstacle.getTile();
-
-				if (tile.getPlane() == client.getPlane()) {
-					Shape objectClickBox = object.getClickbox();
-					if (objectClickBox != null && !pyroDown) {
-
-						switch (config.locationSide()) {
-							case EAST:
-								if (object.getWorldLocation().getX() > 1630 && object.getWorldLocation().getY() < 4000)
-									renderObjects(graphics, object, objectClickBox);
-								break;
-							case WEAST:
-								if (object.getWorldLocation().getX() < 1630 && object.getWorldLocation().getY() < 4000)
-									renderObjects(graphics, object, objectClickBox);
-								break;
-						}
-
-					}
-				}
-
-			});
-
-			if (config.displayPoints())
-			{
-				Widget points = client.getWidget(396, 7);
-				if (points != null)
+				Shape objectShape = object.getClickbox();
+				if (objectShape != null)
 				{
-					Color color = Color.RED.darker();
-					int numberOfPoints = Integer.parseInt(points.getText().replaceAll("[\\D]", ""));
-					if (numberOfPoints >= 500)
+					switch (config.locationSide())
 					{
-						color = Color.GREEN.darker();
+						case EAST:
+							if (object.getWorldLocation().getX() > 1630 && object.getWorldLocation().getY() < 4000)
+								renderObjects(graphics, object, objectShape);
+							break;
+						case WEAST:
+							if (object.getWorldLocation().getX() < 1630 && object.getWorldLocation().getY() < 4000)
+								renderObjects(graphics, object, objectShape);
+							break;
 					}
-					OverlayUtil.renderTextLocation(graphics, new Point(5, 30), String.valueOf(numberOfPoints), color);
 				}
 			}
-		}
-		if (!plugin.isMinigameActive()) {
-			gameActive = false;
-			if (config.displayMinigameStatus()) {
-				graphics.setColor(Color.RED);
-				graphics.fillRect(0, 0, 5, 5);
-			}
-		}
+		});
 
-		// Responsible for the Wintertodt widgets manipulation.
-		Widget wintertodtWidget = client.getWidget(396,2);
-		if (wintertodtWidget != null) {
-			switch (config.wintertotdHUD()) {
-				case VISIBLE:
-					wintertodtWidget.setHidden(false);
-					break;
-				case HIDDEN:
-					wintertodtWidget.setHidden(true);
-					break;
-				case MIXED:
-					wintertodtWidget.setHidden(gameActive);
-					break;
+		plugin.getPyromancerNPC().forEach(npc ->
+		{
+			if (!isGameActive
+					&& npc != null
+					&& npc.getWorldLocation().getPlane() == client.getPlane()
+					&& npc.getAnimation() == pyromancerAnimation)
+			{
+				Shape npcShape = npc.getConvexHull();
+				if (npcShape != null)
+				{
+					switch (config.locationSide())
+					{
+						case EAST:
+							if (npc.getWorldLocation().getX() > 1630 && npc.getWorldLocation().getY() < 4000) renderStyleChoice(graphics, npcShape, config.pyroColor(), config.pyroBoxSize()); break;
+						case WEAST:
+							if (npc.getWorldLocation().getX() < 1630 && npc.getWorldLocation().getY() < 4000) renderStyleChoice(graphics, npcShape, config.pyroColor(), config.pyroBoxSize()); break;
+					}
+				}
 			}
+		});
+
+		if (isGameActive)
+		{
+			renderWidget(graphics);
 		}
+		wintertodtWidget();
 
 		return null;
 	}
 
-	public void renderObjects(Graphics2D graphics, TileObject object, Shape objectClickBox) {
-		if (config.displayBruma()) {
-			if (object.getId() == ObjectID.BRUMA_ROOTS)
-				renderStyleChoice(graphics, objectClickBox, config.brumaColor(), config.brumaBoxSize());
+	public void wintertodtWidget()
+	{
+		Widget wintertodtWidget = client.getWidget(396,2);
+		if (wintertodtWidget == null)
+		{
+			return;
 		}
-		if (config.displayLitBrazier()) {
-			if (object.getId() == ObjectID.BURNING_BRAZIER_29314)
-				renderStyleChoice(graphics, objectClickBox, config.litBrazierColor(), config.litBrazierBoxSize());
-		}
-		if (config.displayUnlitBrazier()) {
-			if (object.getId() == ObjectID.BRAZIER_29312)
-				renderStyleChoice(graphics, objectClickBox, config.unlitBrazierColor(), config.unlitBrazierBoxSize());
-		}
-		if (config.displayBrokenBrazier()) {
-			if (object.getId() == ObjectID.BRAZIER_29313)
-				renderStyleChoice(graphics, objectClickBox, config.brokenBrazierColor(), config.brokenBrazierBoxSize());
+		switch (config.wintertotdHUD())
+		{
+			case VISIBLE:
+				wintertodtWidget.setHidden(false);
+				break;
+			case HIDDEN:
+				wintertodtWidget.setHidden(true);
+				break;
+			case MIXED:
+				wintertodtWidget.setHidden(plugin.isMinigameActive());
+				break;
 		}
 	}
 
-	public void renderStyleChoice(Graphics2D graphics, Shape shapeClickBox, Color color, int boxSize) {
+	public void renderWidget(Graphics2D graphics)
+	{
+		Widget points = client.getWidget(396, 7);
+		if (points == null)
+		{
+			return;
+		}
+		Color color = Color.RED.darker();
+		int numberOfPoints = Integer.parseInt(points.getText().replaceAll("[\\D]", ""));
+		if (numberOfPoints >= 500)
+		{
+			color = Color.GREEN.darker();
+		}
+		OverlayUtil.renderTextLocation(graphics, new Point(5, 30), String.valueOf(numberOfPoints), color);
+	}
 
-		switch (config.renderStyle()) {
+	public void renderObjects(Graphics2D graphics, TileObject object, Shape objectClickBox)
+	{
+		if (isGameActive)
+		{
+			if (object.getId() == ObjectID.BRUMA_ROOTS)
+				renderStyleChoice(graphics, objectClickBox, config.brumaColor(), config.brumaBoxSize());
+			if (object.getId() == ObjectID.BURNING_BRAZIER_29314)
+				renderStyleChoice(graphics, objectClickBox, config.litBrazierColor(), config.litBrazierBoxSize());
+			if (object.getId() == ObjectID.BRAZIER_29313)
+				renderStyleChoice(graphics, objectClickBox, config.brokenBrazierColor(), config.brokenBrazierBoxSize());
+		}
+		if (object.getId() == ObjectID.BRAZIER_29312)
+			renderStyleChoice(graphics, objectClickBox, config.unlitBrazierColor(), config.unlitBrazierBoxSize());
+	}
+
+	public void renderStyleChoice(Graphics2D graphics, Shape shapeClickBox, Color color, int boxSize)
+	{
+		switch (config.renderStyle())
+		{
 			case CLICKBOX:
 				renderClickBox(graphics, shapeClickBox, color);
 				break;
@@ -203,33 +190,44 @@ public class NoMoreWintertodtOverlay extends Overlay
 				renderBox(graphics, shapeClickBox, color, boxSize);
 				break;
 		}
-
 	}
 
-	public void renderClickBox(Graphics2D graphics, Shape shapeClickBox, Color color) {
-
-		if (shapeClickBox != null) {
+	public void renderClickBox(Graphics2D graphics, Shape shapeClickBox, Color color)
+	{
+		if (shapeClickBox != null)
+		{
 			OverlayUtil.renderPolygon(graphics, shapeClickBox, color);
 		}
-
 	}
 
-	public void renderFilledClickBox(Graphics2D graphics, Shape shapeClickBox, Color color) {
-
-		if (shapeClickBox != null) {
+	public void renderFilledClickBox(Graphics2D graphics, Shape shapeClickBox, Color color)
+	{
+		if (shapeClickBox != null)
+		{
 			OverlayUtil.renderFilledPolygon(graphics, shapeClickBox, color);
 		}
-
 	}
 
-	public void renderBox(Graphics2D graphics, Shape shapeClickBox, Color color, int boxSize) {
-
-		if (shapeClickBox != null) {
+	public void renderBox(Graphics2D graphics, Shape shapeClickBox, Color color, int boxSize)
+	{
+		if (shapeClickBox != null)
+		{
 			int x = (int) shapeClickBox.getBounds().getCenterX() - boxSize / 2;
 			int y = (int) shapeClickBox.getBounds().getCenterY() - boxSize / 2;
 			graphics.setColor(color);
 			graphics.fillRect(x, y, boxSize, boxSize);
 		}
+	}
 
+	public Color getGameActiveColor()
+	{
+		if (plugin.isMinigameActive())
+		{
+			return Color.GREEN;
+		}
+		else
+		{
+			return Color.RED;
+		}
 	}
 }
