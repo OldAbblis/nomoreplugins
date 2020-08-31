@@ -27,9 +27,11 @@ package net.runelite.client.plugins.nomorewintertodt;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.inject.Inject;
 
 import net.runelite.api.*;
@@ -61,6 +63,8 @@ public class NoMoreWintertodtOverlay extends Overlay
 
 	private final static int pyromancerAnimation = 7627;
 	boolean isGameActive;
+	boolean doesEastPyroNeedHelp;
+	boolean doesWestPyroNeedHelp;
 
 	@Override
 	public Dimension render(Graphics2D graphics)
@@ -70,6 +74,60 @@ public class NoMoreWintertodtOverlay extends Overlay
 		{
 			graphics.setColor(getGameActiveColor());
 			graphics.fillRect(0, 0, 5, 5);
+		}
+
+		if (isGameActive)
+		{
+			renderWidget(graphics);
+		}
+		wintertodtWidget();
+
+		for (NPC npc : plugin.getPyromancerNPC())
+		{
+			if (npc.getWorldLocation().getPlane() == client.getPlane()
+					&& Arrays.asList(npc.getDefinition().getActions()).contains("Help"))
+			{
+				Shape npcShape = npc.getConvexHull();
+				if (npcShape != null)
+				{
+					switch (config.locationSide())
+					{
+						case EAST:
+							if (npc.getWorldLocation().getX() > 1630 && npc.getWorldLocation().getY() < 4000)
+							{
+								renderStyleChoice(graphics, npcShape, config.pyroColor(), config.pyroBoxSize());
+								doesEastPyroNeedHelp = true;
+							}
+							else
+							{
+								doesEastPyroNeedHelp = false;
+							}
+							break;
+						case WEAST:
+							if (npc.getWorldLocation().getX() < 1630 && npc.getWorldLocation().getY() < 4000)
+							{
+								renderStyleChoice(graphics, npcShape, config.pyroColor(), config.pyroBoxSize());
+								doesWestPyroNeedHelp = true;
+							}
+							else
+							{
+								doesWestPyroNeedHelp = false;
+							}
+							break;
+					}
+				}
+			}
+			else
+			{
+				if (npc.getWorldLocation().getX() > 1630 && npc.getWorldLocation().getY() < 4000)
+				{
+					doesEastPyroNeedHelp = false;
+				}
+				if (npc.getWorldLocation().getX() < 1630 && npc.getWorldLocation().getY() < 4000)
+				{
+					doesWestPyroNeedHelp = false;
+				}
+			}
 		}
 
 		plugin.getObjects().forEach(object -> {
@@ -82,44 +140,20 @@ public class NoMoreWintertodtOverlay extends Overlay
 					switch (config.locationSide())
 					{
 						case EAST:
-							if (object.getWorldLocation().getX() > 1630 && object.getWorldLocation().getY() < 4000)
+							if (!doesEastPyroNeedHelp && (object.getWorldLocation().getX() > 1630 && object.getWorldLocation().getY() < 4000))
 								renderObjects(graphics, object, objectShape);
 							break;
 						case WEAST:
-							if (object.getWorldLocation().getX() < 1630 && object.getWorldLocation().getY() < 4000)
+							if (!doesWestPyroNeedHelp && (object.getWorldLocation().getX() < 1630 && object.getWorldLocation().getY() < 4000))
 								renderObjects(graphics, object, objectShape);
 							break;
 					}
 				}
 			}
-		});
-
-		plugin.getPyromancerNPC().forEach(npc ->
-		{
-			if (!isGameActive
-					&& npc != null
-					&& npc.getWorldLocation().getPlane() == client.getPlane()
-					&& npc.getAnimation() == pyromancerAnimation)
+			else
 			{
-				Shape npcShape = npc.getConvexHull();
-				if (npcShape != null)
-				{
-					switch (config.locationSide())
-					{
-						case EAST:
-							if (npc.getWorldLocation().getX() > 1630 && npc.getWorldLocation().getY() < 4000) renderStyleChoice(graphics, npcShape, config.pyroColor(), config.pyroBoxSize()); break;
-						case WEAST:
-							if (npc.getWorldLocation().getX() < 1630 && npc.getWorldLocation().getY() < 4000) renderStyleChoice(graphics, npcShape, config.pyroColor(), config.pyroBoxSize()); break;
-					}
-				}
 			}
 		});
-
-		if (isGameActive)
-		{
-			renderWidget(graphics);
-		}
-		wintertodtWidget();
 
 		return null;
 	}
