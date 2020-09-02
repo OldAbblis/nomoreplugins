@@ -15,6 +15,7 @@ include(":inventoryindicators")
 include(":spellbookindicators")
 include(":testingplugin")
 include(":annpcmarker")
+include(":interfaceindicators")
 
 for (project in rootProject.children) {
     project.apply {

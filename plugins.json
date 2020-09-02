@@ -34,6 +34,22 @@
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
+    "name": "Interface Indicators",
+    "description": "Displays an indicated over interface widgets and interface states.",
+    "id": "interfaceindicators-plugin",
+    "releases": [
+      {
+        "date": "2020-09-02",
+        "sha512sum": "3925b91af2caaef0ef843ce86b2e9b8716587fd07a88b2dbf4ef280dfd5fe2f48c29835c3f5cc0ecaa988971d5b65ae28df31d556c04365a40d7571719da76a4",
+        "version": "0.1.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/interfaceindicators-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMore",
     "name": "Inventory Indicators",
     "description": "Display indicators based on various inventory related states.",
     "id": "inventoryindicators-plugin",

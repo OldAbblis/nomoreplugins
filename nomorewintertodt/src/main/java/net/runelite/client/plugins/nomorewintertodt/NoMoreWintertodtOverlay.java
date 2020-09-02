@@ -150,9 +150,6 @@ public class NoMoreWintertodtOverlay extends Overlay
 					}
 				}
 			}
-			else
-			{
-			}
 		});
 
 		return null;
