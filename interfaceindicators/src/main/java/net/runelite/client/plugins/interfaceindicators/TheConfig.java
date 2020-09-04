@@ -29,7 +29,7 @@ import net.runelite.client.config.*;
 import java.awt.Color;
 
 
-@ConfigGroup("aplugintutorial")
+@ConfigGroup("interfaceindicators")
 public interface TheConfig extends Config
 {
 	@ConfigTitleSection(
@@ -53,8 +53,8 @@ public interface TheConfig extends Config
 	default Options options() { return Options.BANK; }
 
 	@ConfigItem(
-			keyName = "bankIndicator",
-			name = "Bank",
+			keyName = "bankOpen",
+			name = "Open",
 			description = "Displays the an indicator if the bank interface is open.",
 			position = 3,
 			titleSection = "firstTitle",
@@ -62,11 +62,11 @@ public interface TheConfig extends Config
 			unhide = "configType",
 			unhideValue = "BANK"
 	)
-	default boolean displayBank() { return false; }
+	default boolean bankOpen() { return false; }
 
 	@ConfigItem(
-			keyName = "bankIndicatorsLocation",
-			name = "Indicator location",
+			keyName = "bankOpenLocation",
+			name = "Indicator Location",
 			description = "Indicator location, format to use: x:y:width:height e.g 100:100:10:10",
 			position = 4,
 			titleSection = "firstTitle",
@@ -74,10 +74,10 @@ public interface TheConfig extends Config
 			unhide = "configType",
 			unhideValue = "BANK"
 	)
-	default String bankLocation() { return "150:0:5:5"; }
+	default String bankOpenLocation() { return "150:0:5:5"; }
 
 	@ConfigItem(
-			keyName = "bankIndicatorsColor",
+			keyName = "bankOpenColor",
 			name = "Indicator Color",
 			description = "Indicator Color.",
 			position = 5,
@@ -89,10 +89,254 @@ public interface TheConfig extends Config
 	default Color bankColor() { return Color.GREEN; }
 
 	@ConfigItem(
+			keyName = "bankClose",
+			name = "Close Button",
+			description = "Displays the an indicator over the bank close button.",
+			position = 6,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default boolean bankClose() { return false; }
+
+	@ConfigItem(
+			keyName = "bankCloseColor",
+			name = "Indicator Color",
+			description = "Indicator Color.",
+			position = 7,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default Color bankCloseColor() { return Color.GREEN; }
+
+	@ConfigItem(
+			keyName = "bankItem",
+			name = "Withdraw / Deposit Item Button",
+			description = "Displays the an indicator over the withdraw / deposit item button.",
+			position = 8,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default boolean bankItem() { return false; }
+
+	@ConfigItem(
+			keyName = "bankItemColor",
+			name = "Indicator Color",
+			description = "Indicator Color.",
+			position = 9,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default Color bankItemColor() { return Color.GREEN; }
+
+	@ConfigItem(
+			keyName = "bankNote",
+			name = "Withdraw / Deposit Note Button",
+			description = "Displays the an indicator over the withdraw / deposit note button.",
+			position = 10,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default boolean bankNote() { return false; }
+
+	@ConfigItem(
+			keyName = "bankItemColor",
+			name = "Indicator Color",
+			description = "Indicator Color.",
+			position = 11,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default Color bankNoteColor() { return Color.GREEN; }
+
+	@ConfigItem(
+			keyName = "bankQuantity1",
+			name = "Quantity 1 Button",
+			description = "Displays the an indicator over the quantity 1 button.",
+			position = 12,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default boolean bankQuantity1() { return false; }
+
+	@ConfigItem(
+			keyName = "bankQuantity1Color",
+			name = "Indicator Color",
+			description = "Indicator Color.",
+			position = 13,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default Color bankQuantity1Color() { return Color.GREEN; }
+
+	@ConfigItem(
+			keyName = "bankQuantity5",
+			name = "Quantity 5 Button",
+			description = "Displays the an indicator over the quantity 5 button.",
+			position = 14,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default boolean bankQuantity5() { return false; }
+
+	@ConfigItem(
+			keyName = "bankQuantity5Color",
+			name = "Indicator Color",
+			description = "Indicator Color.",
+			position = 15,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default Color bankQuantity5Color() { return Color.GREEN; }
+
+	@ConfigItem(
+			keyName = "bankQuantity10",
+			name = "Quantity 10 Button",
+			description = "Displays the an indicator over the quantity 10 button.",
+			position = 16,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default boolean bankQuantity10() { return false; }
+
+	@ConfigItem(
+			keyName = "bankQuantity10Color",
+			name = "Indicator Color",
+			description = "Indicator Color.",
+			position = 17,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default Color bankQuantity10Color() { return Color.GREEN; }
+
+	@ConfigItem(
+			keyName = "bankQuantityX",
+			name = "Quantity X Button",
+			description = "Displays the an indicator over the quantity X button.",
+			position = 18,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default boolean bankQuantityX() { return false; }
+
+	@ConfigItem(
+			keyName = "bankQuantityXColor",
+			name = "Indicator Color",
+			description = "Indicator Color.",
+			position = 19,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default Color bankQuantityXColor() { return Color.GREEN; }
+
+	@ConfigItem(
+			keyName = "bankQuantityAll",
+			name = "Quantity All Button",
+			description = "Displays the an indicator over the quantity All button.",
+			position = 20,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default boolean bankQuantityAll() { return false; }
+
+	@ConfigItem(
+			keyName = "bankQuantityAllColor",
+			name = "Indicator Color",
+			description = "Indicator Color.",
+			position = 21,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default Color bankQuantityAllColor() { return Color.GREEN; }
+
+	@ConfigItem(
+			keyName = "bankDepositInventory",
+			name = "Deposit All Items Button",
+			description = "Displays the an indicator over the deposit all items button.",
+			position = 22,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default boolean bankDepositInventory() { return false; }
+
+	@ConfigItem(
+			keyName = "bankDepositInventoryColor",
+			name = "Indicator Color",
+			description = "Indicator Color.",
+			position = 23,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default Color bankDepositInventoryColor() { return Color.GREEN; }
+
+	@ConfigItem(
+			keyName = "bankDepositEquipment",
+			name = "Deposit All Equipment Button",
+			description = "Displays the an indicator over the deposit all equipment button.",
+			position = 24,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default boolean bankDepositEquipment() { return false; }
+
+	@ConfigItem(
+			keyName = "bankDepositEquipmentColor",
+			name = "Indicator Color",
+			description = "Indicator Color.",
+			position = 25,
+			titleSection = "firstTitle",
+			hidden = true,
+			unhide = "configType",
+			unhideValue = "BANK"
+	)
+	default Color bankDepositEquipmentColor() { return Color.GREEN; }
+
+
+
+
+
+	@ConfigItem(
 			keyName = "depositIndicator",
 			name = "Deposit",
 			description = "Displays the an indicator if the deposit inventory interface is open.",
-			position = 6,
+			position = 100,
 			titleSection = "firstTitle",
 			hidden = true,
 			unhide = "configType",
@@ -104,7 +348,7 @@ public interface TheConfig extends Config
 			keyName = "depositIndicatorLocation",
 			name = "Indicator location",
 			description = "Indicator location, format to use: x:y:width:height e.g 100:100:10:10",
-			position = 7,
+			position = 100,
 			titleSection = "firstTitle",
 			hidden = true,
 			unhide = "configType",
@@ -116,7 +360,7 @@ public interface TheConfig extends Config
 			keyName = "depositIndicatorColor",
 			name = "Indicator Color",
 			description = "Indicator Color.",
-			position = 8,
+			position = 100,
 			titleSection = "firstTitle",
 			hidden = true,
 			unhide = "configType",
@@ -128,7 +372,7 @@ public interface TheConfig extends Config
 			keyName = "chatboxMakeIndicator",
 			name = "Make / Create",
 			description = "Displays the an indicator if the deposit inventory interface is open.",
-			position = 6,
+			position = 100,
 			titleSection = "firstTitle",
 			hidden = true,
 			unhide = "configType",
@@ -140,7 +384,7 @@ public interface TheConfig extends Config
 			keyName = "chatboxMakeIndicatorLocation",
 			name = "Indicator location",
 			description = "Indicator location, format to use: x:y:width:height e.g 100:100:10:10",
-			position = 7,
+			position = 100,
 			titleSection = "firstTitle",
 			hidden = true,
 			unhide = "configType",
@@ -152,7 +396,7 @@ public interface TheConfig extends Config
 			keyName = "chatboxMakeIndicatorColor",
 			name = "Indicator Color",
 			description = "Indicator Color.",
-			position = 8,
+			position = 100,
 			titleSection = "firstTitle",
 			hidden = true,
 			unhide = "configType",

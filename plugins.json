@@ -205,7 +205,7 @@
       },
       {
         "date": "2020-08-31",
-        "sha512sum": "cea33312a81dfe57078b9ba3314e9d7925061e684b5a3eb1a571f64a7470e311226241cd4622419d292abc965dd50bc7ffc84b389ce3ccbb074878e138e70fc6",
+        "sha512sum": "1cd7e0fe3d415399682e517776278e158a16a6040fd76bad89991e61e4afa59224106ce94ee3c411e8b0b3e9b3903b66f0b2be1f9778f92d434107ec5bbc5dd6",
         "version": "0.4.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.4.0.jar?raw=true",
         "requires":"0.0.1"
