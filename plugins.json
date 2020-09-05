@@ -40,7 +40,7 @@
     "releases": [
       {
         "date": "2020-09-02",
-        "sha512sum": "77be5ea995ca9f87116ee8c57ee474f4b1e967858c3c226a2a42474d6e5fb802e5ff6f4c611b046cb570aa89a91924abd6ef7d46cab0692b442dbc3141f41020",
+        "sha512sum": "d747965932f86ca7658ee249e0a2b41eba79a087ee901df71b3c0e4a8eda7fe1a2bf2ad170ad84f3971dba4ab5827755c3d33c728838c49ad007c4ea9352c195",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/interfaceindicators-0.1.0.jar?raw=true",
         "requires":"0.0.1"

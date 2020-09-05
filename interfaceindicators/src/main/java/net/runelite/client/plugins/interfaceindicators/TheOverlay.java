@@ -126,7 +126,7 @@ public class TheOverlay extends Overlay
                 displayOverWidget(graphics, bankDepositEquipment, config.bankDepositEquipmentColor());
             }
         }
-        if (config.displayDeposit())
+        if (config.displayDeposit()) // test
         {
             Widget deposit = client.getWidget(WidgetInfo.DEPOSIT_BOX_INVENTORY_ITEMS_CONTAINER);
             if (deposit != null && !deposit.isHidden())
@@ -141,6 +141,10 @@ public class TheOverlay extends Overlay
             {
                 renderG(graphics, config.makeColor(), config.makeLocation().split(Pattern.quote(":")));
             }
+        }
+        if (!config.bankOpen())
+        {
+            //test
         }
         return null;
     }

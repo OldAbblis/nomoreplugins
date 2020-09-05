@@ -89,7 +89,15 @@ subprojects {
                 copy {
                     from("./build/libs/")
                     into(System.getProperty("user.home") + "/.runelite/externalmanager")
-                    //into("../release")
+                }
+            }
+        }
+
+        withType<Jar> {
+            doLast {
+                copy {
+                    from("./build/libs/")
+                    into("../release")
                 }
             }
         }
