@@ -24,7 +24,7 @@
     "releases": [
       {
         "date": "2020-08-17",
-        "sha512sum": "edcbba5420fbc00aba4d90b5dda0001bca83f5b22e1946f8a3f716c02a433b05f81fe895171bc0da66733027a1dd6da48fdd581e12729fe582379e6611c92783",
+        "sha512sum": "a8e678603237120a26af1d934d2612d9551e21a5e18b1ebd463e3e0baa2bab6a7f4299b1a15a43fa6b7860f1b47c51254be2f42ba8b1995243cab527fc995e55",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/aplugintutorial-0.1.0.jar?raw=true",
         "requires":"0.0.1"
@@ -40,7 +40,7 @@
     "releases": [
       {
         "date": "2020-09-02",
-        "sha512sum": "3925b91af2caaef0ef843ce86b2e9b8716587fd07a88b2dbf4ef280dfd5fe2f48c29835c3f5cc0ecaa988971d5b65ae28df31d556c04365a40d7571719da76a4",
+        "sha512sum": "77be5ea995ca9f87116ee8c57ee474f4b1e967858c3c226a2a42474d6e5fb802e5ff6f4c611b046cb570aa89a91924abd6ef7d46cab0692b442dbc3141f41020",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/interfaceindicators-0.1.0.jar?raw=true",
         "requires":"0.0.1"
