@@ -40,7 +40,7 @@
     "releases": [
       {
         "date": "2020-09-02",
-        "sha512sum": "d747965932f86ca7658ee249e0a2b41eba79a087ee901df71b3c0e4a8eda7fe1a2bf2ad170ad84f3971dba4ab5827755c3d33c728838c49ad007c4ea9352c195",
+        "sha512sum": "fdb0415468f0a5d045cb0b426e9da4aac0d56ec02036cbc5769dea383d1114f3b764d37ea291617c792ff125494accbee6edbf90a00a8cdea4f1088ed3c301d3",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/interfaceindicators-0.1.0.jar?raw=true",
         "requires":"0.0.1"
@@ -224,6 +224,22 @@
         "sha512sum": "23ad411e41de5afa269850b38c31d768c310ca1ae21be1ede340ccdb422aef8bbb881d716030139aaa2a86fa21e1318053c492bb72a5d0ae41ce5a21ca5852a1",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMore",
+    "name": "Stat Jumble",
+    "description": "Jumbles up your levels.",
+    "id": "statjumble-plugin",
+    "releases": [
+      {
+        "date": "2020-09-07",
+        "sha512sum": "5a2680cc033929bf2b5c9e59739a9c69fb649aa7eb59d435072b2857f8643ed024461be4bb1072083b0a8b655e5fb9a033e234916054a03141b18f1b6b0687bb",
+        "version": "0.1.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/statjumble-0.1.0.jar?raw=true",
         "requires":"0.0.1"
       }
     ]

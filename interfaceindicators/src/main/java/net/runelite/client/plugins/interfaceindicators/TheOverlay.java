@@ -26,6 +26,7 @@
 package net.runelite.client.plugins.interfaceindicators;
 
 import java.awt.*;
+import java.util.Random;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
 

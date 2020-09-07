@@ -16,6 +16,7 @@ include(":spellbookindicators")
 include(":testingplugin")
 include(":annpcmarker")
 include(":interfaceindicators")
+include(":statjumble")
 
 for (project in rootProject.children) {
     project.apply {

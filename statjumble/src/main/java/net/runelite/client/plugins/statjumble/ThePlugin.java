@@ -23,7 +23,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.interfaceindicators;
+package net.runelite.client.plugins.statjumble;
 
 import com.google.inject.Provides;
 
@@ -33,6 +33,7 @@ import net.runelite.api.*;
 
 import net.runelite.api.events.*;
 import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -42,13 +43,13 @@ import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
 
-import java.util.Random;
+import java.util.*;
 
 @Extension
 @PluginDescriptor(
-	name = "Interface Indicators",
-	description = "Displays an indicator when certain interfaces are displayed.",
-	tags = {"tag1", "tag2"},
+	name = "Stat Jumble",
+	description = "Jumbles up your stats.",
+	tags = {"stat", "level", "nomore"},
 	type = PluginType.UTILITY
 )
 @Slf4j
@@ -58,26 +59,74 @@ public class ThePlugin extends Plugin {
 	private Client client;
 
 	@Inject
-	private OverlayManager overlayManager;
-
-	@Inject
 	private TheConfig config;
 
-	@Inject
-	private TheOverlay overlay;
-
 	@Provides
-    TheConfig provideConfig(ConfigManager configManager) {
+    TheConfig provideConfig(ConfigManager configManager)
+	{
 		return configManager.getConfig(TheConfig.class);
 	}
 
 	@Override
-	protected void startUp() {
-		overlayManager.add(overlay);
+	protected void startUp()
+	{
+		scrambleStats();
 	}
 
 	@Override
-	protected void shutDown() {
-		overlayManager.remove(overlay);
+	protected void shutDown()
+	{
+	}
+
+	@Subscribe
+	private void on(GameTick event)
+	{
+		scrambleStats();
+	}
+
+	private void scrambleStats()
+	{
+		for (int i = 1; i < 24; i++)
+		{
+			Widget skillWidget = client.getWidget(320, i);
+			if (skillWidget == null)
+			{
+				continue;
+			}
+			int skillLevel = Integer.parseInt(client.getWidget(320, i).getChild(4).getText());
+			if (skillLevel <= 9)
+			{
+				skillWidget.getChild(3).setText(String.valueOf(randomNumber(0,9)));
+				skillWidget.getChild(4).setText(String.valueOf(randomNumber(0,9)));
+			}
+			if (skillLevel <= 99 && skillLevel >= 10)
+			{
+				skillWidget.getChild(3).setText(Integer.toString(skillLevel).substring(0,1) + "" + randomNumber(0,9));
+				skillWidget.getChild(4).setText(Integer.toString(skillLevel).substring(0,1) + "" + randomNumber(0,9));
+			}
+		}
+		Widget total = client.getWidget(320, 27);
+		if (total == null)
+		{
+			return;
+		}
+		int totalLevel = Integer.parseInt(total.getText().replaceAll("\\D+",""));
+		if (totalLevel <= 99)
+		{
+			total.setText("Total Level: " + Integer.toString(totalLevel).substring(0, 1) + "" + randomNumber(0, 9));
+		}
+		if (totalLevel >= 100 && totalLevel <= 999)
+		{
+			total.setText("Total Level: " + Integer.toString(totalLevel).substring(0, 1) + "" + randomNumber(0,9) + "" + randomNumber(0,9));
+		}
+		if (totalLevel >= 1000 && totalLevel <= 9999)
+		{
+			total.setText("Total Level: " + Integer.toString(totalLevel).substring(0, 1) + "" + randomNumber(0,9) + "" + randomNumber(0,9) + "" + randomNumber(0,9));
+		}
+	}
+
+	private int randomNumber(int min, int max)
+	{
+		return new Random().nextInt((max - min) + 1) + min;
 	}
 }
