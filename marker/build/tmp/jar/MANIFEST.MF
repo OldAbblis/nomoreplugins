@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Plugin-Version: 0.2.0
+Plugin-Id: markerplugin-plugin
+Plugin-Provider: NoMore
+Plugin-Description: It will mark lots of things.
+Plugin-License: GNU General Public License v3.0
+

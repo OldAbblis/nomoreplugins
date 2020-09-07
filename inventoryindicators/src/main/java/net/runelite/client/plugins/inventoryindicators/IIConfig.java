@@ -154,4 +154,16 @@ public interface IIConfig extends Config {
     )
     default Color containColor() { return Color.RED; }
 
+    @ConfigItem(
+            keyName = "containSize",
+            name = "Marker size",
+            description = "",
+            position = 15,
+            hidden = true,
+            unhide = "inventoryEnum",
+            unhideValue = "CONTAINS",
+            titleSection = "thirdTitle"
+    )
+    default int containMarkerSize() { return 4; }
+
 }

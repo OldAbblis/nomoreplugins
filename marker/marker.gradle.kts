@@ -23,10 +23,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-version = "0.3.0"
+version = "0.2.0"
 
-project.extra["PluginName"] = "Inventory Indicators"
-project.extra["PluginDescription"] = "Display indicators based on various inventory related states."
+project.extra["PluginName"] = "Marker Plugin"
+project.extra["PluginDescription"] = "It will mark lots of things."
 
 tasks {
     jar {

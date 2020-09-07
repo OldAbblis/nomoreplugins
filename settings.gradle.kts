@@ -14,7 +14,7 @@ include(":playerstateindicators")
 include(":inventoryindicators")
 include(":spellbookindicators")
 include(":testingplugin")
-include(":annpcmarker")
+include(":marker")
 include(":interfaceindicators")
 include(":statjumble")
 

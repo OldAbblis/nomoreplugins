@@ -37,7 +37,7 @@ public class InventoryOverlay extends WidgetItemOverlay {
 
             if (itemId == item.getId())
             {
-                int boxSize = 4;
+                int boxSize = config.containMarkerSize();
                 int x = (int) itemWidget.getCanvasBounds().getCenterX() - boxSize/2;
                 int y = (int) itemWidget.getCanvasBounds().getCenterY() - boxSize/2;
                 graphics.setColor(color);
