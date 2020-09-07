@@ -56,28 +56,6 @@ public class NPCMarkerOverlay extends Overlay
     @Override
     public Dimension render(Graphics2D graphics)
     {
-        for (Map.Entry<String, Color> entry : plugin.getConfigNPCDetails().entrySet()) {
-            String configName = entry.getKey();
-            Color configColor = entry.getValue();
-            if (configName.isEmpty() || configColor == null)
-            {
-                continue;
-            }
-            for (NPC npc : plugin.getWorldNPCS()) {
-                if (npc == null) {
-                    continue;
-                }
-                if (Objects.requireNonNull(npc.getName()).contains(configName)) {
-                    Rectangle bounds = npc.getConvexHull().getBounds();
-                    if (bounds == null)
-                    {
-                        continue;
-                    }
-                    graphics.setColor(configColor);
-                    graphics.fillRect((int) bounds.getCenterX() - 2, (int) bounds.getCenterY() - 2, 4, 4);
-                }
-            }
-        }
         return null;
     }
 

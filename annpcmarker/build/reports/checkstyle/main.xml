@@ -6,6 +6,8 @@
 <error line="61" column="50" severity="error" message="&apos;{&apos; at column 43 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 </file>
 <file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\annpcmarker\src\main\java\net\runelite\client\plugins\annpcmarker\NPCMarkerOverlay.java">
+<error line="29" column="8" severity="error" message="Unused import - java.util.Map." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="30" column="8" severity="error" message="Unused import - java.util.Objects." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
 <error line="31" column="8" severity="error" message="Unused import - java.util.stream.Stream." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
 <error line="34" severity="error" message="Multiline imports are disallowed if they are not static" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="42" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
@@ -24,44 +26,13 @@
 <error line="57" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="58" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="59" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="59" column="88" severity="error" message="&apos;{&apos; at column 88 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 <error line="60" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="61" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="62" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="63" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="64" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="65" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="66" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="66" column="51" severity="error" message="&apos;{&apos; at column 51 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
-<error line="67" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="67" column="34" severity="error" message="&apos;{&apos; at column 34 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
-<error line="68" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="69" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="70" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="70" column="81" severity="error" message="&apos;{&apos; at column 81 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
-<error line="71" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="72" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="73" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="74" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="75" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="76" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="77" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="78" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="79" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="80" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="81" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="82" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 </file>
 <file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\annpcmarker\src\main\java\net\runelite\client\plugins\annpcmarker\NPCMarkerPlugin.java">
 <error line="35" severity="error" message="Multiline imports are disallowed if they are not static" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="62" column="45" severity="error" message="&apos;{&apos; at column 45 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
-<error line="77" column="68" severity="error" message="&apos;{&apos; at column 61 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
-<error line="82" column="34" severity="error" message="&apos;{&apos; at column 27 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
-<error line="88" column="35" severity="error" message="&apos;{&apos; at column 28 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
-</file>
-<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\annpcmarker\src\main\java\net\runelite\client\plugins\annpcmarker\objects\ConfigNPCDetails.java">
-<error line="10" column="31" severity="error" message="&apos;{&apos; at column 31 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
-<error line="11" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="12" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
+<error line="61" column="45" severity="error" message="&apos;{&apos; at column 45 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
+<error line="76" column="68" severity="error" message="&apos;{&apos; at column 61 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
+<error line="81" column="34" severity="error" message="&apos;{&apos; at column 27 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
+<error line="86" column="35" severity="error" message="&apos;{&apos; at column 28 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 </file>
 </checkstyle>

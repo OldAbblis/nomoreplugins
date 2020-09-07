@@ -44,6 +44,13 @@
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/interfaceindicators-0.1.0.jar?raw=true",
         "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-07",
+        "sha512sum": "4ce30e51c8c6fa1223823cc1a30ba9c6b59b6ea453092ed82bef998422907692896400d7279ef713f169a6b01dbacc58c891ae42404abac24e79f01d24bc83a3",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/interfaceindicators-0.2.0.jar?raw=true",
+        "requires":"0.0.1"
       }
     ]
   },
@@ -59,6 +66,13 @@
         "sha512sum": "137e5118f7166a59e97d15e737abade465733f9363193c6e35d3844bcdbd4e7ae4989322f760c943c49557dfabb4639a10d98a37f4de89249b58c1a61b0adac0",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-07",
+        "sha512sum": "3a586b03294660f189eda5f20c4ec25b415ad5d974a875b8ef2b6b8dd3a963dbf1cfe749ec24303b5328794f7ce1212393f5d34bbe3e10411b20848bc9b53d66",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.2.0.jar?raw=true",
         "requires":"0.0.1"
       }
     ]
@@ -224,6 +238,13 @@
         "sha512sum": "23ad411e41de5afa269850b38c31d768c310ca1ae21be1ede340ccdb422aef8bbb881d716030139aaa2a86fa21e1318053c492bb72a5d0ae41ce5a21ca5852a1",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-07",
+        "sha512sum": "bd6375bf33664e9c8303a30ae79cff192a305a33421c9e26ae0c2207b1d5beda19e7646f0e5a9701b8f03ab8c9db452c4306195eddc047325b5de9b4a5b68e2e",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.2.0.jar?raw=true",
         "requires":"0.0.1"
       }
     ]

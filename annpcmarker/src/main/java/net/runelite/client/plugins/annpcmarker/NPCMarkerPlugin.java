@@ -49,7 +49,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Extension
 @PluginDescriptor(
@@ -81,7 +80,6 @@ public class NPCMarkerPlugin extends Plugin {
 	@Override
 	protected void startUp() {
 		overlayManager.add(overlay);
-		sortConfigNPCNames();
 	}
 
 	@Override
@@ -119,65 +117,9 @@ public class NPCMarkerPlugin extends Plugin {
 	@Subscribe
 	private void on(ConfigChanged event)
 	{
-		configNPCDetails.clear();
-	}
-
-	private void sortConfigNPCNames()
-	{
-		if (config.configNPCNames().isEmpty())
+		if (!event.getGroup().equals("annpcmarker"))
 		{
-			System.out.println("The config text field is empty.");
 			return;
 		}
-		String[] parts = splitString(removeCharacters(config.configNPCNames()), ",");
-		String configName = null;
-		Color configColor = null;
-		System.out.println("-------------------");
-		for (String s : parts)
-		{
-			if (!s.contains(":"))
-			{
-				// The string does not contain :, therefore there is no specific color.
-				configName = s;
-				configColor = config.defaultNPCHighlightColor();
-			}
-			if (s.contains(":"))
-			{
-				// The string contains :, therefore the string needs to be split again to gain other details.
-				String[] npcDetails = splitString(s, ":");
-				if (npcDetails.length >= 1)
-				{
-					configName = npcDetails[0];
-				}
-				if (npcDetails.length >= 2)
-				{
-					try
-					{
-						configColor = Color.decode("#" + npcDetails[1]);
-					}
-					catch (NumberFormatException nfe)
-					{
-						configColor = config.defaultNPCHighlightColor();
-						System.out.println("Error decoding color.");
-					}
-				}
-			}
-			System.out.println("NPC Name: " + configName + "\nColor: " + configColor);
-			System.out.println("-------------------");
-			configNPCDetails.put(configName, configColor);
-		}
-	}
-
-	private String removeCharacters(String string)
-	{
-		string = string.toLowerCase();
-		string = string.replaceAll(" ", "");
-		string = string.replaceAll("\n", "");
-		return string;
-	}
-
-	private String[] splitString(String string, String splitChar)
-	{
-		return string.split(Pattern.quote(splitChar));
 	}
 }

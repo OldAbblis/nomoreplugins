@@ -111,6 +111,10 @@ public class IIPlugin extends Plugin {
 	@Subscribe
 	private void on(ConfigChanged event)
 	{
+		if (!event.getGroup().equals("inventoryindicators"))
+		{
+			return;
+		}
 		checkConfigTextField();
 	}
 
