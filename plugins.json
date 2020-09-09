@@ -2,13 +2,13 @@
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
-    "name": "AIO Marker (beta)",
+    "name": "AIO Marker beta",
     "description": "An AIO Marker plugin for Player's, NPC's, Game Objects, Inventory Items and Ground Items.",
     "id": "aiomarker-plugin",
     "releases": [
       {
         "date": "2020-09-09",
-        "sha512sum": "c2c465630e73091c789853c8756ddc0a1456401cc999c5ab72df98e0fb2e32bbb73b3d60be270beb2397fd3d6e80b2bddd7e24e34e647efc6eb68635950569be",
+        "sha512sum": "721ac83e8bb4294f04055f384f123fc3ae82dba1e154b39cb546c0344b2526f8e8a8177fe040c6e697145b1df227ee168fd26b594cec325dd92a89c45f3faf6d",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/AIOMarker-0.1.0.jar?raw=true",
         "requires":"0.0.1"

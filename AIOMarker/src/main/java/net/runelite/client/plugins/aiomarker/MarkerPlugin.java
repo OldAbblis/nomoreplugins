@@ -52,7 +52,7 @@ import java.util.List;
 
 @Extension
 @PluginDescriptor(
-	name = "AIO Marker (beta)",
+	name = "AIO Marker beta",
 	description = "An AIO Marker plugin for Player's, NPC's, Game Objects, Inventory Items and Ground Items.",
 	tags = {"tag1", "tag2"},
 	type = PluginType.UTILITY

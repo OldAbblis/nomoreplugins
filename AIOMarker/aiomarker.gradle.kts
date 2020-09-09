@@ -25,7 +25,7 @@
 
 version = "0.1.0"
 
-project.extra["PluginName"] = "AIO Marker (beta)"
+project.extra["PluginName"] = "AIO Marker beta"
 project.extra["PluginDescription"] = "An AIO Marker plugin for Player's, NPC's, Game Objects, Inventory Items and Ground Items."
 
 dependencies {
