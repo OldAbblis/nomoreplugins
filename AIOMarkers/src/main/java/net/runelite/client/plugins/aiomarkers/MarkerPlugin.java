@@ -54,13 +54,14 @@ import java.util.List;
 @PluginDescriptor(
 	name = "AIO Markers",
 	description = "An AIO Marker plugin for Player's, NPC's, Game Objects, Inventory Items and Ground Items.",
-	tags = {"tag1", "tag2"},
+	tags = {"marker", "indicator", "overlay"},
 	type = PluginType.UTILITY
 )
 @Slf4j
 @SuppressWarnings("unused")
 @PluginDependency(Utils.class)
-public class MarkerPlugin extends Plugin {
+public class MarkerPlugin extends Plugin
+{
 
 	@Inject
 	private Client client;
@@ -75,7 +76,7 @@ public class MarkerPlugin extends Plugin {
 	private MarkerOverlay overlay;
 
 	@Inject
-	private Utils util;
+	private Utils utils;
 
 	@Provides
 	MarkerConfig provideConfig(ConfigManager configManager) {

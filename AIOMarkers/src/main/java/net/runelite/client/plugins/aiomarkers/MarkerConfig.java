@@ -28,7 +28,7 @@ import net.runelite.client.config.*;
 
 import java.awt.Color;
 
-@ConfigGroup("marker")
+@ConfigGroup("aiomarkers")
 public interface MarkerConfig extends Config
 {
 	@ConfigTitleSection(
