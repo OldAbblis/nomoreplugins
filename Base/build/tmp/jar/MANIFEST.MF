@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Plugin-Version: 0.2.0
+Plugin-Id: baseplugin-plugin
+Plugin-Provider: NoMore
+Plugin-Description: 
+Plugin-License: GNU General Public License v3.0
+

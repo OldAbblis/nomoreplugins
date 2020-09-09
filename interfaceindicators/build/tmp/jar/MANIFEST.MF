@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Plugin-Version: 0.2.0
-Plugin-Id: interfaceindicators-plugin
-Plugin-Provider: NoMore
-Plugin-Description: Displays an indicator when certain interfaces are di
- splayed.
-Plugin-License: GNU General Public License v3.0
-

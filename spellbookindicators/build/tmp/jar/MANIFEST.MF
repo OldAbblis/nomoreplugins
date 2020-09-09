@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Plugin-Version: 0.1.0
-Plugin-Id: spellbookindicators-plugin
-Plugin-Provider: NoMore
-Plugin-Description: Display an indicator over spells.
-Plugin-License: GNU General Public License v3.0
-

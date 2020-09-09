@@ -2,15 +2,15 @@
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
-    "name": "A Misc Plugin",
-    "description": "Misc things and stuff.",
-    "id": "amiscplugin-plugin",
+    "name": "AIO Marker (beta)",
+    "description": "An AIO Marker plugin for Player's, NPC's, Game Objects, Inventory Items and Ground Items.",
+    "id": "AIOMarker-plugin",
     "releases": [
       {
-        "date": "2020-08-17",
-        "sha512sum": "32fc4d8c9a826fa7b1f100e2334e358f66434adc4d6bd94d216739a5b35b008f7479bc3079df73c07bff650d507d22d9c19cd1e3f20b008a53f44d28da45faf9",
-        "version": "0.1.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/amiscplugin-0.1.0.jar?raw=true",
+        "date": "2020-09-09",
+        "sha512sum": "d82d01b2b343f7ddc14cb573d6b1f5cfff42a8dc50743cbe5bdd8a1959263b0dff6602e430e8f108ed82c0126f84cb264d1fc592333b6611d8d827c8ba918c28",
+        "version": "0.0.1",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/AIOMarker-0.0.1.jar?raw=true",
         "requires":"0.0.1"
       }
     ]
@@ -18,9 +18,9 @@
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
-    "name": "A Plugin Tutorial",
-    "description": "description.",
-    "id": "aplugintutorial-plugin",
+    "name": "Base",
+    "description": "",
+    "id": "Base-plugin",
     "releases": [
       {
         "date": "2020-08-17",
@@ -28,15 +28,22 @@
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/aplugintutorial-0.1.0.jar?raw=true",
         "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-09",
+        "sha512sum": "214d618982813c578c16f9abcfa25af8d60fadab256c22063d129094dffe712de83703882c10011122f3fc1d59490458c405937233f92d8559a7f5cbe5edf03e",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/Base-0.2.0.jar?raw=true",
+        "requires":"0.0.1"
       }
     ]
   },
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
-    "name": "Interface Indicators",
-    "description": "Displays an indicated over interface widgets and interface states.",
-    "id": "interfaceindicators-plugin",
+    "name": "Interface Marking",
+    "description": "Display's indicators over interface widgets.",
+    "id": "InterfaceMarking-plugin",
     "releases": [
       {
         "date": "2020-09-02",
@@ -49,7 +56,7 @@
         "date": "2020-09-07",
         "sha512sum": "4ce30e51c8c6fa1223823cc1a30ba9c6b59b6ea453092ed82bef998422907692896400d7279ef713f169a6b01dbacc58c891ae42404abac24e79f01d24bc83a3",
         "version": "0.2.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/interfaceindicators-0.2.0.jar?raw=true",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/InterfaceMarking-0.2.0.jar?raw=true",
         "requires":"0.0.1"
       }
     ]
@@ -57,9 +64,9 @@
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
-    "name": "Inventory Indicators",
-    "description": "Display indicators based on various inventory related states.",
-    "id": "inventoryindicators-plugin",
+    "name": "Inventory Item Indicators",
+    "description": "Display an indicator over inventory items.",
+    "id": "InventoryItemIndicators-plugin",
     "releases": [
       {
         "date": "2020-08-17",
@@ -81,6 +88,82 @@
         "version": "0.3.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/inventoryindicators-0.3.0.jar?raw=true",
         "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-09",
+        "sha512sum": "c4a2ee51a7a37dd1ce048666798a942dc2429fb9157b12bedc8e32ae00c013ecc4178acfe027142fad5baa391a1083a8b7b38b3e31e9e2085bf5627998f7b3c4",
+        "version": "0.4.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/InventoryItemIndicators-0.4.0.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMore",
+    "name": "Mouse Logging",
+    "description": "Logs the mouse click position, and writes to a file for graphophiles.",
+    "id": "MouseLogging-plugin",
+    "releases": [
+      {
+        "date": "2020-08-17",
+        "sha512sum": "32fc4d8c9a826fa7b1f100e2334e358f66434adc4d6bd94d216739a5b35b008f7479bc3079df73c07bff650d507d22d9c19cd1e3f20b008a53f44d28da45faf9",
+        "version": "0.1.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/amiscplugin-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-09",
+        "sha512sum": "023783b14eac932d236b7f7ae976c69c867a6379031c55251f4252f9088c88fa26f87cc18307b72d7e8790bc95e31e558d3211988fb9bafbd88c647836ecb2cc",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/MouseLogging-0.2.0.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMore",
+    "name": "My Character Indicators",
+    "description": "Displays indicators based on the players current state and skill levels.",
+    "id": "MyCharacterIndicators-plugin",
+    "releases": [
+      {
+        "date": "2020-08-17",
+        "sha512sum": "23ad411e41de5afa269850b38c31d768c310ca1ae21be1ede340ccdb422aef8bbb881d716030139aaa2a86fa21e1318053c492bb72a5d0ae41ce5a21ca5852a1",
+        "version": "0.1.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-07",
+        "sha512sum": "bd6375bf33664e9c8303a30ae79cff192a305a33421c9e26ae0c2207b1d5beda19e7646f0e5a9701b8f03ab8c9db452c4306195eddc047325b5de9b4a5b68e2e",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.2.0.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-09",
+        "sha512sum": "ffb5f0633e23fd3900d48745c289144ebaaac26dc51202d7ffd58c0b654daaca8f48d36126dc943983a5c309bb4cfb90a99eafc520402da31d88b0088f674ec4",
+        "version": "0.3.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/MyCharacterIndicators-0.3.0.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMore",
+    "name": "NMUtils",
+    "description": "Plugin required for numerous plugins created by NoMore.",
+    "id": "NMUtils-plugin",
+    "releases": [
+      {
+        "date": "2020-08-17",
+        "sha512sum": "e180b77ffa9ace6a2a3a47840ea4d346cd11229aa8a1a136ad0233879fb06640e2a898a248cb004cca1be6340fcccc64898b789d075d50a62c53d35364f09f2d",
+        "version": "0.1.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NMUtils-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
       }
     ]
   },
@@ -88,8 +171,8 @@
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
     "name": "NoMore Agility",
-    "description": "A plugin to assist the creation of an AutoHotkey Agility script.",
-    "id": "nomoreagility-plugin",
+    "description": "A plugin that marks the next agility obstacle in the course.",
+    "id": "NoMoreAgility-plugin",
     "releases": [
       {
         "date": "2020-08-17",
@@ -97,9 +180,98 @@
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoreagility-0.1.0.jar?raw=true",
         "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-09",
+        "sha512sum": "f23aa0113641482060ffceb8709f5987323fb5e71a2de48148fc30eddfcd94a795304f6f6559ef4ee377ffec2e5c7c2cbb70b44296a6240b671d0bcc9f3aba62",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NoMoreAgility-0.2.0.jar?raw=true",
+        "requires":"0.0.1"
       }
     ]
   },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMore",
+    "name": "NoMore Wintertodt",
+    "description": "Displays markers over Wintertodt related objects and npcs.",
+    "id": "NoMoreWintertodt-plugin",
+    "releases": [
+      {
+        "date": "2020-08-17",
+        "sha512sum": "f8593b57b25a8bc356c1b22ad56c676cbc51498e16c2e64b8697554b35b54dfe3f973c0380c7256c883e3992d1f17bf60797b02e5db49fa459ef13dae383dba4",
+        "version": "0.1.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-08-17",
+        "sha512sum": "95bd16db52cc93d321fd1cff83b47e64d1eddefba7b737e938e247e703dc3dcbb2e61e4a09f052247bd3ecc471e33230a98001c82574fcbae38aada8d1f6cb37",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.2.0.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-08-17",
+        "sha512sum": "e697d80098010345aa953bb1f07226d60f0f15783d0c7603cad686deca0df207f1816fee7a6d98d591164e30685322a0b8bb5a2b929d55ea70c5cbda3a8feee6",
+        "version": "0.3.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.3.0.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-08-31",
+        "sha512sum": "1cd7e0fe3d415399682e517776278e158a16a6040fd76bad89991e61e4afa59224106ce94ee3c411e8b0b3e9b3903b66f0b2be1f9778f92d434107ec5bbc5dd6",
+        "version": "0.4.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.4.0.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-09",
+        "sha512sum": "8de26ff9cc86540881040d815d343d25def4f357a01910a64c07c22eb9945c367ba72e5ccb5783ef6cdb3432cd6a60b6601217911ee2c17eb8d979b84cd6dfa1",
+        "version": "0.5.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NoMoreWintertodt-0.5.0.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMore",
+    "name": "Stat Randomiser",
+    "description": "Randomises the players skill levels (client side only).",
+    "id": "statjumble-plugin",
+    "releases": [
+      {
+        "date": "2020-09-07",
+        "sha512sum": "5a2680cc033929bf2b5c9e59739a9c69fb649aa7eb59d435072b2857f8643ed024461be4bb1072083b0a8b655e5fb9a033e234916054a03141b18f1b6b0687bb",
+        "version": "0.1.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/statjumble-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-09",
+        "sha512sum": "a5b56debd111e57e03838cc877db1d0f70004fb5a3221dadd13662ed86494ef59d46b10e1320d8d96a0618ce946e77afbed4436861043476818c53851a23f880",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/statjumble-0.2.0.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
@@ -192,82 +364,6 @@
         "sha512sum": "c9f4750729756db881e25beb9a50590b4d9c9594bbcefa39fbb74445ef4913e443a94595c5c016c496f433c514b228003ad86a39e55dc933d460b7b07ceea247",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoreobjectindicators-0.1.0.jar?raw=true",
-        "requires":"0.0.1"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMore",
-    "name": "NoMore Wintertodt",
-    "description": "A plugin to assist the creation of an AutoHotkey Wintertodt script.",
-    "id": "nomorewintertodt-plugin",
-    "releases": [
-      {
-        "date": "2020-08-17",
-        "sha512sum": "f8593b57b25a8bc356c1b22ad56c676cbc51498e16c2e64b8697554b35b54dfe3f973c0380c7256c883e3992d1f17bf60797b02e5db49fa459ef13dae383dba4",
-        "version": "0.1.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.1.0.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
-        "date": "2020-08-17",
-        "sha512sum": "95bd16db52cc93d321fd1cff83b47e64d1eddefba7b737e938e247e703dc3dcbb2e61e4a09f052247bd3ecc471e33230a98001c82574fcbae38aada8d1f6cb37",
-        "version": "0.2.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.2.0.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
-        "date": "2020-08-17",
-        "sha512sum": "e697d80098010345aa953bb1f07226d60f0f15783d0c7603cad686deca0df207f1816fee7a6d98d591164e30685322a0b8bb5a2b929d55ea70c5cbda3a8feee6",
-        "version": "0.3.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.3.0.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
-        "date": "2020-08-31",
-        "sha512sum": "1cd7e0fe3d415399682e517776278e158a16a6040fd76bad89991e61e4afa59224106ce94ee3c411e8b0b3e9b3903b66f0b2be1f9778f92d434107ec5bbc5dd6",
-        "version": "0.4.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomorewintertodt-0.4.0.jar?raw=true",
-        "requires":"0.0.1"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMore",
-    "name": "Player State Indicators",
-    "description": "Displays an indicator based on various player states.",
-    "id": "playerstateindicators-plugin",
-    "releases": [
-      {
-        "date": "2020-08-17",
-        "sha512sum": "23ad411e41de5afa269850b38c31d768c310ca1ae21be1ede340ccdb422aef8bbb881d716030139aaa2a86fa21e1318053c492bb72a5d0ae41ce5a21ca5852a1",
-        "version": "0.1.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.1.0.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
-        "date": "2020-09-07",
-        "sha512sum": "bd6375bf33664e9c8303a30ae79cff192a305a33421c9e26ae0c2207b1d5beda19e7646f0e5a9701b8f03ab8c9db452c4306195eddc047325b5de9b4a5b68e2e",
-        "version": "0.2.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/playerstateindicators-0.2.0.jar?raw=true",
-        "requires":"0.0.1"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMore",
-    "name": "Stat Jumble",
-    "description": "Jumbles up your levels.",
-    "id": "statjumble-plugin",
-    "releases": [
-      {
-        "date": "2020-09-07",
-        "sha512sum": "5a2680cc033929bf2b5c9e59739a9c69fb649aa7eb59d435072b2857f8643ed024461be4bb1072083b0a8b655e5fb9a033e234916054a03141b18f1b6b0687bb",
-        "version": "0.1.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/statjumble-0.1.0.jar?raw=true",
         "requires":"0.0.1"
       }
     ]

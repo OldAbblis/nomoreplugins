@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Plugin-Version: 0.1.0
-Plugin-Id: nomoreagility-plugin
-Plugin-Provider: NoMore
-Plugin-Description: A plugin to assist the creation of AHK Agility scrip
- ts.
-Plugin-License: GNU General Public License v3.0
-

@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Plugin-Version: 0.3.0
-Plugin-Id: inventoryindicators-plugin
-Plugin-Provider: NoMore
-Plugin-Description: Display indicators based on various inventory relate
- d states.
-Plugin-License: GNU General Public License v3.0
-
