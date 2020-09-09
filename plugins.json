@@ -19,7 +19,7 @@
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
     "name": "Base",
-    "description": "",
+    "description": "Does not provide any benfit in-game, this is a base plugin to hopefully assist people trying to create a plugin.",
     "id": "base-plugin",
     "releases": [
       {
@@ -31,7 +31,7 @@
       },
       {
         "date": "2020-09-09",
-        "sha512sum": "ded09b288803609c6fb9ad8b52e7dbb1bf401eff81b7968ab11967a75141c75e232f6e43ff0564fe08ea951e0ab536a94ba46af9220c80eaf09adb6d86645509",
+        "sha512sum": "aeca3d894dc668656fd8d1bd7ba791528335b63f19edce7f7cf3e3c870711715fba95193cf183ab3c2bbd18bcbcbbc92241ddc775b89c0642cd1f7926f18187a",
         "version": "0.2.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/Base-0.2.0.jar?raw=true",
         "requires":"0.0.1"

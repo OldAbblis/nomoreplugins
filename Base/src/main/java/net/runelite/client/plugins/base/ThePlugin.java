@@ -40,7 +40,7 @@ import org.pf4j.Extension;
 
 @Extension
 @PluginDescriptor(
-	name = "Base Plugin",
+	name = "Base",
 	description = "",
 	tags = {"new", "basic", "tutorial"},
 	type = PluginType.UTILITY
