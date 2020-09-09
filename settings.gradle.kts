@@ -1,6 +1,6 @@
 rootProject.name = "nomoreplugins"
 
-include(":AIOMarker")
+include(":AIOMarkers")
 include(":Base")
 include(":InterfaceMarking")
 include(":InventoryItemIndicators")
