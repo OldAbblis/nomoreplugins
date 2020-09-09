@@ -8,7 +8,7 @@
     "releases": [
       {
         "date": "2020-09-09",
-        "sha512sum": "dc951acd4453a353e95d7c0d5ad5769e68aedc6f42eb463d4f025166acaa5c85fb40f0c398619e55f66ae1982e7e22c5d8045ab5ca4897de9d6d3f34658ee9c6",
+        "sha512sum": "5e7e3b44e5f921a5088746662b7b5b52ed1c5ac868e7a79b7a619bfb84ff6c7e7f9449c8e36d07b855d80cbb8b3e9b987817c2cc9bcaa6328875a74c1f03666d",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/AIOMarkers-0.1.0.jar?raw=true",
         "requires":"0.0.1"
