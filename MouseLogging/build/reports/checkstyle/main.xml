@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.25">
-<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\MouseLogging\src\main\java\net\runelite\client\plugins\mlog\AMiscConfig.java">
+<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\MouseLogging\src\main\java\net\runelite\client\plugins\mouselogging\AMiscConfig.java">
 <error line="3" severity="error" message="Multiline imports are disallowed if they are not static" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="6" column="45" severity="error" message="&apos;{&apos; at column 45 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 <error line="8" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
@@ -107,7 +107,7 @@
 <error line="108" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="109" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 </file>
-<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\MouseLogging\src\main\java\net\runelite\client\plugins\mlog\AMiscOverlay.java">
+<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\MouseLogging\src\main\java\net\runelite\client\plugins\mouselogging\AMiscOverlay.java">
 <error line="12" column="43" severity="error" message="&apos;{&apos; at column 43 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 <error line="14" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="15" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
@@ -137,14 +137,14 @@
 <error line="38" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="39" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 </file>
-<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\MouseLogging\src\main\java\net\runelite\client\plugins\mlog\AMiscPlugin.java">
+<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\MouseLogging\src\main\java\net\runelite\client\plugins\mouselogging\AMiscPlugin.java">
 <error line="31" severity="error" message="Multiline imports are disallowed if they are not static" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="48" column="41" severity="error" message="&apos;{&apos; at column 41 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 <error line="72" column="64" severity="error" message="&apos;{&apos; at column 57 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 <error line="77" column="34" severity="error" message="&apos;{&apos; at column 27 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 <error line="84" column="35" severity="error" message="&apos;{&apos; at column 28 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 </file>
-<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\MouseLogging\src\main\java\net\runelite\client\plugins\mlog\FileManager.java">
+<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\MouseLogging\src\main\java\net\runelite\client\plugins\mouselogging\FileManager.java">
 <error line="12" column="26" severity="error" message="&apos;{&apos; at column 26 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 <error line="14" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="15" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
@@ -224,7 +224,7 @@
 <error line="80" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="81" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 </file>
-<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\MouseLogging\src\main\java\net\runelite\client\plugins\mlog\MouseLog.java">
+<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\MouseLogging\src\main\java\net\runelite\client\plugins\mouselogging\MouseLog.java">
 <error line="11" column="48" severity="error" message="&apos;{&apos; at column 48 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
 <error line="13" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
 <error line="14" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>

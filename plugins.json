@@ -4,7 +4,7 @@
     "provider": "NoMore",
     "name": "AIO Marker (beta)",
     "description": "An AIO Marker plugin for Player's, NPC's, Game Objects, Inventory Items and Ground Items.",
-    "id": "AIOMarker-plugin",
+    "id": "aiomarker-plugin",
     "releases": [
       {
         "date": "2020-09-09",
@@ -20,7 +20,7 @@
     "provider": "NoMore",
     "name": "Base",
     "description": "",
-    "id": "Base-plugin",
+    "id": "base-plugin",
     "releases": [
       {
         "date": "2020-08-17",
@@ -31,7 +31,7 @@
       },
       {
         "date": "2020-09-09",
-        "sha512sum": "214d618982813c578c16f9abcfa25af8d60fadab256c22063d129094dffe712de83703882c10011122f3fc1d59490458c405937233f92d8559a7f5cbe5edf03e",
+        "sha512sum": "ded09b288803609c6fb9ad8b52e7dbb1bf401eff81b7968ab11967a75141c75e232f6e43ff0564fe08ea951e0ab536a94ba46af9220c80eaf09adb6d86645509",
         "version": "0.2.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/Base-0.2.0.jar?raw=true",
         "requires":"0.0.1"
@@ -43,7 +43,7 @@
     "provider": "NoMore",
     "name": "Interface Marking",
     "description": "Display's indicators over interface widgets.",
-    "id": "InterfaceMarking-plugin",
+    "id": "interfacemarking-plugin",
     "releases": [
       {
         "date": "2020-09-02",
@@ -66,7 +66,7 @@
     "provider": "NoMore",
     "name": "Inventory Item Indicators",
     "description": "Display an indicator over inventory items.",
-    "id": "InventoryItemIndicators-plugin",
+    "id": "inventoryitemindicators-plugin",
     "releases": [
       {
         "date": "2020-08-17",
@@ -91,7 +91,7 @@
       },
       {
         "date": "2020-09-09",
-        "sha512sum": "c4a2ee51a7a37dd1ce048666798a942dc2429fb9157b12bedc8e32ae00c013ecc4178acfe027142fad5baa391a1083a8b7b38b3e31e9e2085bf5627998f7b3c4",
+        "sha512sum": "58c9d3b6185ca77f859a269673b13d465afbf3167f07e82a56a9e162f2a7279ec17a0dcf2320dfadfce0e314f9cb03d0370a5c98bd9c30896409a6928aadcae4",
         "version": "0.4.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/InventoryItemIndicators-0.4.0.jar?raw=true",
         "requires":"0.0.1"
@@ -103,7 +103,7 @@
     "provider": "NoMore",
     "name": "Mouse Logging",
     "description": "Logs the mouse click position, and writes to a file for graphophiles.",
-    "id": "MouseLogging-plugin",
+    "id": "mouselogging-plugin",
     "releases": [
       {
         "date": "2020-08-17",
@@ -114,7 +114,7 @@
       },
       {
         "date": "2020-09-09",
-        "sha512sum": "023783b14eac932d236b7f7ae976c69c867a6379031c55251f4252f9088c88fa26f87cc18307b72d7e8790bc95e31e558d3211988fb9bafbd88c647836ecb2cc",
+        "sha512sum": "bae7ff5358c65d62e6cfc4d57e94b4ffb6bf4a0ac15153bf60717b63fe5d59b18f1ec80d3eaab6b47134f5790c5ec98ec2fd983a2aacced7c06571fac067f57d",
         "version": "0.2.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/MouseLogging-0.2.0.jar?raw=true",
         "requires":"0.0.1"
@@ -126,7 +126,7 @@
     "provider": "NoMore",
     "name": "My Character Indicators",
     "description": "Displays indicators based on the players current state and skill levels.",
-    "id": "MyCharacterIndicators-plugin",
+    "id": "mycharacterindicators-plugin",
     "releases": [
       {
         "date": "2020-08-17",
@@ -144,7 +144,7 @@
       },
       {
         "date": "2020-09-09",
-        "sha512sum": "ffb5f0633e23fd3900d48745c289144ebaaac26dc51202d7ffd58c0b654daaca8f48d36126dc943983a5c309bb4cfb90a99eafc520402da31d88b0088f674ec4",
+        "sha512sum": "2db7fc6cf2d17682f328a64e322c385fb05b0e8c8ebd6d10c02a880ac2376223ae50d4f2cbdb61a16bce8af8a2bfded75a21015529fe5d3a9f628e0226939388",
         "version": "0.3.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/MyCharacterIndicators-0.3.0.jar?raw=true",
         "requires":"0.0.1"
@@ -156,7 +156,7 @@
     "provider": "NoMore",
     "name": "NMUtils",
     "description": "Plugin required for numerous plugins created by NoMore.",
-    "id": "NMUtils-plugin",
+    "id": "nmutils-plugin",
     "releases": [
       {
         "date": "2020-08-17",
@@ -172,7 +172,7 @@
     "provider": "NoMore",
     "name": "NoMore Agility",
     "description": "A plugin that marks the next agility obstacle in the course.",
-    "id": "NoMoreAgility-plugin",
+    "id": "nomoreagility-plugin",
     "releases": [
       {
         "date": "2020-08-17",
@@ -195,7 +195,7 @@
     "provider": "NoMore",
     "name": "NoMore Wintertodt",
     "description": "Displays markers over Wintertodt related objects and npcs.",
-    "id": "NoMoreWintertodt-plugin",
+    "id": "nomorewintertodt-plugin",
     "releases": [
       {
         "date": "2020-08-17",
@@ -239,7 +239,7 @@
     "provider": "NoMore",
     "name": "Stat Randomiser",
     "description": "Randomises the players skill levels (client side only).",
-    "id": "statjumble-plugin",
+    "id": "statrandomiser-plugin",
     "releases": [
       {
         "date": "2020-09-07",
@@ -250,9 +250,9 @@
       },
       {
         "date": "2020-09-09",
-        "sha512sum": "a5b56debd111e57e03838cc877db1d0f70004fb5a3221dadd13662ed86494ef59d46b10e1320d8d96a0618ce946e77afbed4436861043476818c53851a23f880",
+        "sha512sum": "f8789eabf68bfaf5c2bca908f624935ecd363d97b7b66cd63a246df38d9adef4201281a4c3a3d016cacdc8d59481c612f94477277834dc8829b5ba6eae65d23f",
         "version": "0.2.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/statjumble-0.2.0.jar?raw=true",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/StatRandomiser-0.2.0.jar?raw=true",
         "requires":"0.0.1"
       }
     ]
