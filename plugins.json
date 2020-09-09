@@ -12,6 +12,13 @@
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/AIOMarkers-0.1.0.jar?raw=true",
         "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-09",
+        "sha512sum": "c4e782cbff16ee01573cc5c0eb979b4dbbfdbda78dd0177ca0bb8fef3e84c050bd2ee2d5abbebb860a08bef9e053c91232b56fb196123b53d98d29c3bb033369",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/AIOMarkers-0.2.0.jar?raw=true",
+        "requires":"0.0.1"
       }
     ]
   },
