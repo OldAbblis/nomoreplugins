@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Plugin-Version: 0.0.1
-Plugin-Id: aiomarker-plugin
+Plugin-Id: aiomarkerbeta-plugin
 Plugin-Provider: NoMore
 Plugin-Description: An AIO Marker plugin for Player's, NPC's, Game Objec
  ts, Inventory Items and Ground Items.
