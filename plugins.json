@@ -2,52 +2,6 @@
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
-    "name": "All-In-One Markers",
-    "description": "Plugin isn't complete yet, don't complain.",
-    "id": "aiomarkers-plugin",
-    "releases": [
-      {
-        "date": "2020-09-09",
-        "sha512sum": "5e7e3b44e5f921a5088746662b7b5b52ed1c5ac868e7a79b7a619bfb84ff6c7e7f9449c8e36d07b855d80cbb8b3e9b987817c2cc9bcaa6328875a74c1f03666d",
-        "version": "0.1.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/AIOMarkers-0.1.0.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
-        "date": "2020-09-09",
-        "sha512sum": "c4e782cbff16ee01573cc5c0eb979b4dbbfdbda78dd0177ca0bb8fef3e84c050bd2ee2d5abbebb860a08bef9e053c91232b56fb196123b53d98d29c3bb033369",
-        "version": "0.2.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/AIOMarkers-0.2.0.jar?raw=true",
-        "requires":"0.0.1"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMore",
-    "name": "Base",
-    "description": "Does not provide any benfit in-game, this is a base plugin to hopefully assist people trying to create a plugin.",
-    "id": "base-plugin",
-    "releases": [
-      {
-        "date": "2020-08-17",
-        "sha512sum": "a8e678603237120a26af1d934d2612d9551e21a5e18b1ebd463e3e0baa2bab6a7f4299b1a15a43fa6b7860f1b47c51254be2f42ba8b1995243cab527fc995e55",
-        "version": "0.1.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/aplugintutorial-0.1.0.jar?raw=true",
-        "requires":"0.0.1"
-      },
-      {
-        "date": "2020-09-09",
-        "sha512sum": "aeca3d894dc668656fd8d1bd7ba791528335b63f19edce7f7cf3e3c870711715fba95193cf183ab3c2bbd18bcbcbbc92241ddc775b89c0642cd1f7926f18187a",
-        "version": "0.2.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/Base-0.2.0.jar?raw=true",
-        "requires":"0.0.1"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMore",
     "name": "Interface Marking",
     "description": "Display's indicators over interface widgets.",
     "id": "interfacemarking-plugin",
