@@ -23,10 +23,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-version = "0.2.0"
+version = "0.1.0"
 
-project.extra["PluginName"] = "Base"
-project.extra["PluginDescription"] = ""
+project.extra["PluginName"] = "Title"
+project.extra["PluginDescription"] = "Description"
 
 tasks {
     jar {

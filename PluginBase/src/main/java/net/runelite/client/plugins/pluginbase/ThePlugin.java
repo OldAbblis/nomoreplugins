@@ -23,7 +23,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.base;
+package net.runelite.client.plugins.pluginbase;
 
 import com.google.inject.Provides;
 
@@ -40,9 +40,9 @@ import org.pf4j.Extension;
 
 @Extension
 @PluginDescriptor(
-	name = "Base",
-	description = "",
-	tags = {"new", "basic", "tutorial"},
+	name = "Title",
+	description = "Description",
+	tags = {"tag1", "tag2", "tag3"},
 	type = PluginType.UTILITY
 )
 @Slf4j

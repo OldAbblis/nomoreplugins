@@ -122,22 +122,6 @@
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
-    "name": "NMUtils",
-    "description": "Plugin required for numerous plugins created by NoMore.",
-    "id": "nmutils-plugin",
-    "releases": [
-      {
-        "date": "2020-08-17",
-        "sha512sum": "e180b77ffa9ace6a2a3a47840ea4d346cd11229aa8a1a136ad0233879fb06640e2a898a248cb004cca1be6340fcccc64898b789d075d50a62c53d35364f09f2d",
-        "version": "0.1.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NMUtils-0.1.0.jar?raw=true",
-        "requires":"0.0.1"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMore",
     "name": "NoMore Agility",
     "description": "A plugin that marks the next agility obstacle in the course.",
     "id": "nomoreagility-plugin",

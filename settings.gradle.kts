@@ -1,7 +1,6 @@
 rootProject.name = "nomoreplugins"
 
 include(":AIOMarkers")
-include(":Base")
 include(":InterfaceMarking")
 include(":InventoryItemIndicators")
 include(":MouseLogging")
