@@ -209,6 +209,38 @@
       }
     ]
   },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMore",
+    "name": "NoMore MLM",
+    "description": "Displays indicators over various objects within the Motherload Mine.",
+    "id": "nomoremlm-plugin",
+    "releases": [
+      {
+        "date": "2020-09-16",
+        "sha512sum": "71fd065c74f42708d4339d10bdcbfb7b4594101634dcca2cd198616beacb7269ecd2b002a8b7c2fcef72ee84d7beb79f2400b43da143f9a584fb2676c4227158",
+        "version": "0.1.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NoMoreMLM-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMore",
+    "name": "NMUtils",
+    "description": "NoMore plugins will not work without this plugin.",
+    "id": "nmutils-plugin",
+    "releases": [
+      {
+        "date": "2020-09-16",
+        "sha512sum": "39453055bb1fac0ada626f51499e92b9cddc5ef43450e4e226b73f1a66fd41e9557f8d9c51a040397531c7f6f17b4ef59d0c16569b5c1f25d308e62f66915837",
+        "version": "0.1.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NMUtils-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
 
 
 
@@ -284,38 +316,6 @@
         "sha512sum": "a199358e800c9d4a2c26ca85ad1776cf5aaf06326c76359c57068cc3095da1887cdc34f0307137c78d9b89ae846db772acc96c507e0eec55ebb12b12072df603",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoremenuindicators-0.1.0.jar?raw=true",
-        "requires":"0.0.1"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMore",
-    "name": "NoMore MLM",
-    "description": "Displays indicators over various objects within the Motherload Mine.",
-    "id": "NoMoreMLM-plugin",
-    "releases": [
-      {
-        "date": "2020-09-16",
-        "sha512sum": "71fd065c74f42708d4339d10bdcbfb7b4594101634dcca2cd198616beacb7269ecd2b002a8b7c2fcef72ee84d7beb79f2400b43da143f9a584fb2676c4227158",
-        "version": "0.1.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NoMoreMLM-0.1.0.jar?raw=true",
-        "requires":"0.0.1"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/7W9aBCb",
-    "provider": "NoMore",
-    "name": "NMUtils",
-    "description": "NoMore plugins will not work without this plugin.",
-    "id": "NMUtils-plugin",
-    "releases": [
-      {
-        "date": "2020-09-16",
-        "sha512sum": "39453055bb1fac0ada626f51499e92b9cddc5ef43450e4e226b73f1a66fd41e9557f8d9c51a040397531c7f6f17b4ef59d0c16569b5c1f25d308e62f66915837",
-        "version": "0.1.0",
-        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NMUtils-0.1.0.jar?raw=true",
         "requires":"0.0.1"
       }
     ]
