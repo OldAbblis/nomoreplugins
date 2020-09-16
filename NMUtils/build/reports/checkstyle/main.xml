@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.25">
 <file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\NMUtils\src\main\java\net\runelite\client\plugins\nmutils\Utils.java">
+<error line="15" severity="error" message="Multiline imports are disallowed if they are not static" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
+<error line="18" column="8" severity="error" message="Unused import - net.runelite.api.events.GroundObjectChanged." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="26" column="8" severity="error" message="Unused import - net.runelite.http.api.worlds.World." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
 <error line="57" column="36" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
 <error line="57" column="38" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
 <error line="57" column="40" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>

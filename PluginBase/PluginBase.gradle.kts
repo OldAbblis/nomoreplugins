@@ -28,6 +28,10 @@ version = "0.1.0"
 project.extra["PluginName"] = "Title"
 project.extra["PluginDescription"] = "Description"
 
+dependencies {
+    implementation(project(":NMUtils"))
+}
+
 tasks {
     jar {
         manifest {
@@ -35,6 +39,7 @@ tasks {
                     "Plugin-Version" to project.version,
                     "Plugin-Id" to nameToId(project.extra["PluginName"] as String),
                     "Plugin-Provider" to project.extra["PluginProvider"],
+                    "Plugin-Dependencies" to nameToId("NMUtils"),
                     "Plugin-Description" to project.extra["PluginDescription"],
                     "Plugin-License" to project.extra["PluginLicense"]
             ))

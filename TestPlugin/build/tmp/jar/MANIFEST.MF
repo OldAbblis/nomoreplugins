@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Plugin-Version: 0.0.1
 Plugin-Id: testplugins-plugin
 Plugin-Provider: NoMore
+Plugin-Dependencies: nmutils-plugin
 Plugin-Description: For testing purposes.
 Plugin-License: GNU General Public License v3.0
 
