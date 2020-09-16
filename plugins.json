@@ -222,6 +222,13 @@
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NoMoreMLM-0.1.0.jar?raw=true",
         "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-16",
+        "sha512sum": "a2cf01d6f6c8cd99454a45e8fb05ac9163ff342d9ac9b9336e4550c0825d5c33040b5cafea3f3eae72aacc575f91205c855a79aa715f8777df60e96429f822a4",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NoMoreMLM-0.2.0.jar?raw=true",
+        "requires":"0.0.1"
       }
     ]
   },

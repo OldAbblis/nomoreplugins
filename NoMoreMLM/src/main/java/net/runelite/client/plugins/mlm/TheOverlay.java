@@ -28,15 +28,14 @@ package net.runelite.client.plugins.mlm;
 import java.awt.*;
 import javax.inject.Inject;
 
+import ch.qos.logback.core.joran.spi.ElementSelector;
 import net.runelite.api.*;
-import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.plugins.nmutils.Utils;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.http.api.worlds.WorldRegion;
-import org.w3c.dom.css.Rect;
 
 public class TheOverlay extends Overlay
 {
@@ -56,13 +55,12 @@ public class TheOverlay extends Overlay
         setLayer(OverlayLayer.ABOVE_SCENE);
     }
 
-    static WorldPoint hopperWP = new WorldPoint(3748,5672,0);
-    Player player;
+    static WorldPoint HOPPER_WORLD_POINT = new WorldPoint(3748,5672,0);
 
     @Override
     public Dimension render(Graphics2D graphics)
     {
-        player = client.getLocalPlayer();
+        Player player = client.getLocalPlayer();
         if (player == null)
         {
             return null;
@@ -71,13 +69,11 @@ public class TheOverlay extends Overlay
         {
             return null;
         }
-        LocalPoint playerLP = player.getLocalLocation();
-        if (playerLP == null)
-        {
-            return null;
-        }
 
-        // Display upper level objects.
+        if (config.enableRockfallObjectIndicator())
+        {
+            renderRockfall(graphics);
+        }
         if (plugin.isPlayerUpstairs())
         {
             renderUpperObjects(graphics);
@@ -85,30 +81,209 @@ public class TheOverlay extends Overlay
         else
         {
             renderLowerObjects(graphics);
-            if (!config.enableRockfallObjectIndicator())
-            {
-                return null;
-            }
-            for (GameObject gameObject : plugin.getClosestRockfall())
-            {
-                if (gameObject == null)
-                {
-                    continue;
-                }
-                Shape shape = gameObject.getConvexHull();
-                if (shape == null)
-                {
-                    continue;
-                }
-                Rectangle bounds = shape.getBounds();
-                if (bounds == null)
-                {
-                    continue;
-                }
-                utils.renderCentrePoint(graphics, bounds, config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
-            }
         }
         return null;
+    }
+
+    private void renderRockfall(Graphics2D graphics)
+    {
+        if (config.enableLowerNorthVeins())
+        {
+            if (plugin.getCurrentPlayerArea().equals("centre"))
+            {
+                // Inventory not full.
+                if (!utils.isInventoryFull())
+                {
+                    if (plugin.getNORTHERN_SOUTH_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getNORTHERN_SOUTH_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                    else
+                    {
+                        if (plugin.getNORTHERN_NORTH_ROCKFALL() != null)
+                        {
+                            renderCentrePoint(graphics, plugin.getNORTHERN_NORTH_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                        }
+                    }
+                }
+            }
+            if (plugin.getCurrentPlayerArea().equals("north-betweenrocks"))
+            {
+                // Inventory not full.
+                if (!utils.isInventoryFull())
+                {
+                    if (plugin.getNORTHERN_NORTH_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getNORTHERN_NORTH_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                }
+                else
+                {
+                    if (plugin.getNORTHERN_SOUTH_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getNORTHERN_SOUTH_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                }
+            }
+            if (plugin.getCurrentPlayerArea().equals("north-northofrocks"))
+            {
+                // Inventory not full.
+                if (utils.isInventoryFull())
+                {
+                    if (plugin.getNORTHERN_NORTH_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getNORTHERN_NORTH_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                    else
+                    {
+                        if (plugin.getNORTHERN_SOUTH_ROCKFALL() != null)
+                        {
+                            renderCentrePoint(graphics, plugin.getNORTHERN_SOUTH_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                        }
+                    }
+                }
+            }
+            return;
+        }
+        if (config.enableLowerEastVeins())
+        {
+            if (plugin.getCurrentPlayerArea().equals("east-northofrocks"))
+            {
+                if (plugin.getEASTERN_ROCKFALL() != null && !utils.isInventoryFull())
+                {
+                    renderCentrePoint(graphics, plugin.getEASTERN_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                }
+            }
+            if (plugin.getCurrentPlayerArea().equals("east-southofrocks"))
+            {
+                if (plugin.getEASTERN_ROCKFALL() != null && utils.isInventoryFull())
+                {
+                    renderCentrePoint(graphics, plugin.getEASTERN_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                }
+            }
+        }
+        if (config.enableLowerSouthVeins())
+        {
+            if (plugin.getCurrentPlayerArea().equals("centre"))
+            {
+                if (!utils.isInventoryFull())
+                {
+                    if (plugin.getSOUTHERN_WEST_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getSOUTHERN_WEST_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                    else
+                    {
+                        if (plugin.getSOUTHERN_CENTRE_ROCKFALL() != null)
+                        {
+                            renderCentrePoint(graphics, plugin.getSOUTHERN_CENTRE_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                        }
+                        else
+                        {
+                            if (plugin.getSOUTHERN_SOUTH_ROCKFALL() != null)
+                            {
+                                renderCentrePoint(graphics, plugin.getSOUTHERN_SOUTH_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                            }
+                        }
+                    }
+                }
+            }
+            if (plugin.getCurrentPlayerArea().equals("south-betweencentreandwestrock"))
+            {
+                if (!utils.isInventoryFull())
+                {
+                    if (plugin.getSOUTHERN_CENTRE_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getSOUTHERN_CENTRE_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                    else
+                    {
+                        if (plugin.getSOUTHERN_SOUTH_ROCKFALL() != null)
+                        {
+                            renderCentrePoint(graphics, plugin.getSOUTHERN_SOUTH_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                        }
+                    }
+                }
+                else
+                {
+                    if (plugin.getSOUTHERN_WEST_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getSOUTHERN_WEST_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                }
+            }
+            if (plugin.getCurrentPlayerArea().equals("south-betweencentreandsouthrock"))
+            {
+                if (!utils.isInventoryFull())
+                {
+                    if (plugin.getSOUTHERN_SOUTH_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getSOUTHERN_SOUTH_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                }
+                else
+                {
+                    if (plugin.getSOUTHERN_CENTRE_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getSOUTHERN_CENTRE_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                    else
+                    {
+                        if (plugin.getSOUTHERN_WEST_ROCKFALL() != null)
+                        {
+                            renderCentrePoint(graphics, plugin.getSOUTHERN_WEST_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                        }
+                    }
+                }
+            }
+            if (plugin.getCurrentPlayerArea().equals("south-southofsouthrocks"))
+            {
+                if (utils.isInventoryFull())
+                {
+                    if (plugin.getSOUTHERN_SOUTH_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getSOUTHERN_SOUTH_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                    else
+                    {
+                        if (plugin.getSOUTHERN_CENTRE_ROCKFALL() != null)
+                        {
+                            renderCentrePoint(graphics, plugin.getSOUTHERN_CENTRE_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                        }
+                        else
+                        {
+                            if (plugin.getSOUTHERN_WEST_ROCKFALL() != null)
+                            {
+                                renderCentrePoint(graphics, plugin.getSOUTHERN_WEST_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (config.enableLowerWestVeins())
+        {
+            if (plugin.getCurrentPlayerArea().equals("centre"))
+            {
+                if (!utils.isInventoryFull())
+                {
+                    if (plugin.getWESTERN_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getWESTERN_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                }
+            }
+            if (plugin.getCurrentPlayerArea().equals("west-westofrocks"))
+            {
+                if (utils.isInventoryFull())
+                {
+                    if (plugin.getWESTERN_ROCKFALL() != null)
+                    {
+                        renderCentrePoint(graphics, plugin.getWESTERN_ROCKFALL(), config.rockfallObjectIndicatorColor(), config.rockfallObjectIndicatorSize());
+                    }
+                }
+            }
+        }
     }
 
     private void renderUpperObjects(Graphics2D graphics)
@@ -164,14 +339,62 @@ public class TheOverlay extends Overlay
                 renderOptions(graphics, tileObject);
             }
         });
+        if (config.enableLowerVeinIndicator())
+        {
+            if (config.enableLowerNorthVeins())
+            {
+                plugin.getLowerNorthVeins().forEach((tile, tileObject) -> {
+                    if (tileObject != null)
+                    {
+                        renderCentrePoint(graphics, tileObject, config.lowerVeinColor(), config.lowerVeinSize());
+                    }
+                });
+                return;
+            }
+            if (config.enableLowerEastVeins())
+            {
+                plugin.getLowerEastVeins().forEach((tile, tileObject) -> {
+                    if (tileObject != null)
+                    {
+                        renderCentrePoint(graphics, tileObject, config.lowerVeinColor(), config.lowerVeinSize());
+                    }
+                });
+                return;
+            }
+            if (config.enableLowerSouthVeins())
+            {
+                plugin.getLowerSouthVeins().forEach((tile, tileObject) -> {
+                    if (tileObject != null)
+                    {
+                        renderCentrePoint(graphics, tileObject, config.lowerVeinColor(), config.lowerVeinSize());
+                    }
+                });
+                return;
+            }
+            if (config.enableLowerWestVeins())
+            {
+                plugin.getLowerWestVeins().forEach((tile, tileObject) -> {
+                    if (tileObject != null)
+                    {
+                        renderCentrePoint(graphics, tileObject, config.lowerVeinColor(), config.lowerVeinSize());
+                    }
+                });
+                return;
+            }
+        }
         if (config.enableHopperObjectIndicator())
         {
-            utils.renderTileCentrePoint(graphics, hopperWP, config.hopperObjectIndicatorColor(), config.hopperObjectIndicatorSize());
+            utils.renderTileCentrePoint(graphics, HOPPER_WORLD_POINT, config.hopperObjectIndicatorColor(), config.hopperObjectIndicatorSize());
         }
     }
 
     private void renderOptions(Graphics2D graphics, TileObject tileObject)
     {
+        Player player = client.getLocalPlayer();
+        if (player == null)
+        {
+            return;
+        }
         WorldPoint playerWP = player.getWorldLocation();
         if (playerWP == null)
         {

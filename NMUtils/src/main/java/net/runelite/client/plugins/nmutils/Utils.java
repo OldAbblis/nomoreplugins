@@ -11,19 +11,22 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.rxjava3.annotations.Nullable;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.GroundObjectChanged;
+import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.queries.DecorativeObjectQuery;
 import net.runelite.api.queries.GameObjectQuery;
 import net.runelite.api.queries.GroundObjectQuery;
 import net.runelite.api.queries.WallObjectQuery;
+import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
-import net.runelite.http.api.worlds.World;
 import org.pf4j.Extension;
 
 @Extension
@@ -50,6 +53,16 @@ public class Utils extends Plugin
 	protected void shutDown()
 	{
 
+	}
+
+	@Getter(AccessLevel.PUBLIC)
+	@Setter(AccessLevel.PUBLIC)
+	boolean isInventoryFull = false;
+
+	@Subscribe
+	private void on(ItemContainerChanged event)
+	{
+		setInventoryFull(isInventoryFullCheck());
 	}
 
 	public int[] getIndicatorLocation(String string)
@@ -213,18 +226,18 @@ public class Utils extends Plugin
 		}
 	}
 
-	public boolean doesTileObjectExistAtLocation(TileObject tileObject, WorldPoint compareWorldPoint)
+	public boolean doesTileObjectExistAtLocation(TileObject t, WorldPoint c)
 	{
-		if (tileObject == null)
+		if (t == null)
 		{
 			return false;
 		}
-		WorldPoint tileObjectWorldPoint = tileObject.getWorldLocation();
-		if (tileObjectWorldPoint == null)
+		WorldPoint tWP = t.getWorldLocation();
+		if (tWP == null || c == null)
 		{
 			return false;
 		}
-		return tileObjectWorldPoint.equals(compareWorldPoint);
+		return tWP.equals(c);
 	}
 
 	public boolean isGameObjectWithinArea(GameObject gameObject, int x1, int y2, int x2, int y1, int z)
@@ -332,5 +345,69 @@ public class Utils extends Plugin
 	public boolean nullCheckWorldPoint(WorldPoint wp)
 	{
 		return wp == null;
+	}
+
+	public boolean isInventoryFullCheck()
+	{
+		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
+		if (inventory == null)
+		{
+			return false;
+		}
+		Item[] items = inventory.getItems();
+		int amount = 0;
+		for (Item item : items)
+		{
+			if (item == null || item.getId() == -1)
+			{
+				return false;
+			}
+			amount++;
+		}
+		return amount == 28;
+	}
+
+	public boolean doesInventoryContain(String itemName)
+	{
+		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
+		if (inventory == null)
+		{
+			return false;
+		}
+		Item[] items = inventory.getItems();
+		for (Item item : items)
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			if (client.getItemDefinition(item.getId()).getName().toLowerCase().equalsIgnoreCase(itemName))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean doesInventoryContain(int itemId)
+	{
+		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
+		if (inventory == null)
+		{
+			return false;
+		}
+		Item[] items = inventory.getItems();
+		for (Item item : items)
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			if (item.getId() == itemId)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }

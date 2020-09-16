@@ -29,9 +29,9 @@ import com.google.inject.Provides;
 
 import javax.inject.Inject;
 
-import io.reactivex.rxjava3.annotations.Nullable;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 
@@ -41,13 +41,11 @@ import net.runelite.api.events.*;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.game.WorldLocation;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
-import net.runelite.http.api.worlds.World;
 import org.pf4j.Extension;
 
 import net.runelite.client.plugins.nmutils.Utils;
@@ -98,12 +96,44 @@ public class ThePlugin extends Plugin {
 	@Getter(AccessLevel.PACKAGE)
 	HashMap<Tile, TileObject> upperSouthVeins = new HashMap<>();
 	@Getter(AccessLevel.PACKAGE)
-	HashSet<GameObject> closestRockfall = new HashSet<>();
+	HashMap<Tile, TileObject> lowerNorthVeins = new HashMap<>();
+	@Getter(AccessLevel.PACKAGE)
+	HashMap<Tile, TileObject> lowerEastVeins = new HashMap<>();
+	@Getter(AccessLevel.PACKAGE)
+	HashMap<Tile, TileObject> lowerSouthVeins = new HashMap<>();
+	@Getter(AccessLevel.PACKAGE)
+	HashMap<Tile, TileObject> lowerWestVeins = new HashMap<>();
+	@Getter(AccessLevel.PACKAGE)
+	@Setter(AccessLevel.PACKAGE)
+	String currentPlayerArea = null;
 
 	Set<Integer> OBJECT_IDS = Stream.of(ObjectsList.ORE_VEINS, ObjectsList.BANK_CHEST,  ObjectsList.EMPTY_SACK, ObjectsList.FIX_WATER_WHEEL, ObjectsList.LADDERS, ObjectsList.SHORTCUTS, ObjectsList.ROCK_FALL).flatMap(Set::stream).collect(Collectors.toSet());
 
 	@Getter(AccessLevel.PACKAGE)
 	int numberOfBrokenWaterWheels = 0;
+
+	@Getter(AccessLevel.PACKAGE)
+	TileObject NORTHERN_NORTH_ROCKFALL = null;
+	WorldPoint NORTHERN_NORTH_ROCKFALL_WORLDPOINT = new WorldPoint(3731,5683,0);
+	@Getter(AccessLevel.PACKAGE)
+	TileObject NORTHERN_SOUTH_ROCKFALL = null;
+	WorldPoint NORTHERN_SOUTH_ROCKFALL_WORLDPOINT = new WorldPoint(3733,5680,0);
+	@Getter(AccessLevel.PACKAGE)
+	TileObject EASTERN_ROCKFALL = null;
+	WorldPoint EASTERN_ROCKFALL_WORLDPOINT = new WorldPoint(3766,5670,0);
+	@Getter(AccessLevel.PACKAGE)
+	TileObject SOUTHERN_WEST_ROCKFALL = null;
+	WorldPoint SOUTHERN_WEST_ROCKFALL_WORLDPOINT = new WorldPoint(3762,5652,0);
+	@Getter(AccessLevel.PACKAGE)
+	TileObject SOUTHERN_CENTRE_ROCKFALL = null;
+	WorldPoint SOUTHERN_CENTRE_ROCKFALL_WORLDPOINT = new WorldPoint(3766,5647,0);
+	@Getter(AccessLevel.PACKAGE)
+	TileObject SOUTHERN_SOUTH_ROCKFALL = null;
+	WorldPoint SOUTHERN_SOUTH_ROCKFALL_WORLDPOINT = new WorldPoint(3766,5639,0);
+	@Getter(AccessLevel.PACKAGE)
+	TileObject WESTERN_ROCKFALL = null;
+	WorldPoint WESTERN_ROCKFALL_WORLDPOINT = new WorldPoint(3728,5651,0);
+
 
 	@Override
 	protected void startUp() {
@@ -118,7 +148,76 @@ public class ThePlugin extends Plugin {
 		upperNorthEastVeins.clear();
 		upperNorthWestVeins.clear();
 		upperSouthVeins.clear();
+		lowerNorthVeins.clear();
+		lowerEastVeins.clear();
+		lowerSouthVeins.clear();
+		lowerWestVeins.clear();
 		overlayManager.remove(overlay);
+	}
+
+	@Subscribe
+	private void on(GameTick event)
+	{
+		Player player = client.getLocalPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		if (config.enableRockfallObjectIndicator())
+		{
+			// Centre player location.
+			if (utils.isPlayerWithinArea(player, 3732, 5679, 3740, 5673, 0)
+					|| utils.isPlayerWithinArea(player, 3757, 5654, 3761, 5651, 0)
+					|| utils.isPlayerWithinArea(player, 3728, 5654, 3733, 5649, 0)
+					|| utils.isPlayerWithinArea(player, 3757, 5671, 3759, 5668, 0))
+			{
+				setCurrentPlayerArea("centre");
+			}
+			// North
+				// Between north rocks
+				if (utils.isPlayerWithinArea(player, 3729, 5683, 3736, 5680, 0))
+				{
+					setCurrentPlayerArea("north-betweenrocks");
+				}
+				// Above north rocks
+				if (utils.isPlayerWithinArea(player, 3724, 5688, 3733, 5684, 0))
+				{
+					setCurrentPlayerArea("north-northofrocks");
+				}
+			// West
+				// West of rocks
+				if (utils.isPlayerWithinArea(player, 3723, 5653, 3727, 5649, 0))
+				{
+					setCurrentPlayerArea("west-westofrocks");
+				}
+			// East
+				// South of east rocks
+				if (utils.isPlayerWithinArea(player, 3765, 5669, 3770, 5667,0))
+				{
+					setCurrentPlayerArea("east-southofrocks");
+				}
+				// North of east rocks
+				if (utils.isPlayerWithinArea(player, 3764, 5673, 3768, 5671,0))
+				{
+					setCurrentPlayerArea("east-northofrocks");
+				}
+			// South
+				// Between centre and west rock
+				if (utils.isPlayerWithinArea(player, 3763, 5653, 3771, 5648,0))
+				{
+					setCurrentPlayerArea("south-betweencentreandwestrock");
+				}
+				// Between centre amd south rock
+				if (utils.isPlayerWithinArea(player, 3763, 5646, 3768, 5640,0))
+				{
+					setCurrentPlayerArea("south-betweencentreandsouthrock");
+				}
+				// South of south rock (mining area)
+				if (utils.isPlayerWithinArea(player, 3766, 5639, 3773, 5634,0))
+				{
+					setCurrentPlayerArea("south-southofsouthrocks");
+				}
+		}
 	}
 
 	private int getAmountOfBrokenWaterWheels()
@@ -127,31 +226,6 @@ public class ThePlugin extends Plugin {
 			return utils.getGameObjects(26670).size();
 		}
 		return 0;
-	}
-
-	@Subscribe
-	private void on(GameTick event)
-	{
-		if (client.getGameState() != GameState.LOGGED_IN)
-		{
-			return;
-		}
-		Player player = client.getLocalPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		if (player.getWorldLocation().getRegionID() != 14936)
-		{
-			return;
-		}
-		@Nullable
-		GameObject rockfall = utils.findNearestGameObject(26679, 26680);
-		if (rockfall != null)
-		{
-			closestRockfall.clear();
-			closestRockfall.add(rockfall);
-		}
 	}
 
 	@Subscribe
@@ -173,6 +247,10 @@ public class ThePlugin extends Plugin {
 			upperNorthEastVeins.clear();
 			upperNorthWestVeins.clear();
 			upperSouthVeins.clear();
+			lowerNorthVeins.clear();
+			lowerEastVeins.clear();
+			lowerSouthVeins.clear();
+			lowerWestVeins.clear();
 		}
 		numberOfBrokenWaterWheels = getAmountOfBrokenWaterWheels();
 	}
@@ -258,6 +336,11 @@ public class ThePlugin extends Plugin {
 		upperNorthEastVeins.remove(tile);
 		upperNorthWestVeins.remove(tile);
 		upperSouthVeins.remove(tile);
+		lowerNorthVeins.remove(tile);
+		lowerEastVeins.remove(tile);
+		lowerSouthVeins.remove(tile);
+		lowerWestVeins.remove(tile);
+		removeRockfall(tile);
 		if (newObject == null)
 		{
 			return;
@@ -273,18 +356,92 @@ public class ThePlugin extends Plugin {
 			{
 				if (ObjectsList.ORE_VEINS.contains(newObject.getId()))
 				{
-					checkTileObjectLocation(tile, newObject);
+					checkOreVeinLocation(tile, newObject);
 				}
 				upperObjects.putIfAbsent(tile, newObject);
 			}
 			else
 			{
+				if (ObjectsList.ROCK_FALL.contains(newObject.getId()))
+				{
+					addRockfall(tile, newObject);
+					return;
+				}
+				if (ObjectsList.ORE_VEINS.contains(newObject.getId()))
+				{
+					checkOreVeinLocation(tile, newObject);
+					return;
+				}
 				lowerObjects.putIfAbsent(tile, newObject);
 			}
 		}
 	}
 
-	private void checkTileObjectLocation(Tile tile ,TileObject tileObject)
+	private void removeRockfall(Tile tile)
+	{
+		if (tile.getWorldLocation().equals(NORTHERN_NORTH_ROCKFALL_WORLDPOINT))
+		{
+			NORTHERN_NORTH_ROCKFALL = null;
+		}
+		if (tile.getWorldLocation().equals(NORTHERN_SOUTH_ROCKFALL_WORLDPOINT))
+		{
+			NORTHERN_SOUTH_ROCKFALL = null;
+		}
+		if (tile.getWorldLocation().equals(EASTERN_ROCKFALL_WORLDPOINT))
+		{
+			EASTERN_ROCKFALL = null;
+		}
+		if (tile.getWorldLocation().equals(SOUTHERN_WEST_ROCKFALL_WORLDPOINT))
+		{
+			SOUTHERN_WEST_ROCKFALL = null;
+		}
+		if (tile.getWorldLocation().equals(SOUTHERN_CENTRE_ROCKFALL_WORLDPOINT))
+		{
+			SOUTHERN_CENTRE_ROCKFALL = null;
+		}
+		if (tile.getWorldLocation().equals(SOUTHERN_SOUTH_ROCKFALL_WORLDPOINT))
+		{
+			SOUTHERN_SOUTH_ROCKFALL = null;
+		}
+		if (tile.getWorldLocation().equals(WESTERN_ROCKFALL_WORLDPOINT))
+		{
+			WESTERN_ROCKFALL = null;
+		}
+	}
+
+	private void addRockfall(Tile tile, TileObject tileObject)
+	{
+		if (tile.getWorldLocation().equals(NORTHERN_NORTH_ROCKFALL_WORLDPOINT))
+		{
+			NORTHERN_NORTH_ROCKFALL = tileObject;
+		}
+		if (tile.getWorldLocation().equals(NORTHERN_SOUTH_ROCKFALL_WORLDPOINT))
+		{
+			NORTHERN_SOUTH_ROCKFALL = tileObject;
+		}
+		if (tile.getWorldLocation().equals(EASTERN_ROCKFALL_WORLDPOINT))
+		{
+			EASTERN_ROCKFALL = tileObject;
+		}
+		if (tile.getWorldLocation().equals(SOUTHERN_WEST_ROCKFALL_WORLDPOINT))
+		{
+			SOUTHERN_WEST_ROCKFALL = tileObject;
+		}
+		if (tile.getWorldLocation().equals(SOUTHERN_CENTRE_ROCKFALL_WORLDPOINT))
+		{
+			SOUTHERN_CENTRE_ROCKFALL = tileObject;
+		}
+		if (tile.getWorldLocation().equals(SOUTHERN_SOUTH_ROCKFALL_WORLDPOINT))
+		{
+			SOUTHERN_SOUTH_ROCKFALL = tileObject;
+		}
+		if (tile.getWorldLocation().equals(WESTERN_ROCKFALL_WORLDPOINT))
+		{
+			WESTERN_ROCKFALL = tileObject;
+		}
+	}
+
+	private void checkOreVeinLocation(Tile tile , TileObject tileObject)
 	{
 		WorldPoint wp = tileObject.getWorldLocation();
 		if (wp == null)
@@ -302,6 +459,22 @@ public class ThePlugin extends Plugin {
 		if (utils.isTileObjectWithinArea(tileObject, 3756, 5674, 3762, 5668, 0))
 		{
 			upperSouthVeins.put(tile, tileObject);
+		}
+		if (utils.isTileObjectWithinArea(tileObject, 3731, 5693, 3744, 5686, 0))
+		{
+			lowerNorthVeins.put(tile, tileObject);
+		}
+		if (utils.isTileObjectWithinArea(tileObject, 3764, 5668, 3773, 5657, 0))
+		{
+			lowerEastVeins.put(tile, tileObject);
+		}
+		if (utils.isTileObjectWithinArea(tileObject, 3765, 5643, 3774, 5634, 0))
+		{
+			lowerSouthVeins.put(tile, tileObject);
+		}
+		if (utils.isTileObjectWithinArea(tileObject, 3714, 5662, 3723, 5647, 0))
+		{
+			lowerWestVeins.put(tile, tileObject);
 		}
 		return;
 	}

@@ -52,16 +52,52 @@ public interface TheConfig extends Config
 			keyName = "enableLowerVeinIndicator",
 			name = "Enable",
 			description = "Displays an indicator over the lower floor ore veins.",
-			position = 4,
+			position = 3,
 			titleSection = "lowerOreVeinSectionTitle"
 	)
 	default boolean enableLowerVeinIndicator() { return false; }
 
 	@ConfigItem(
+			keyName = "enableLowerNorthVeins",
+			name = "North (Use only 1)",
+			description = "",
+			position = 4,
+			titleSection = "lowerOreVeinSectionTitle"
+	)
+	default boolean enableLowerNorthVeins() { return false; }
+
+	@ConfigItem(
+			keyName = "enableLowerEastVeins",
+			name = "East (Use only 1)",
+			description = "",
+			position = 5,
+			titleSection = "lowerOreVeinSectionTitle"
+	)
+	default boolean enableLowerEastVeins() { return false; }
+
+	@ConfigItem(
+			keyName = "enableLowerWestVeins",
+			name = "West (Use only 1)",
+			description = "",
+			position = 6,
+			titleSection = "lowerOreVeinSectionTitle"
+	)
+	default boolean enableLowerWestVeins() { return false; }
+
+	@ConfigItem(
+			keyName = "enableLowerSouthVeins",
+			name = "South (Use only 1)",
+			description = "",
+			position = 7,
+			titleSection = "lowerOreVeinSectionTitle"
+	)
+	default boolean enableLowerSouthVeins() { return false; }
+
+	@ConfigItem(
 			keyName = "lowerVeinSize",
 			name = "Box size",
 			description = "The size of the indicator.",
-			position = 5,
+			position = 8,
 			titleSection = "lowerOreVeinSectionTitle"
 	)
 	default int lowerVeinSize() { return 4; }
@@ -70,7 +106,7 @@ public interface TheConfig extends Config
 			keyName = "lowerVeinColor",
 			name = "Color",
 			description = "The color of the indicator.",
-			position = 6,
+			position = 9,
 			titleSection = "lowerOreVeinSectionTitle"
 	)
 	default Color lowerVeinColor() { return Color.GREEN; }
@@ -79,7 +115,7 @@ public interface TheConfig extends Config
 			keyName = "upperOreVeinSectionTitle",
 			name = "Upper Level Ore Veins",
 			description = "",
-			position = 7,
+			position = 10,
 			section = "oreVeinSection"
 	)
 	default Title upperOreVeinSectionTitle() { return new Title(); }
@@ -88,7 +124,7 @@ public interface TheConfig extends Config
 			keyName = "enableUpperVeinIndicator",
 			name = "Enable",
 			description = "Displays an indicator over the upper floor ore veins.",
-			position = 8,
+			position = 11,
 			titleSection = "upperOreVeinSectionTitle"
 	)
 	default boolean enableUpperVeinIndicator() { return false; }
@@ -97,7 +133,7 @@ public interface TheConfig extends Config
 			keyName = "enableUpperNorthWestOres",
 			name = "Dislay NW veins",
 			description = "",
-			position = 9,
+			position = 12,
 			titleSection = "upperOreVeinSectionTitle"
 	)
 	default boolean enableUpperNorthWestOres() { return false; }
@@ -106,7 +142,7 @@ public interface TheConfig extends Config
 			keyName = "enableUpperNorthEastOres",
 			name = "Dislay NE veins",
 			description = "",
-			position = 10,
+			position = 13,
 			titleSection = "upperOreVeinSectionTitle"
 	)
 	default boolean enableUpperNorthEastOres() { return false; }
@@ -115,7 +151,7 @@ public interface TheConfig extends Config
 			keyName = "enableUpperSouthOres",
 			name = "Dislay S veins",
 			description = "",
-			position = 11,
+			position = 14,
 			titleSection = "upperOreVeinSectionTitle"
 	)
 	default boolean enableUpperSouthOres() { return false; }
@@ -124,7 +160,7 @@ public interface TheConfig extends Config
 			keyName = "upperVeinSize",
 			name = "Box size",
 			description = "The size of the indicator.",
-			position = 12,
+			position = 15,
 			titleSection = "upperOreVeinSectionTitle"
 	)
 	default int upperVeinSize() { return 4; }
@@ -133,7 +169,7 @@ public interface TheConfig extends Config
 			keyName = "upperVeinColor",
 			name = "Color",
 			description = "The color of the indicator.",
-			position = 13,
+			position = 16,
 			titleSection = "upperOreVeinSectionTitle"
 	)
 	default Color upperVeinColor() { return Color.GREEN; }
@@ -142,7 +178,7 @@ public interface TheConfig extends Config
 			keyName = "ladderSection",
 			name = "Ladder",
 			description = "",
-			position = 2
+			position = 13
 	)
 	default boolean ladderSection() { return false; }
 
@@ -150,7 +186,7 @@ public interface TheConfig extends Config
 			keyName = "ladderObjectIndicatorTitle",
 			name = "Object Indicator",
 			description = "",
-			position = 3,
+			position = 14,
 			section = "ladderSection"
 	)
 	default Title ladderObjectIndicatorTitle() { return new Title(); }
@@ -159,7 +195,7 @@ public interface TheConfig extends Config
 			keyName = "enableLadderIndicator",
 			name = "Enable",
 			description = "Enables the indicator.",
-			position = 4,
+			position = 15,
 			titleSection = "ladderObjectIndicatorTitle"
 	)
 	default boolean enableLadderIndicator() { return false; }
@@ -168,7 +204,7 @@ public interface TheConfig extends Config
 			keyName = "ladderSize",
 			name = "Box size",
 			description = "The size of the indicator.",
-			position = 5,
+			position = 16,
 			titleSection = "ladderObjectIndicatorTitle"
 	)
 	default int ladderSize() { return 4; }
@@ -177,7 +213,7 @@ public interface TheConfig extends Config
 			keyName = "ladderColor",
 			name = "Color",
 			description = "The color of the indicator.",
-			position = 6,
+			position = 17,
 			titleSection = "ladderObjectIndicatorTitle"
 	)
 	default Color ladderColor() { return Color.YELLOW; }
@@ -186,7 +222,7 @@ public interface TheConfig extends Config
 			keyName = "waterWheelSection",
 			name = "Water Wheel",
 			description = "",
-			position = 3
+			position = 18
 	)
 	default boolean waterWheelSection() { return false; }
 
@@ -194,7 +230,7 @@ public interface TheConfig extends Config
 			keyName = "waterWheelCofigTitle",
 			name = "Object Indicator",
 			description = "",
-			position = 4,
+			position = 19,
 			section = "waterWheelSection"
 	)
 	default Title waterWheelCofigTitle() { return new Title(); }
@@ -203,7 +239,7 @@ public interface TheConfig extends Config
 			keyName = "enableWaterWheelIndicator",
 			name = "Enable",
 			description = "Enables the indicator.",
-			position = 5,
+			position = 20,
 			titleSection = "waterWheelCofigTitle"
 	)
 	default boolean enableWaterWheelIndicator() { return false; }
@@ -212,7 +248,7 @@ public interface TheConfig extends Config
 			keyName = "waterWheelSize",
 			name = "Box size",
 			description = "The size of the indicator.",
-			position = 6,
+			position = 21,
 			titleSection = "waterWheelCofigTitle"
 	)
 	default int waterWheelSize() { return 4; }
@@ -221,7 +257,7 @@ public interface TheConfig extends Config
 			keyName = "waterWheelColor",
 			name = "Color",
 			description = "The color of the indicator.",
-			position = 7,
+			position = 22,
 			titleSection = "waterWheelCofigTitle"
 	)
 	default Color waterWheelColor() { return Color.RED; }
@@ -230,7 +266,7 @@ public interface TheConfig extends Config
 			keyName = "waterWheelCanvasIndicatorSection",
 			name = "Scene Indicator",
 			description = "",
-			position = 8,
+			position = 23,
 			section = "waterWheelSection"
 	)
 	default Title waterWheelCanvasIndicatorSection() { return new Title(); }
@@ -239,7 +275,7 @@ public interface TheConfig extends Config
 			keyName = "enableWaterWheelSceneIndicator",
 			name = "Enable",
 			description = "Enables the indicator.",
-			position = 9,
+			position = 24,
 			titleSection = "waterWheelCanvasIndicatorSection"
 	)
 	default boolean enableWaterWheelSceneIndicator() { return false; }
@@ -252,7 +288,7 @@ public interface TheConfig extends Config
 			keyName = "amountOfBrokenWaterWheelToDisplaySceneIndicator",
 			name = "Amount to display",
 			description = "The number of broken water wheels to display the scene indicator.",
-			position = 10,
+			position = 25,
 			titleSection = "waterWheelCanvasIndicatorSection"
 	)
 	default int amountOfBrokenWaterWheelToDisplaySceneIndicator() { return 2; }
@@ -261,7 +297,7 @@ public interface TheConfig extends Config
 			keyName = "waterWheelSceneIndicatorLocation",
 			name = "Location X:Y:Width:Height",
 			description = "The location of the indicator on screen.",
-			position = 11,
+			position = 26,
 			titleSection = "waterWheelCanvasIndicatorSection"
 	)
 	default String waterWheelSceneIndicatorLocation() { return "0:0:5:5"; }
@@ -270,7 +306,7 @@ public interface TheConfig extends Config
 			keyName = "waterWheelSceneIndicatorColor",
 			name = "Color",
 			description = "The color of the indicator.",
-			position = 12,
+			position = 27,
 			titleSection = "waterWheelCanvasIndicatorSection"
 	)
 	default Color waterWheelSceneIndicatorColor() { return Color.RED; }
@@ -279,7 +315,7 @@ public interface TheConfig extends Config
 			keyName = "hopperSection",
 			name = "Hopper",
 			description = "",
-			position = 4
+			position = 28
 	)
 	default boolean hopperSection() { return false; }
 
@@ -287,7 +323,7 @@ public interface TheConfig extends Config
 			keyName = "hopperObjectIndicatorTitle",
 			name = "Object Indicator",
 			description = "",
-			position = 5,
+			position = 29,
 			section = "hopperSection"
 	)
 	default Title hopperObjectIndicatorTitle() { return new Title(); }
@@ -296,7 +332,7 @@ public interface TheConfig extends Config
 			keyName = "enableHopperObjectIndicator",
 			name = "Enable",
 			description = "Enables the object indicator.",
-			position = 6,
+			position = 30,
 			titleSection = "hopperObjectIndicatorTitle"
 	)
 	default boolean enableHopperObjectIndicator() { return false; }
@@ -305,7 +341,7 @@ public interface TheConfig extends Config
 			keyName = "hopperObjectIndicatorSize",
 			name = "Box size",
 			description = "The size of the object indicator.",
-			position = 7,
+			position = 31,
 			titleSection = "hopperObjectIndicatorTitle"
 	)
 	default int hopperObjectIndicatorSize() { return 4; }
@@ -314,7 +350,7 @@ public interface TheConfig extends Config
 			keyName = "hopperObjectIndicatorColor",
 			name = "Color",
 			description = "The color of the object indicator.",
-			position = 8,
+			position = 32,
 			titleSection = "hopperObjectIndicatorTitle"
 	)
 	default Color hopperObjectIndicatorColor() { return Color.ORANGE; }
@@ -323,7 +359,7 @@ public interface TheConfig extends Config
 			keyName = "sackSection",
 			name = "Sack",
 			description = "",
-			position = 5
+			position = 33
 	)
 	default boolean sackSection() { return false; }
 
@@ -331,7 +367,7 @@ public interface TheConfig extends Config
 			keyName = "sackObjectIndicatorTitle",
 			name = "Object Indicator",
 			description = "",
-			position = 6,
+			position = 34,
 			section = "sackSection"
 	)
 	default Title sackObjectIndicatorTitle() { return new Title(); }
@@ -340,7 +376,7 @@ public interface TheConfig extends Config
 			keyName = "enableSackObjectIndicator",
 			name = "Enable",
 			description = "Enables the object indicator.",
-			position = 7,
+			position = 35,
 			titleSection = "sackObjectIndicatorTitle"
 	)
 	default boolean enableSackObjectIndicator() { return false; }
@@ -349,7 +385,7 @@ public interface TheConfig extends Config
 			keyName = "sackObjectIndicatorSize",
 			name = "Box size",
 			description = "The size of the object indicator.",
-			position = 8,
+			position = 36,
 			titleSection = "sackObjectIndicatorTitle"
 	)
 	default int sackObjectIndicatorSize() { return 4; }
@@ -358,7 +394,7 @@ public interface TheConfig extends Config
 			keyName = "sackObjectIndicatorColor",
 			name = "Color",
 			description = "The color of the object indicator.",
-			position = 9,
+			position = 37,
 			titleSection = "sackObjectIndicatorTitle"
 	)
 	default Color sackObjectIndicatorColor() { return Color.CYAN; }
@@ -367,7 +403,7 @@ public interface TheConfig extends Config
 			keyName = "bankSection",
 			name = "Bank",
 			description = "",
-			position = 6
+			position = 38
 	)
 	default boolean bankSection() { return false; }
 
@@ -375,7 +411,7 @@ public interface TheConfig extends Config
 			keyName = "bankObjectIndicatorTitle",
 			name = "Object Indicator",
 			description = "",
-			position = 7,
+			position = 39,
 			section = "bankSection"
 	)
 	default Title bankObjectIndicatorTitle() { return new Title(); }
@@ -384,7 +420,7 @@ public interface TheConfig extends Config
 			keyName = "enableBankObjectIndicator",
 			name = "Enable",
 			description = "Enables the object indicator.",
-			position = 8,
+			position = 40,
 			titleSection = "bankObjectIndicatorTitle"
 	)
 	default boolean enableBankObjectIndicator() { return false; }
@@ -393,7 +429,7 @@ public interface TheConfig extends Config
 			keyName = "bankObjectIndicatorSize",
 			name = "Box size",
 			description = "The size of the object indicator.",
-			position = 9,
+			position = 41,
 			titleSection = "bankObjectIndicatorTitle"
 	)
 	default int bankObjectIndicatorSize() { return 4; }
@@ -402,7 +438,7 @@ public interface TheConfig extends Config
 			keyName = "bankObjectIndicatorColor",
 			name = "Color",
 			description = "The color of the object indicator.",
-			position = 10,
+			position = 42,
 			titleSection = "bankObjectIndicatorTitle"
 	)
 	default Color bankObjectIndicatorColor() { return Color.BLUE; }
@@ -411,7 +447,7 @@ public interface TheConfig extends Config
 			keyName = "shortcutSection",
 			name = "Shortcut",
 			description = "",
-			position = 7
+			position = 43
 	)
 	default boolean shortcutSection() { return false; }
 
@@ -419,7 +455,7 @@ public interface TheConfig extends Config
 			keyName = "shortcutObjectIndicatorTitle",
 			name = "Object Indicator",
 			description = "",
-			position = 8,
+			position = 44,
 			section = "shortcutSection"
 	)
 	default Title shortcutObjectIndicatorTitle() { return new Title(); }
@@ -428,7 +464,7 @@ public interface TheConfig extends Config
 			keyName = "enableShortcutObjectIndicator",
 			name = "Enable",
 			description = "Enables the object indicator.",
-			position = 9,
+			position = 45,
 			titleSection = "shortcutObjectIndicatorTitle"
 	)
 	default boolean enableShortcutObjectIndicator() { return false; }
@@ -437,7 +473,7 @@ public interface TheConfig extends Config
 			keyName = "shortcutObjectIndicatorSize",
 			name = "Box size",
 			description = "The size of the object indicator.",
-			position = 10,
+			position = 46,
 			titleSection = "shortcutObjectIndicatorTitle"
 	)
 	default int shortcutObjectIndicatorSize() { return 4; }
@@ -446,7 +482,7 @@ public interface TheConfig extends Config
 			keyName = "shortcutObjectIndicatorColor",
 			name = "Color",
 			description = "The color of the object indicator.",
-			position = 11,
+			position = 48,
 			titleSection = "shortcutObjectIndicatorTitle"
 	)
 	default Color shortcutObjectIndicatorColor() { return Color.MAGENTA; }
@@ -455,7 +491,7 @@ public interface TheConfig extends Config
 			keyName = "rockfallSection",
 			name = "Rockfall (experimental)",
 			description = "",
-			position = 8
+			position = 49
 	)
 	default boolean rockfallSection() { return false; }
 
@@ -463,7 +499,7 @@ public interface TheConfig extends Config
 			keyName = "rockfallObjectIndicatorTitle",
 			name = "Object Indicator",
 			description = "",
-			position = 9,
+			position = 50,
 			section = "rockfallSection"
 	)
 	default Title rockfallObjectIndicatorTitle() { return new Title(); }
@@ -472,7 +508,7 @@ public interface TheConfig extends Config
 			keyName = "enableRockfallObjectIndicator",
 			name = "Enable",
 			description = "Enables the object indicator.",
-			position = 10,
+			position = 51,
 			titleSection = "rockfallObjectIndicatorTitle"
 	)
 	default boolean enableRockfallObjectIndicator() { return false; }
@@ -481,7 +517,7 @@ public interface TheConfig extends Config
 			keyName = "rockfallObjectIndicatorSize",
 			name = "Box size",
 			description = "The size of the object indicator.",
-			position = 11,
+			position = 52,
 			titleSection = "rockfallObjectIndicatorTitle"
 	)
 	default int rockfallObjectIndicatorSize() { return 4; }
@@ -490,7 +526,7 @@ public interface TheConfig extends Config
 			keyName = "rockfallObjectIndicatorColor",
 			name = "Color",
 			description = "The color of the object indicator.",
-			position = 12,
+			position = 53,
 			titleSection = "rockfallObjectIndicatorTitle"
 	)
 	default Color rockfallObjectIndicatorColor() { return Color.PINK; }
