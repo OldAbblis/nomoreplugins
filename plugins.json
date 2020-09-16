@@ -218,7 +218,7 @@
     "releases": [
       {
         "date": "2020-09-16",
-        "sha512sum": "71fd065c74f42708d4339d10bdcbfb7b4594101634dcca2cd198616beacb7269ecd2b002a8b7c2fcef72ee84d7beb79f2400b43da143f9a584fb2676c4227158",
+        "sha512sum": "a64faa2f19b71f055713376528c339a78f882cee1441b1300110bf28dd2332d1c02f816ab8315c245ecadb00341cf5ec38c26e11782c4a54656576cb4ee4557d",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NoMoreMLM-0.1.0.jar?raw=true",
         "requires":"0.0.1"
