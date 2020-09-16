@@ -104,7 +104,6 @@ public class ThePlugin extends Plugin {
 
 	@Getter(AccessLevel.PACKAGE)
 	int numberOfBrokenWaterWheels = 0;
-	Player player;
 
 	@Override
 	protected void startUp() {
@@ -134,6 +133,11 @@ public class ThePlugin extends Plugin {
 	private void on(GameTick event)
 	{
 		if (client.getGameState() != GameState.LOGGED_IN)
+		{
+			return;
+		}
+		Player player = client.getLocalPlayer();
+		if (player == null)
 		{
 			return;
 		}
@@ -304,7 +308,7 @@ public class ThePlugin extends Plugin {
 
 	boolean isPlayerUpstairs()
 	{
-		player = client.getLocalPlayer();
+		Player player = client.getLocalPlayer();
 		if (player == null)
 		{
 			return false;
