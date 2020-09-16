@@ -307,6 +307,22 @@
   {
     "projectUrl": "https://discord.gg/7W9aBCb",
     "provider": "NoMore",
+    "name": "NMUtils",
+    "description": "NoMore plugins will not work without this plugin.",
+    "id": "NMUtils-plugin",
+    "releases": [
+      {
+        "date": "2020-09-16",
+        "sha512sum": "39453055bb1fac0ada626f51499e92b9cddc5ef43450e4e226b73f1a66fd41e9557f8d9c51a040397531c7f6f17b4ef59d0c16569b5c1f25d308e62f66915837",
+        "version": "0.1.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NMUtils-0.1.0.jar?raw=true",
+        "requires":"0.0.1"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/7W9aBCb",
+    "provider": "NoMore",
     "name": "NoMore NPC Highlight",
     "description": "A plugin to render an overlay over non-playable characters.",
     "id": "nomorenpchighlight-plugin",
