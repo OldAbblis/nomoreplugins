@@ -6,6 +6,7 @@
 package net.runelite.client.plugins.nmutils;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -44,25 +45,171 @@ public class Utils extends Plugin
 	private Client client;
 
 	@Override
-	protected void startUp()
-	{
-
-	}
+	protected void startUp() { }
 
 	@Override
-	protected void shutDown()
-	{
+	protected void shutDown() { }
 
+	// ANSI Regular http://patorjk.com/software/taag/#p=display&v=1&f=ANSI%20Shadow&t=
+
+	/*
+	██╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗████████╗ ██████╗ ██████╗ ██╗   ██╗
+	██║████╗  ██║██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝
+	██║██╔██╗ ██║██║   ██║█████╗  ██╔██╗ ██║   ██║   ██║   ██║██████╔╝ ╚████╔╝
+	██║██║╚██╗██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║   ██║   ██║██╔══██╗  ╚██╔╝
+	██║██║ ╚████║ ╚████╔╝ ███████╗██║ ╚████║   ██║   ╚██████╔╝██║  ██║   ██║
+	╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝ */
+
+
+	ItemContainer inventory = null;
+
+	public Item[] getInventoryItems()
+	{
+		inventory = client.getItemContainer(InventoryID.INVENTORY);
+		if (inventory == null)
+		{
+			return null;
+		}
+		return inventory.getItems();
 	}
 
-	@Getter(AccessLevel.PUBLIC)
-	@Setter(AccessLevel.PUBLIC)
-	boolean isInventoryFull = false;
-
-	@Subscribe
-	private void on(ItemContainerChanged event)
+	public boolean isInventoryFull()
 	{
-		setInventoryFull(isInventoryFullCheck());
+		int amount = 0;
+		for (Item item : getInventoryItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				return false;
+			}
+			amount++;
+		}
+		return amount == 28;
+	}
+
+	public boolean doesInventoryContain(String itemName)
+	{
+		for (Item item : getInventoryItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
+			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean doesInventoryContain(int itemId)
+	{
+		for (Item item : getInventoryItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			if (item.getId() == itemId)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String[] getInventoryItemActions(String itemName)
+	{
+		for (Item item : getInventoryItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
+			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
+			{
+				return client.getItemDefinition(item.getId()).getInventoryActions();
+			}
+		}
+		return null;
+	}
+
+	public String[] getInventoryItemActions(int itemId)
+	{
+		for (Item item : getInventoryItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			if (item.getId() == itemId)
+			{
+				return client.getItemDefinition(item.getId()).getInventoryActions();
+			}
+		}
+		return null;
+	}
+
+	public List<Integer> getInventorySlotsThatContain(String itemName)
+	{
+		int i = 0;
+		List<Integer> slots = new ArrayList<>();
+		for (Item item : getInventoryItems())
+		{
+			i++;
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
+			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
+			{
+				slots.add(i);
+			}
+		}
+		return slots;
+	}
+
+	public List<Integer> getInventorySlotsThatContain(int itemId)
+	{
+		int i = 0;
+		List<Integer> slots = new ArrayList<>();
+		for (Item item : getInventoryItems())
+		{
+			i++;
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			if (item.getId() == itemId)
+			{
+				slots.add(i);
+			}
+		}
+		return slots;
+	}
+
+
+
+
+
+
+
+
+
+
+
+	public Item[] getBankItems()
+	{
+		ItemContainer bank = client.getItemContainer(InventoryID.BANK);
+		if (bank == null)
+		{
+			return null;
+		}
+		return bank.getItems();
 	}
 
 	public int[] getIndicatorLocation(String string)
@@ -342,72 +489,5 @@ public class Utils extends Plugin
 		renderCentrePoint(graphics, bounds, color, boxSize);
 	}
 
-	public boolean nullCheckWorldPoint(WorldPoint wp)
-	{
-		return wp == null;
-	}
 
-	public boolean isInventoryFullCheck()
-	{
-		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
-		if (inventory == null)
-		{
-			return false;
-		}
-		Item[] items = inventory.getItems();
-		int amount = 0;
-		for (Item item : items)
-		{
-			if (item == null || item.getId() == -1)
-			{
-				return false;
-			}
-			amount++;
-		}
-		return amount == 28;
-	}
-
-	public boolean doesInventoryContain(String itemName)
-	{
-		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
-		if (inventory == null)
-		{
-			return false;
-		}
-		Item[] items = inventory.getItems();
-		for (Item item : items)
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			if (client.getItemDefinition(item.getId()).getName().toLowerCase().equalsIgnoreCase(itemName))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean doesInventoryContain(int itemId)
-	{
-		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
-		if (inventory == null)
-		{
-			return false;
-		}
-		Item[] items = inventory.getItems();
-		for (Item item : items)
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			if (item.getId() == itemId)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
 }
