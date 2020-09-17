@@ -38,6 +38,7 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
+import net.runelite.client.plugins.nmutils.Inventory;
 import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
 
@@ -100,15 +101,9 @@ public class ThePlugin extends Plugin
 		{
 			return;
 		}
-		if (utils.doesInventoryContain("pay-dirt"))
-		{
-			System.out.println("yes");
-			inventoryincludes = true;
-		}
-		else
-		{
-			inventoryincludes = false;
-		}
+		Item item = utils.getInventoryItem("Hammer");
+		if (item != null)
+			System.out.println("Item ID: " + item.getId() + ", Item Quantity: " + item.getQuantity());
 	}
 
 }

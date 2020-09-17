@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.25">
+<file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\NMUtils\src\main\java\net\runelite\client\plugins\nmutils\Inventory.java">
+<error line="3" column="24" severity="error" message="&apos;{&apos; at column 24 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
+<error line="5" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
+<error line="6" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
+<error line="7" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
+<error line="8" severity="error" message="Indent must use tab characters" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
+</file>
 <file name="C:\Users\Thoma\IdeaProjects\nomoreplugins\NMUtils\src\main\java\net\runelite\client\plugins\nmutils\Utils.java">
-<error line="17" severity="error" message="Multiline imports are disallowed if they are not static" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="47" column="34" severity="error" message="&apos;{&apos; at column 27 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
-<error line="50" column="35" severity="error" message="&apos;{&apos; at column 28 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
-<error line="465" column="36" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
-<error line="465" column="38" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
-<error line="465" column="40" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
+<error line="19" severity="error" message="Multiline imports are disallowed if they are not static" source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
+<error line="52" column="34" severity="error" message="&apos;{&apos; at column 27 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
+<error line="55" column="35" severity="error" message="&apos;{&apos; at column 28 should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"/>
+<error line="497" column="36" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
+<error line="497" column="38" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
+<error line="497" column="40" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
 </file>
 </checkstyle>

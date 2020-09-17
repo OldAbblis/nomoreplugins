@@ -70,7 +70,7 @@ public class TheOverlay extends Overlay
             return null;
         }
 
-        if (config.enableRockfallObjectIndicator())
+        if (config.enableLowerVeinIndicator())
         {
             renderRockfall(graphics);
         }

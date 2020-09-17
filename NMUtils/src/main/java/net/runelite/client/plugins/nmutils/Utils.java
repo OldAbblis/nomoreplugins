@@ -7,8 +7,10 @@ package net.runelite.client.plugins.nmutils;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -43,6 +45,9 @@ public class Utils extends Plugin
 	@Inject
 	private Client client;
 
+	@Inject
+	private Inventory inventory;
+
 	@Override
 	protected void startUp() { }
 
@@ -58,20 +63,47 @@ public class Utils extends Plugin
 	//██║██║ ╚████║ ╚████╔╝ ███████╗██║ ╚████║   ██║   ╚██████╔╝██║  ██║   ██║
 	//╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝
 
-	public Item[] getInventoryItems()
+	public ItemContainer getInventory()
 	{
 		assert client.isClientThread();
 		if (client.getLocalPlayer() == null)
 		{
 			return null;
 		}
+		return client.getItemContainer(InventoryID.INVENTORY);
+	}
 
-		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
-		if (inventory == null)
+	public List<Item> getInventoryItems()
+	{
+		assert client.isClientThread();
+		if (client.getLocalPlayer() == null)
 		{
 			return null;
 		}
-		return inventory.getItems();
+		return Arrays.stream(getInventory().getItems()).filter(item -> item != null && item.getId() != -1).collect(Collectors.toList());
+
+	}
+
+	public Item getInventoryItem(String itemName)
+	{
+		for (Item item : getInventoryItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
+			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
+			{
+				return item;
+			}
+		}
+		return null;
+	}
+
+	public Item getInventoryItem(int itemId)
+	{
+		return getInventoryItems().stream().filter(item -> item != null && item.getId() != -1).findFirst().get();
 	}
 
 	public Collection<WidgetItem> getInventoryWidgetItems()

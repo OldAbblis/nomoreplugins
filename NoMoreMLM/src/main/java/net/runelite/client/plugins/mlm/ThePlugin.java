@@ -139,6 +139,7 @@ public class ThePlugin extends Plugin {
 	protected void startUp() {
 		numberOfBrokenWaterWheels = getAmountOfBrokenWaterWheels();
 		overlayManager.add(overlay);
+		setCurrentPlayerArea("centre");
 	}
 
 	@Override
