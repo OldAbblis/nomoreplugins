@@ -29,8 +29,12 @@ public class TheOverlay extends Overlay {
     }
 
     @Override
-    public Dimension render(Graphics2D g)
+    public Dimension render(Graphics2D graphics)
     {
+        if (plugin.inventoryincludes)
+        {
+            utils.renderSceneIndicator(graphics, 100, 100, 100, 100, Color.CYAN);
+        }
         return null;
     }
 }

@@ -245,6 +245,13 @@
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NMUtils-0.1.0.jar?raw=true",
         "requires":"0.0.1"
+      },
+      {
+        "date": "2020-09-17",
+        "sha512sum": "683396555f4b868cf8259565e08a81cfcb8e04de9b60825025b334f4e5311c085cd06e56133d7fa81bc9c6f3e07e3ff0dd78d7bfee351b89b9075a973e9b9177",
+        "version": "0.2.0",
+        "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/NMUtils-0.2.0.jar?raw=true",
+        "requires":"0.0.1"
       }
     ]
   },
@@ -304,7 +311,7 @@
     "releases": [
       {
         "date": "2020-08-17",
-        "sha512sum": "23f54607178f01464677e43875d2010c6c75e5a413cb907a59e821fb52bfcb250d4cbf05b244313134b53fa55e665faac107db9d8c679105dd4d50c3246779fd",
+        "sha512sum": "74680dad3e5dcb97043b419a0c2f6dd322e24c61e23180d14d051074f0aabf692f668979f537f82dd3081b2d98fe5aa6fec0145623cb08bddee64abb663500a6",
         "version": "0.1.0",
         "url": "https://github.com/TomMartow/nomoreplugins/blob/master/release/nomoreinventorytags-0.1.0.jar?raw=true",
         "requires":"0.0.1"

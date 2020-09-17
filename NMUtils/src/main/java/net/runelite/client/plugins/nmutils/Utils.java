@@ -7,24 +7,23 @@ package net.runelite.client.plugins.nmutils;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.rxjava3.annotations.Nullable;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.queries.DecorativeObjectQuery;
 import net.runelite.api.queries.GameObjectQuery;
 import net.runelite.api.queries.GroundObjectQuery;
 import net.runelite.api.queries.WallObjectQuery;
-import net.runelite.client.eventbus.Subscribe;
+import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.api.widgets.WidgetItem;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
@@ -52,25 +51,44 @@ public class Utils extends Plugin
 
 	// ANSI Regular http://patorjk.com/software/taag/#p=display&v=1&f=ANSI%20Shadow&t=
 
-	/*
-	██╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗████████╗ ██████╗ ██████╗ ██╗   ██╗
-	██║████╗  ██║██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝
-	██║██╔██╗ ██║██║   ██║█████╗  ██╔██╗ ██║   ██║   ██║   ██║██████╔╝ ╚████╔╝
-	██║██║╚██╗██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║   ██║   ██║██╔══██╗  ╚██╔╝
-	██║██║ ╚████║ ╚████╔╝ ███████╗██║ ╚████║   ██║   ╚██████╔╝██║  ██║   ██║
-	╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝ */
-
-
-	ItemContainer inventory = null;
+	//██╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗████████╗ ██████╗ ██████╗ ██╗   ██╗
+	//██║████╗  ██║██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝
+	//██║██╔██╗ ██║██║   ██║█████╗  ██╔██╗ ██║   ██║   ██║   ██║██████╔╝ ╚████╔╝
+	//██║██║╚██╗██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║   ██║   ██║██╔══██╗  ╚██╔╝
+	//██║██║ ╚████║ ╚████╔╝ ███████╗██║ ╚████║   ██║   ╚██████╔╝██║  ██║   ██║
+	//╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝
 
 	public Item[] getInventoryItems()
 	{
-		inventory = client.getItemContainer(InventoryID.INVENTORY);
+		assert client.isClientThread();
+		if (client.getLocalPlayer() == null)
+		{
+			return null;
+		}
+
+		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
 		if (inventory == null)
 		{
 			return null;
 		}
 		return inventory.getItems();
+	}
+
+	public Collection<WidgetItem> getInventoryWidgetItems()
+	{
+		assert client.isClientThread();
+		if (client.getLocalPlayer() == null)
+		{
+			System.out.println("utils.getInventoryWidgetItems() - the player is null.");
+			return null;
+		}
+
+		Widget inventoryWidget = client.getWidget(WidgetInfo.INVENTORY);
+		if (inventoryWidget == null)
+		{
+			return null;
+		}
+		return inventoryWidget.getWidgetItems();
 	}
 
 	public boolean isInventoryFull()
@@ -192,25 +210,255 @@ public class Utils extends Plugin
 		return slots;
 	}
 
+	public boolean isInventoryItemStackable(String itemName)
+	{
+		for (Item item : getInventoryItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
+			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
+			{
+				return itemDefinition.isStackable();
+			}
+		}
+		return false;
+	}
 
+	public boolean isInventoryItemStackable(int itemId)
+	{
+		for (Item item : getInventoryItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			if (item.getId() == itemId)
+			{
+				ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
+				return itemDefinition.isStackable();
+			}
+		}
+		return false;
+	}
 
+	public boolean isInventoryItemTradeable(String itemName)
+	{
+		for (Item item : getInventoryItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
+			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
+			{
+				return itemDefinition.isTradeable();
+			}
+		}
+		return false;
+	}
 
+	public boolean isInventoryItemTradeable(int itemId)
+	{
+		for (Item item : getInventoryItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			if (item.getId() == itemId)
+			{
+				ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
+				return itemDefinition.isTradeable();
+			}
+		}
+		return false;
+	}
 
+	public Rectangle getInventoryItemBounds(String itemName)
+	{
+		for (WidgetItem widgetItem : getInventoryWidgetItems())
+		{
+			if (widgetItem == null)
+			{
+				continue;
+			}
+			Widget widget = client.getWidget(widgetItem.getWidget().getParentId(), widgetItem.getWidget().getChild(0).getId());
+			if (widget == null)
+			{
+				return null;
+			}
+			String widgetName = widget.getName();
+			if (widgetName.toLowerCase().equalsIgnoreCase(itemName))
+			{
+				Rectangle bounds = widget.getBounds();
+				if (bounds == null)
+				{
+					return null;
+				}
+				return bounds;
+			}
+		}
+		return null;
+	}
 
+	//██████╗  █████╗ ███╗   ██╗██╗  ██╗
+	//██╔══██╗██╔══██╗████╗  ██║██║ ██╔╝
+	//██████╔╝███████║██╔██╗ ██║█████╔╝
+	//██╔══██╗██╔══██║██║╚██╗██║██╔═██╗
+	//██████╔╝██║  ██║██║ ╚████║██║  ██╗
+	//╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
 
-
-
-
+	private ItemContainer bank = null;
+	private Widget bankWidget = null;
 
 	public Item[] getBankItems()
 	{
-		ItemContainer bank = client.getItemContainer(InventoryID.BANK);
+		assert client.isClientThread();
+		if (client.getLocalPlayer() == null)
+		{
+			System.out.println("utils.getBankItems() - the player is null.");
+			return null;
+		}
+
+		bank = client.getItemContainer(InventoryID.BANK);
 		if (bank == null)
 		{
 			return null;
 		}
 		return bank.getItems();
 	}
+
+	public Collection<WidgetItem> getBankWidgetItems()
+	{
+		assert client.isClientThread();
+		if (client.getLocalPlayer() == null)
+		{
+			System.out.println("utils.getBankWidgetItems() - the player is null.");
+			return null;
+		}
+
+		bankWidget = client.getWidget(WidgetInfo.BANK_CONTAINER);
+		if (bankWidget == null || bankWidget.isHidden())
+		{
+			return null;
+		}
+		return bankWidget.getWidgetItems();
+	}
+
+	public boolean doesBankContain(String itemName)
+	{
+		for (Item item : getBankItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
+			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean doesBankContain(int itemId)
+	{
+		for (Item item : getBankItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			if (item.getId() == itemId)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String[] getBankItemActions(String itemName)
+	{
+		for (Item item : getBankItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
+			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
+			{
+				return client.getItemDefinition(item.getId()).getInventoryActions();
+			}
+		}
+		return null;
+	}
+
+	public String[] getBankItemActions(int itemId)
+	{
+		for (Item item : getBankItems())
+		{
+			if (item == null || item.getId() == -1)
+			{
+				continue;
+			}
+			if (item.getId() == itemId)
+			{
+				return client.getItemDefinition(item.getId()).getInventoryActions();
+			}
+		}
+		return null;
+	}
+
+	public Rectangle getBankItemBounds(String itemName)
+	{
+		for (WidgetItem widgetItem : getBankWidgetItems())
+		{
+			if (widgetItem == null)
+			{
+				continue;
+			}
+			Widget widget = client.getWidget(widgetItem.getWidget().getParentId(), widgetItem.getWidget().getChild(0).getId());
+			if (widget == null)
+			{
+				return null;
+			}
+			String widgetName = widget.getName();
+			if (widgetName.toLowerCase().equalsIgnoreCase(itemName))
+			{
+				Rectangle bounds = widget.getBounds();
+				if (bounds == null)
+				{
+					return null;
+				}
+				return bounds;
+			}
+		}
+		return null;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public int[] getIndicatorLocation(String string)
 	{
@@ -250,11 +498,6 @@ public class Utils extends Plugin
 	public int getRandomNumber(int min, int max)
 	{
 		return (int) ((Math.random() * ((max - min) + 1)) + min);
-	}
-
-	public void log(String string)
-	{
-		System.out.println(string);
 	}
 
 	@Nullable
@@ -487,6 +730,16 @@ public class Utils extends Plugin
 			return;
 		}
 		renderCentrePoint(graphics, bounds, color, boxSize);
+	}
+
+	public void renderSceneIndicator(Graphics2D graphics, int x, int y, int width, int height, Color color)
+	{
+		if (color == null)
+		{
+			color = Color.RED;
+		}
+		graphics.setColor(color);
+		graphics.fillRect(x, y, width, height);
 	}
 
 

@@ -4,7 +4,7 @@ import net.runelite.client.config.*;
 
 import java.awt.*;
 
-@ConfigGroup("inventoryindicators")
+@ConfigGroup("inventoryitemindicators")
 public interface IIConfig extends Config {
 
     @ConfigTitleSection(

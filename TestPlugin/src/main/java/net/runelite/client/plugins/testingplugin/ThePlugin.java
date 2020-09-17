@@ -27,13 +27,18 @@ package net.runelite.client.plugins.testingplugin;
 import javax.inject.Inject;
 
 import com.google.inject.Provides;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
+import net.runelite.api.events.GameTick;
 import net.runelite.client.config.ConfigManager;
+import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
+import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
 
 import net.runelite.client.plugins.nmutils.Utils;
@@ -65,20 +70,45 @@ public class ThePlugin extends Plugin
 	@Inject
 	private Utils utils;
 
+	@Inject
+	private OverlayManager overlayManager;
+
 	@Provides
 	TheConfig provideConfig(ConfigManager configManager) {
 	return configManager.getConfig(TheConfig.class);
 }
 
+	@Getter(AccessLevel.PACKAGE)
+	boolean inventoryincludes = false;
+
 	@Override
 	protected void startUp()
 	{
-		System.out.println(Arrays.toString(utils.getIndicatorLocation(config.location())));
+		overlayManager.add(overlay);
 	}
 
 	@Override
 	protected void shutDown()
 	{
+		overlayManager.remove(overlay);
+	}
+
+	@Subscribe
+	private void on(GameTick event)
+	{
+		if (client.getGameState() != GameState.LOGGED_IN)
+		{
+			return;
+		}
+		if (utils.doesInventoryContain("pay-dirt"))
+		{
+			System.out.println("yes");
+			inventoryincludes = true;
+		}
+		else
+		{
+			inventoryincludes = false;
+		}
 	}
 
 }
