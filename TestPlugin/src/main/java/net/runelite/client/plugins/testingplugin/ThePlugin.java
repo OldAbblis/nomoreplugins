@@ -32,19 +32,22 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.GameTick;
+import net.runelite.api.widgets.WidgetItem;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
-import net.runelite.client.plugins.nmutils.Inventory;
 import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
 
 import net.runelite.client.plugins.nmutils.Utils;
 
+import java.awt.*;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 @Extension
 @PluginDescriptor(
@@ -101,9 +104,10 @@ public class ThePlugin extends Plugin
 		{
 			return;
 		}
-		Item item = utils.getInventoryItem("Hammer");
-		if (item != null)
-			System.out.println("Item ID: " + item.getId() + ", Item Quantity: " + item.getQuantity());
+		if (utils.getInventoryItem("Dragon bones") != null)
+		{
+			inventoryincludes = true;
+		}
 	}
 
 }

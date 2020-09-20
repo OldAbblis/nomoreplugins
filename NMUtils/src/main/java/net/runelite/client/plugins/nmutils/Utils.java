@@ -6,9 +6,7 @@
 package net.runelite.client.plugins.nmutils;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
@@ -45,9 +43,6 @@ public class Utils extends Plugin
 	@Inject
 	private Client client;
 
-	@Inject
-	private Inventory inventory;
-
 	@Override
 	protected void startUp() { }
 
@@ -63,151 +58,87 @@ public class Utils extends Plugin
 	//██║██║ ╚████║ ╚████╔╝ ███████╗██║ ╚████║   ██║   ╚██████╔╝██║  ██║   ██║
 	//╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝
 
-	public ItemContainer getInventory()
+	public Widget getInventory()
 	{
 		assert client.isClientThread();
 		if (client.getLocalPlayer() == null)
 		{
 			return null;
 		}
-		return client.getItemContainer(InventoryID.INVENTORY);
+		if (client.getWidget(WidgetInfo.INVENTORY) == null)
+		{
+			return null;
+		}
+		return client.getWidget(WidgetInfo.INVENTORY);
 	}
 
-	public List<Item> getInventoryItems()
+	public List<WidgetItem> getInventoryItems()
 	{
 		assert client.isClientThread();
 		if (client.getLocalPlayer() == null)
 		{
 			return null;
 		}
-		return Arrays.stream(getInventory().getItems()).filter(item -> item != null && item.getId() != -1).collect(Collectors.toList());
-
+		return getInventory().getWidgetItems().stream().filter(w
+				-> w != null
+				&& w.getId() != -1)
+				.collect(Collectors.toList());
 	}
 
-	public Item getInventoryItem(String itemName)
+	public WidgetItem getInventoryItem(String itemName)
 	{
-		for (Item item : getInventoryItems())
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
-			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
-			{
-				return item;
-			}
-		}
-		return null;
+		Optional<WidgetItem> item = getInventoryItems().stream().findAny().filter(w
+				-> w.getWidget() != null
+				&& w.getId() != -1
+				&& w.getWidget()
+				.getName()
+				.equalsIgnoreCase(itemName));
+		return item.orElse(null);
 	}
 
-	public Item getInventoryItem(int itemId)
+	public WidgetItem getInventoryItem(int itemId)
 	{
-		return getInventoryItems().stream().filter(item -> item != null && item.getId() != -1).findFirst().get();
-	}
-
-	public Collection<WidgetItem> getInventoryWidgetItems()
-	{
-		assert client.isClientThread();
-		if (client.getLocalPlayer() == null)
-		{
-			System.out.println("utils.getInventoryWidgetItems() - the player is null.");
-			return null;
-		}
-
-		Widget inventoryWidget = client.getWidget(WidgetInfo.INVENTORY);
-		if (inventoryWidget == null)
-		{
-			return null;
-		}
-		return inventoryWidget.getWidgetItems();
+		Optional<WidgetItem> item = getInventoryItems().stream().findAny().filter(w
+				-> w.getWidget() != null
+				&& w.getId() != -1);
+		return item.orElse(null);
 	}
 
 	public boolean isInventoryFull()
 	{
-		int amount = 0;
-		for (Item item : getInventoryItems())
-		{
-			if (item == null || item.getId() == -1)
-			{
-				return false;
-			}
-			amount++;
-		}
-		return amount == 28;
+		return getInventoryItems().size() == 28;
+	}
+
+	public String getItemName(WidgetItem item)
+	{
+		return client.getItemDefinition(item.getId()).getName();
+	}
+
+	public ItemDefinition getItemDefinition(WidgetItem item)
+	{
+		return client.getItemDefinition(item.getId());
 	}
 
 	public boolean doesInventoryContain(String itemName)
 	{
-		for (Item item : getInventoryItems())
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
-			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
-			{
-				return true;
-			}
-		}
-		return false;
+		return getInventoryItems().stream().anyMatch(w
+				-> w.getWidget() != null
+				&& getItemName(w)
+				.equalsIgnoreCase(itemName));
 	}
 
 	public boolean doesInventoryContain(int itemId)
 	{
-		for (Item item : getInventoryItems())
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			if (item.getId() == itemId)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public String[] getInventoryItemActions(String itemName)
-	{
-		for (Item item : getInventoryItems())
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
-			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
-			{
-				return client.getItemDefinition(item.getId()).getInventoryActions();
-			}
-		}
-		return null;
-	}
-
-	public String[] getInventoryItemActions(int itemId)
-	{
-		for (Item item : getInventoryItems())
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			if (item.getId() == itemId)
-			{
-				return client.getItemDefinition(item.getId()).getInventoryActions();
-			}
-		}
-		return null;
+		return getInventoryItems().stream().anyMatch(w
+				-> w.getWidget() != null
+				&& w.getId() == itemId);
 	}
 
 	public List<Integer> getInventorySlotsThatContain(String itemName)
 	{
 		int i = 0;
 		List<Integer> slots = new ArrayList<>();
-		for (Item item : getInventoryItems())
+		for (WidgetItem item : getInventoryItems())
 		{
 			i++;
 			if (item == null || item.getId() == -1)
@@ -227,7 +158,7 @@ public class Utils extends Plugin
 	{
 		int i = 0;
 		List<Integer> slots = new ArrayList<>();
-		for (Item item : getInventoryItems())
+		for (WidgetItem item : getInventoryItems())
 		{
 			i++;
 			if (item == null || item.getId() == -1)
@@ -240,101 +171,6 @@ public class Utils extends Plugin
 			}
 		}
 		return slots;
-	}
-
-	public boolean isInventoryItemStackable(String itemName)
-	{
-		for (Item item : getInventoryItems())
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
-			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
-			{
-				return itemDefinition.isStackable();
-			}
-		}
-		return false;
-	}
-
-	public boolean isInventoryItemStackable(int itemId)
-	{
-		for (Item item : getInventoryItems())
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			if (item.getId() == itemId)
-			{
-				ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
-				return itemDefinition.isStackable();
-			}
-		}
-		return false;
-	}
-
-	public boolean isInventoryItemTradeable(String itemName)
-	{
-		for (Item item : getInventoryItems())
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
-			if (itemDefinition.getName().toLowerCase().equalsIgnoreCase(itemName))
-			{
-				return itemDefinition.isTradeable();
-			}
-		}
-		return false;
-	}
-
-	public boolean isInventoryItemTradeable(int itemId)
-	{
-		for (Item item : getInventoryItems())
-		{
-			if (item == null || item.getId() == -1)
-			{
-				continue;
-			}
-			if (item.getId() == itemId)
-			{
-				ItemDefinition itemDefinition = client.getItemDefinition(item.getId());
-				return itemDefinition.isTradeable();
-			}
-		}
-		return false;
-	}
-
-	public Rectangle getInventoryItemBounds(String itemName)
-	{
-		for (WidgetItem widgetItem : getInventoryWidgetItems())
-		{
-			if (widgetItem == null)
-			{
-				continue;
-			}
-			Widget widget = client.getWidget(widgetItem.getWidget().getParentId(), widgetItem.getWidget().getChild(0).getId());
-			if (widget == null)
-			{
-				return null;
-			}
-			String widgetName = widget.getName();
-			if (widgetName.toLowerCase().equalsIgnoreCase(itemName))
-			{
-				Rectangle bounds = widget.getBounds();
-				if (bounds == null)
-				{
-					return null;
-				}
-				return bounds;
-			}
-		}
-		return null;
 	}
 
 	//██████╗  █████╗ ███╗   ██╗██╗  ██╗
